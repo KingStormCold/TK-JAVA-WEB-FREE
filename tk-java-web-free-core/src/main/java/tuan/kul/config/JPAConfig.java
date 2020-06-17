@@ -67,9 +67,9 @@ public class JPAConfig {
 		properties.setProperty("hibernate.format_sql", environment.getProperty("hibernate.format_sql"));
 		properties.setProperty("hibernate.default_schema", environment.getProperty("hibernate.default_schema"));
 //		properties.setProperty("hibernate.hbm2ddl.auto", "drop");
-		properties.setProperty("hibernate.hbm2ddl.auto", "create");
+//		properties.setProperty("hibernate.hbm2ddl.auto", "create");
 //		properties.setProperty("hibernate.hbm2ddl.auto", "none");
-//		properties.setProperty("hibernate.hbm2ddl.auto", "update");
+		properties.setProperty("hibernate.hbm2ddl.auto", "update");
 		return properties;
 	}
 

@@ -27,7 +27,11 @@
 						<i class="fa fa-users"></i><span>Quản lý user</span>
 					</a>
 				</li>
-				
+				<li class="active">
+					<a href='<c:url value= "/admin/role/list"/>' aria-expanded="true">
+						<i class="fa fa-users"></i><span>Quản lý role</span>
+					</a>
+				</li>
 			</ul>
 			</nav>
 		</div>

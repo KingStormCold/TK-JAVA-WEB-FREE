@@ -26,6 +26,7 @@
 	</bean>
 
     <mvc:resources mapping="/template/**" location="/template/" />
+    <mvc:resources mapping="/template1/**" location="/template1/" />
     <mvc:resources mapping="/ckeditor/**" location="/ckeditor/" />
     <mvc:resources mapping="/ckfinder/**" location="/ckfinder/" />
     <mvc:resources mapping="/image/**" location="/image/" />

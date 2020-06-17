@@ -1,0 +1,381 @@
+body {
+  box-sizing: auto;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  overflow-x: hidden;
+  height: 100%;
+}
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+/* ------------------------START HEADER--------------------- */
+.logo-header img {
+  width: 100px;
+  height: 50px;
+  margin-left: 45px;
+  margin-top: 5px;
+}
+.logo-title {
+  font-size: 20px;
+  display: inline;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 100;
+}
+.logo-header a:hover,
+.logo-header a:active {
+  text-decoration: none;
+}
+.logo-header {
+  background-color: rgb(162, 223, 255);
+  height: 60px;
+  box-shadow: 0px 10px rgb(185, 229, 253);
+}
+.menu-header, .avatar-header {
+  background-color: rgb(246,251,254);
+  height: 60px;
+  margin-bottom: 2px;
+}
+
+.icon-menu, .icon-search {
+  margin-left: 7px;
+  margin-top: 15px;
+  margin-top: 20px;
+}
+
+.icon-small:hover,
+.icon-small:active {
+  cursor: pointer;
+  color: rgb(162, 223, 255);
+}
+
+.icon-search {
+  position: absolute;
+  margin-left: 1370px;
+  margin-top: 21px;
+}
+
+.content-search {
+  position: absolute;
+  width: 400px;
+  border-radius: 30px;
+  border: 1px solid rgb(162, 223, 255);
+  font-size: 12px;
+  height: 32px;
+  padding: 0px 20px 0px 20px;
+  margin-top: 14px;
+  margin-left: 1000px;
+  outline: 0;
+}
+.content-search:hover,
+.content-search:active {
+  border: 1px solid rgb(113, 205, 255);
+}
+
+.avatar-header img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  margin-left: 70px;
+  margin-top: 8px;
+}
+.avatar-header img:hover,
+.avatar-header img:active {
+  cursor: pointer;
+}
+.avatar-header .admin-header {
+  position: absolute;
+  font-size: 14px;
+  margin-left: -12px;
+  margin-top: 12px;
+}
+.personal-info-header {
+  position: absolute;
+  margin-top: -42px;
+  margin-left: -55px;
+  display: none;
+}
+.personal-info-header li {
+  font-size: 12px;
+  width: 80px;
+  list-style: none;
+  text-align: center;
+  margin-top: 1px;
+  background-color: rgb(208, 237, 255);
+  border: 1px solid rgb(246,251,254);
+  border-radius: 3px;
+
+}
+.personal-info-header li a {
+  text-decoration: none;
+  font-style: italic;
+  font-weight: 700;
+  transition: border-bottom 1s;/* thời gian hiển thị của border-bottom ;*/
+  color: black;
+}
+.personal-info-header li:hover,
+.personal-info-header li:active {
+  background-color: rgb(162, 223, 255);
+  cursor: pointer;
+}
+.run-header {
+  font-weight: bold;
+  position: absolute;
+  animation: run-header 8s infinite;
+  margin-top: -27px;
+  color: rgb(162, 223, 255);
+}
+@keyframes run-header {
+    from {left: 50px;}
+    to {left: 1050px;}
+}
+/* ------------------------END----------------------------- */
+.main-menu {
+  background-color: rgb(162, 223, 255);
+  height: 93.3vh;
+  position: relative;
+  padding-right: 0px !important;
+}
+.main-auth-list {
+  margin-top: 10px;
+  font-size: 20px;
+  margin-left: -110px;
+ 
+}
+.main-auth-list li{
+  list-style: none;
+  margin-top: 17px;
+}
+.main-auth-list li a{
+  margin-top: 10px;
+  color: rgb(246,251,254);
+}
+.main-auth-list li a:hover{
+  background-color: rgb(132, 212, 255);
+  border-radius: 10px;
+  padding : 10px 40px 10px 20px;/*tren phai duoi trai*/
+  color: black;
+  text-decoration: none;
+}
+.main-menu-manager-list {
+  margin-top: 10px;
+  font-size: 20px;
+  margin-left: -110px;
+ 
+}
+.main-menu-manager-list li{
+  list-style: none;
+  margin-top: 17px;
+}
+.main-menu-manager-list li a{
+  margin-top: 10px;
+  color: rgb(246,251,254);
+}
+.main-menu-manager-list li a:hover{
+  background-color: rgb(132, 212, 255);
+  border-radius: 10px;
+  padding : 10px 40px 10px 20px;/*tren phai duoi trai*/
+  color: black;
+  text-decoration: none;
+}
+.parent-li {
+  margin-bottom: 10px;
+  text-align: center;
+}
+.small-icon {
+  font-size: 20px !important;
+}
+.active-span {
+  width: 200px;
+}
+h3 {
+  margin-top: 30px !important;
+  padding-left: 30px;
+  background-color: rgb(208, 237, 255);
+  color: black;
+}
+.main-auth-icon {
+  position: absolute;
+  margin-top: -30px;
+  margin-left: 255px;
+}
+.main-auth-icon:hover {
+  cursor: pointer;
+  font-size: 20px;
+  margin-top: -33px;
+  color: rgb(132, 212, 255);
+}
+.menu-manager-icon {
+  position: absolute;
+  margin-top: -30px;
+  margin-left: 255px;
+}
+.menu-manager-icon:hover {
+  cursor: pointer;
+  font-size: 20px;
+  margin-top: -33px;
+  color: rgb(132, 212, 255);
+}
+hr {
+  background-color:  rgba(255, 255, 255, 0.9);
+}
+.category-manager {
+  margin-left: 30px;
+}
+.dataTables_filter input {
+  padding: 0px 20px 0px 10px;
+  border-radius: 4px;
+  outline: 0;
+  font-size: 14px;
+  height: 30px;
+  width: 320px;
+  border: 1px solid rgb(113, 205, 255);
+}
+.dataTables_filter input::before {
+  content: "Search";
+}
+.dataTables_filter label{
+  color: transparent;
+}
+.card {
+  margin-top: 20px;
+  margin-right: 13px;
+}
+.add-user {
+margin-top: 27px;
+}
+.add-user .btn-add-user {
+  margin-left: 1530px;
+  color: white;
+  background-color: rgb(113, 205, 255);
+  border: 1px solid rgb(113, 205, 255) !important;
+}
+.add-user .btn-add-user:hover {
+  background-color: rgb(172, 226, 255);
+  transition: color 0.5;
+}
+.add-role {
+	margin-top: 27px;
+}
+.add-role .btn-add-role {
+  margin-left: 1530px;
+  color: white;
+  background-color: rgb(113, 205, 255);
+  border: 1px solid rgb(113, 205, 255) !important;
+}
+.add-role .btn-add-role:hover {
+  background-color: rgb(172, 226, 255);
+  transition: color 0.5;
+}
+.table-th {
+  background-color: #5c5f61;
+  text-align: center;
+  border: 1px solid rgb(246,251,254) !important;
+  color: white;
+}
+.table-td {
+  border-bottom: 1px solid rgb(226,236,243) !important;
+  text-align: center;
+}
+/* ---------------icon--------------------- */
+.fa-edit {
+  font-size: 25px !important;
+  margin-right: 7px;
+  color: rgb(113, 205, 255);
+}
+.fa-remove {
+  font-size: 29px !important;
+  color: red;
+}
+/* --------------end icon------------------ */
+/* --------------[START] modal------------- */
+.modal-content-user {
+  width: 820px !important;
+  margin-left: -180px !important;
+}
+.modal-user {
+  overflow-y: scroll;
+  height: 740px;
+}
+.modal-content-role{
+  width: 505px !important;
+}
+.modal-footer-role {
+	height: 48px;
+}
+.modal-body-role {
+	height: 134px;
+}
+/* ----------------[END] modal------------- */
+/* ------------------form-------------------- */
+.form-label {
+  background-color: #e9ecef;
+  border: 1px solid #ced4da;
+  width: 150px !important;
+  height: calc(1.5em + .75rem + 2px) !important;
+  text-align: center;
+  padding: .375rem .75rem;
+  border-radius: .25rem;
+  display: inline-block;
+}
+.form-label-hidden {
+  width: 150px !important;
+}
+.form-input {
+  display: inline-block !important;
+  width: 605px !important;
+}
+.form-input-role {
+  display: inline-block !important;
+  width: 300px !important;
+}
+.form-avatar-profile {
+  width: 200px;
+  height: 150px;
+  margin-top: -20px;
+}
+.checkbox-role {
+  width:19px;
+  height:19px;
+  margin:-3px 5px 0px 10px;
+  vertical-align:middle;
+  background:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/check_radio_sheet.png) left top no-repeat;
+  cursor:pointer;
+}
+.have-role, .not-role {
+  display: -webkit-inline-box;
+  border: 1px solid #e9ecef;
+  max-width: 300px !important;
+  border-radius: 7px;
+}
+.span-role {
+  display: inline-block;
+  width: 298px;
+  margin-left: -15px;
+  background-color: #e9ecef;
+  text-align: center;
+  height: 37px;
+  padding-top: 6px;
+  border-radius: 6px 6px 0px 0px;
+}
+.role-header {
+  height: 37px;
+  display: inline-block;
+}
+.role-have-right, .list-role {
+  margin-top: 10px;
+  display: inline-block;
+  overflow-y: scroll;
+  height: 250px;
+}
+/* --------------------table--------------------- */
+#pagination-user {
+  position: absolute;
+  margin-top: 27px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+#map {
+  height: 400px;  /* The height is 400 pixels */
+  width: 400px;  /* The width is the width of the web page */
+ }
