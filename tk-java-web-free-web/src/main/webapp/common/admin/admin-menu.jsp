@@ -13,7 +13,7 @@
           </a>
         </li>
         <li class = "parent-li">
-          <a href="/user-role/user" aria-expanded="true">
+          <a href='<c:url value= "/admin/user/list"/>' aria-expanded="true">
             <i class ="fa fa-users small-icon"></i>
             <span class = "active-span">User Manager</span>
           </a>

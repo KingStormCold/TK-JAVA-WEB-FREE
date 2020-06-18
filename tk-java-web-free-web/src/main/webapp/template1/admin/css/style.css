@@ -110,7 +110,7 @@ body {
   text-decoration: none;
   font-style: italic;
   font-weight: 700;
-  transition: border-bottom 1s;/* thời gian hiển thị của border-bottom ;*/
+  transition: border-bottom 1s;/* thá»�i gian hiá»ƒn thá»‹ cá»§a border-bottom ;*/
   color: black;
 }
 .personal-info-header li:hover,
@@ -122,7 +122,7 @@ body {
   font-weight: bold;
   position: absolute;
   animation: run-header 8s infinite;
-  margin-top: -27px;
+  margin-top: -22px;
   color: rgb(162, 223, 255);
 }
 @keyframes run-header {
@@ -298,13 +298,16 @@ margin-top: 27px;
   height: 740px;
 }
 .modal-content-role{
-  width: 505px !important;
+  width: 490px !important;
 }
 .modal-footer-role {
-	height: 48px;
+	height: 65px;
 }
 .modal-body-role {
 	height: 134px;
+}
+.modal-footer-user {
+	height: 50px;
 }
 /* ----------------[END] modal------------- */
 /* ------------------form-------------------- */
@@ -333,6 +336,7 @@ margin-top: 27px;
   width: 200px;
   height: 150px;
   margin-top: -20px;
+  margin-bottom: 5px;
 }
 .checkbox-role {
   width:19px;

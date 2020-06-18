@@ -7,7 +7,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 public class UserController {
 
-    @GetMapping(value = "/admin/users/list")
+    @GetMapping(value = "/admin/user/list")
     public ModelAndView getAllUser() {
         ModelAndView mav = new ModelAndView("/admin/user/list");
         return mav;

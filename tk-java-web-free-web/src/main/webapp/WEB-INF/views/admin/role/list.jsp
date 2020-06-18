@@ -17,31 +17,29 @@
           <div class="modal" id="myModal">
               <div class="modal-dialog">
                   <div class="modal-content modal-content-role">
-                      <form action="/user-role/user" method="GET" enctype="multipart/form-data">
-                          <!-- Modal Header -->
-                          <div class="modal-header">
-                              <h4 class="modal-title">Insert Role</h4>
-                              <button type="button" class="close" data-dismiss="modal">&times;</button>
-                          </div>
-
-                          <!-- Modal body -->
-                          <div class="modal-body modal-body-role">
-                              <div class ="form-group">
-                                  <label for="usr" class="form-label">Name</label>
-                                  <input type="text" class="form-control form-input-role" name="name">
-                              </div>
-                              <div class ="form-group">
-                                  <label for="usr" class="form-label">Description</label>
-                                  <input type="text" class="form-control form-input-role" name = "description">
-                              </div>
-                          </div>
-
-                          <!-- Modal footer -->
-                          <div class="modal-footer modal-footer-role">
-                              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                              <button type="submit" class="btn btn-success" >Create</button>
-                          </div>
-                      </form>
+	                  <!-- Modal Header -->
+	                  <div class="modal-header">
+	                      <h4 class="modal-title">Insert Role</h4>
+	                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+	                  </div>
+	
+	                  <!-- Modal body -->
+	                  <div class="modal-body modal-body-role">
+	                      <div class ="form-group">
+	                          <label for="usr" class="form-label">Name</label>
+	                          <input type="text" class="form-control form-input-role" name="name">
+	                      </div>
+	                      <div class ="form-group">
+	                          <label for="usr" class="form-label">Description</label>
+	                          <input type="text" class="form-control form-input-role" name = "description">
+	                      </div>
+	                  </div>
+	
+	                  <!-- Modal footer -->
+	                  <div class="modal-footer modal-footer-role">
+	                      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+	                      <button type="submit" class="btn btn-success" >Create</button>
+	                  </div>
                   </div>
               </div>
           </div>
