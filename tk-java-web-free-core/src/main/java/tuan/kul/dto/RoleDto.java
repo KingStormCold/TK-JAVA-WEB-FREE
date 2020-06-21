@@ -52,4 +52,10 @@ public class RoleDto implements Serializable{
 		super();
 	}
 
+	public RoleDto(String roleId, String desciption) {
+		super();
+		this.roleId = roleId;
+		this.desciption = desciption;
+	}
+
 }
