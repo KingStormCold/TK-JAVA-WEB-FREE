@@ -56,4 +56,15 @@ public class RoleEntity {
 	public void setUserOauth(Set<UserEntity> userOauth) {
 		this.userOauth = userOauth;
 	}
+
+	public RoleEntity(String roleId, String desciption, Set<UserEntity> userOauth) {
+		super();
+		this.roleId = roleId;
+		this.desciption = desciption;
+		this.userOauth = userOauth;
+	}
+
+	public RoleEntity() {
+		super();
+	}
 }
