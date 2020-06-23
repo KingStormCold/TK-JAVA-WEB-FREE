@@ -106,9 +106,11 @@
 	        }
 	    });
 	    $('body').on("click", ".editNew", function(){
-			var newId = $(this).siblings('#newId').val();
-			localStorage.setItem("newId", newId);
-			$('.editNew').attr("href", "<c:url value='/admin/news'/>")
+		    var roleId = $(this).siblings('#roleId').val();
+			var roleName = $(this).parents('tr').find('#roleName').val();
+			alert($(this));
+ 		    $('.modal-body #role-id').val(roleId);
+ 		  	$('.modal-body #role-name').val(roleName);
 		});
 	    $('.dataTables_filter input').prop("placeholder", "Search");
 
@@ -151,7 +153,7 @@
 		    	        	setTimeout(function(){
 		    	        		closeCreate('#btn-create-role');
 		    	        		$('#btn-create-role').text("Create")
-		    	        	}, 4000);
+		    	        	}, 2000);
 	    	        	} else {
 	    	        		setTimeout(function(){
 		    	        		$.notify(data.message, "error");
@@ -159,7 +161,7 @@
 		    	        	setTimeout(function(){
 		    	        		closeCreate('#btn-create-role');
 		    	        		$('#btn-create-role').text("Create")
-		    	        	}, 4000);
+		    	        	}, 2000);
 	    	        	}
 	    	        }
 	    	    });
@@ -188,7 +190,7 @@
   	      noIndex + index + 1,
   	      item.roleId,
   	      item.description,
-          '<a class="fa fa-edit editNew" href="#"></a><a class="fa fa-remove" href="https://www.google.com/"></a><input type="hidden" id ="roleId" value="'+item.roleId+'"/>'
+          '<a class="fa fa-edit editNew" data-toggle="modal" data-target="#myModal"></a><a class="fa fa-remove" href="https://www.google.com/"></a><input type="hidden" id ="roleId" value="'+item.roleId+'"/><input type="hidden" id ="roleName" value="'+item.description+'"/>'
   	    ];
   	    table.row.add(rowData).draw(false);
   	  });

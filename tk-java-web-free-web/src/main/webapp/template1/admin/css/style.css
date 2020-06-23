@@ -297,7 +297,8 @@ margin-top: 27px;
 .fa-edit {
   font-size: 25px !important;
   margin-right: 7px;
-  color: rgb(113, 205, 255);
+  color: rgb(113, 205, 255) !important;
+  cursor: pointer;
 }
 .fa-remove {
   font-size: 29px !important;
