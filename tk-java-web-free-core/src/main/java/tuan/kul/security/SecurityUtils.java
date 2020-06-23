@@ -3,6 +3,7 @@ package tuan.kul.security;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 
@@ -24,5 +25,10 @@ public class SecurityUtils {
             results.add(authority.getAuthority());
         }
         return results;
+    }
+    
+    public static boolean incognito () {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		return auth == null ? true : false;
     }
 }

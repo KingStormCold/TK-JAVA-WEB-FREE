@@ -29,5 +29,8 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
 <script src = "<c:url value='/template1/admin/js/pagination.js'/>"></script>
+<script src = "<c:url value='/template1/admin/js/validate.js'/>"></script>
+<script src = "<c:url value='/template1/admin/js/notify.js'/>"></script>
+<script src = "<c:url value='/template1/admin/js/notify.min.js'/>"></script>
 </body>
 </html>

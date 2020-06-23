@@ -17,4 +17,20 @@ $(document).ready(function(){
         onPageClick: function (event, page) {
         }
     });
+    
+    var form = $("#form-role").validate({
+		rules: {
+			role_id: {
+				required: true,
+				maxlength: 50
+			},
+			role_name: {
+				required: true,
+				maxlength: 255
+			}
+		},
+		submitHandler: function(form) {
+			$.post()
+		}
+	});
 });

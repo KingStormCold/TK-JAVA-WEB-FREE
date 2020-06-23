@@ -277,6 +277,22 @@ margin-top: 27px;
   border-bottom: 1px solid rgb(226,236,243) !important;
   text-align: center;
 }
+.role-table tbody td {
+  border-bottom: 1px solid rgb(226,236,243) !important;
+  text-align: center;
+}
+.table-th-no {
+	width: 50px;
+}
+.role-table-th-name {
+	width: 480px !important;
+}
+.role-table-th-description {
+	width: 730px !important;
+}
+.table-th-action {
+	width: 100px;
+}
 /* ---------------icon--------------------- */
 .fa-edit {
   font-size: 25px !important;
@@ -372,14 +388,28 @@ margin-top: 27px;
   overflow-y: scroll;
   height: 250px;
 }
+
+.error{
+	margin-top: -67px;
+    color: red;
+    font-size: 14px;
+}
 /* --------------------table--------------------- */
-#pagination-user {
+#pagination-role {
   position: absolute;
   margin-top: 27px;
   left: 50%;
   transform: translateX(-50%);
 }
-#map {
-  height: 400px;  /* The height is 400 pixels */
-  width: 400px;  /* The width is the width of the web page */
- }
+.notifyjs-corner {
+	top: 20px !important;
+    right: 35px !important;
+    width: 400px !important;
+    font-size: 20px !important;
+    transition: all 3s ease-in !important;
+    
+}
+.disabled-button{
+	cursor: not-allowed !important;
+}
+

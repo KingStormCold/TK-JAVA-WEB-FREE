@@ -5,13 +5,13 @@ import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import lombok.extern.slf4j.Slf4j;
 import tuan.kul.common.Constant;
 import tuan.kul.converter.RoleConverter;
 import tuan.kul.dto.RoleDto;
@@ -28,8 +28,9 @@ import tuan.kul.response.role.RoleInfo;
 
 @Service
 @Transactional
-@Slf4j
 public class RoleService {
+	
+    private static final Logger log = Logger.getLogger(RoleService.class);
 
 	@Autowired
 	private RoleRepository roleRepository;
@@ -63,7 +64,12 @@ public class RoleService {
 				roleRepository.save(roleConverter.convertToEntity(roleDto));
 				return new ResultResponse(HttpStatusCode._200.getCode(), ErrorCodeEnum.SUCCESS.getText());
 			case Constant.UPDATE:
-				break;
+				if (roleDto == null) {
+					return new ResultResponse(HttpStatusCode._500.getCode(), ErrorCodeEnum.ERROR_NOT_FOUND.getText());
+				}
+				roleDto.setDesciption(request.getRoleName());
+				roleRepository.save(roleConverter.convertToEntity(roleDto));
+				return new ResultResponse(HttpStatusCode._200.getCode(), ErrorCodeEnum.SUCCESS.getText());
 			case Constant.DELETE:
 				if (roleDto == null) {
 					return new ResultResponse(HttpStatusCode._500.getCode(), ErrorCodeEnum.ERROR_NOT_FOUND.getText());
@@ -71,11 +77,11 @@ public class RoleService {
 				roleRepository.delete(request.getRoleId());
 				return new ResultResponse(HttpStatusCode._200.getCode(), ErrorCodeEnum.SUCCESS.getText());
 			default:
-				break;
+				return new ResultResponse(HttpStatusCode._500.getCode(), HttpStatusCode._500.getText());
 			}
-			return null;
 		} catch (Exception e) {
-			log.error("Exception---" + request.getCondition() + "----" ,e.toString(), e);
+			log.info("Exception---" + request.getCondition() + "----");
+			log.info(e.toString());
 			return new ResultResponse(HttpStatusCode._500.getCode(), HttpStatusCode._500.getText());
 		}
 	}
