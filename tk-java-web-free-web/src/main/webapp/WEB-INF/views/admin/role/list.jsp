@@ -3,6 +3,7 @@
 <%@include file="/common/taglib.jsp"%>
 <c:url var="roles" value="/admin/role" />
 <c:url var="findAll" value="/admin/role/find-all" />
+<c:url var="pageRole" value="/admin/role/list" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -20,7 +21,7 @@
               <div class="modal-dialog">
                   <div class="modal-content modal-content-role">
 	                  <!-- Modal Header -->
-	                  <form action="/role/list" id = "form-role" method="POST">
+	                  <form action='<c:url value= "/admin/role/list"/>' id = "form-role" method="POST">
 		                  <div class="modal-header">
 		                      <h4 class="modal-title">Insert Role</h4>
 		                      <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -30,11 +31,12 @@
 		                  <div class="modal-body modal-body-role">
 		                      <div class ="form-group">
 		                          <label for="usr" class="form-label">Name</label>
-		                          <input type="text" class="form-control form-input-role" name="role_id" id = "role-id">
+		                          <input type="text" class="form-control form-input-role" name="role_id" id = "role-id" placeholder = "Ex: ROLE">
 		                      </div>
 		                      <div class ="form-group">
 		                          <label for="usr" class="form-label">Description</label>
-		                          <input type="text" class="form-control form-input-role" name = "role_name" id = "role-name">
+		                          <input type="text" class="form-control form-input-role" name = "role_name" id = "role-name" placeholder = "Ex: This role is for ....">
+		                          <input type="hidden" id = "is-role-id">
 		                      </div>
 		                  </div>
 		
@@ -108,9 +110,19 @@
 	    $('body').on("click", ".editNew", function(){
 		    var roleId = $(this).siblings('#roleId').val();
 			var roleName = $(this).parents('tr').find('#roleName').val();
-			alert($(this));
  		    $('.modal-body #role-id').val(roleId);
  		  	$('.modal-body #role-name').val(roleName);
+ 		  	$('.modal-body #is-role-id').val(roleId);
+ 		  	$('.modal-body #role-id').prop("readonly",true);
+		});
+	    $('.btn-add-role').click(function () {
+	    	$('.modal-body #role-id').val("");
+	    	$('.modal-body #role-id').prop("readonly",false);
+ 		  	$('.modal-body #role-name').val("");
+ 		  	$('.modal-body #is-role-id').val("");
+		})
+		$('body').on("click", ".fa-remove", function(){
+		    alert("OKOK");
 		});
 	    $('.dataTables_filter input').prop("placeholder", "Search");
 
@@ -128,12 +140,14 @@
 			submitHandler: function(form) {
 				openCreate('#btn-create-role');
 				$('#btn-create-role').text("Creating...");
-				var roleId = getVal('#role-id');
-				var roleName = getVal('#role-name');
-				var dataArray = {};
-	            dataArray["role_id"] = roleId;
-	            dataArray["role_name"] = roleName;
-	            dataArray["condition"] = 'insert';
+				var roleId = getVal('.modal-body #role-id');
+				var roleName = getVal('.modal-body #role-name');
+				var isRoleId = getVal('.modal-body #is-role-id');
+				var condition = "update";
+				if (isRoleId == null || isRoleId == "" || isRoleId == "undefined") {
+					condition = "insert";
+				}
+				alert(condition);
 	            $.ajax({
 	    	        type: 'POST',
 	    	        url: '${roles}',
@@ -142,7 +156,7 @@
 	    	        data: JSON.stringify({
 	    	        	role_id: roleId,
 	    	        	role_name: roleName,
-	    	        	condition: 'insert'
+	    	        	condition: condition
 	    	        }),
 	    	        success: function (data) {
 	    	        	console.log(data);
@@ -151,9 +165,11 @@
 		    	        		$.notify(data.message, "success");
 		    	        	}, 200);
 		    	        	setTimeout(function(){
-		    	        		closeCreate('#btn-create-role');
 		    	        		$('#btn-create-role').text("Create")
-		    	        	}, 2000);
+		    	        	}, 3000);
+		    	        	setTimeout(function(){
+		    	        		window.location.href = "${pageRole}";
+		    	        	}, 4000);
 	    	        	} else {
 	    	        		setTimeout(function(){
 		    	        		$.notify(data.message, "error");
@@ -190,7 +206,7 @@
   	      noIndex + index + 1,
   	      item.roleId,
   	      item.description,
-          '<a class="fa fa-edit editNew" data-toggle="modal" data-target="#myModal"></a><a class="fa fa-remove" href="https://www.google.com/"></a><input type="hidden" id ="roleId" value="'+item.roleId+'"/><input type="hidden" id ="roleName" value="'+item.description+'"/>'
+          '<a class="fa fa-edit editNew" data-toggle="modal" data-target="#myModal"></a><a class="fa fa-remove" href="#"></a><input type="hidden" id ="roleId" value="'+item.roleId+'"/><input type="hidden" id ="roleName" value="'+item.description+'"/>'
   	    ];
   	    table.row.add(rowData).draw(false);
   	  });
