@@ -14,6 +14,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
+    <script type='text/javascript' src='<c:url value="/template1/admin/sweetalert2/sweetalert2.min.js"/>'></script>
+	<link rel="stylesheet" href="<c:url value="/template1/admin/sweetalert2/sweetalert2.min.css"/>">
 </head>
 
 <body>
@@ -32,5 +34,23 @@
 <script src = "<c:url value='/template1/admin/js/validate.js'/>"></script>
 <script src = "<c:url value='/template1/admin/js/notify.js'/>"></script>
 <script src = "<c:url value='/template1/admin/js/notify.min.js'/>"></script>
+<script type="text/javascript">
+   function showAlertBeforeDelete(callback, id) {
+       swal({
+           title: "Comfirm delete",
+           text: "Are you sure to delete " + id + "?",
+           type: "warning",
+           showCancelButton: true,
+           confirmButtonText: "Sure",
+           cancelButtonText: "Cancel",
+           confirmButtonClass: "btn btn-success",
+           cancelButtonClass: "btn btn-danger"
+       }).then(function (isConfirm) {
+           if (isConfirm) {
+               callback();
+           }
+       });
+   }
+</script>
 </body>
 </html>

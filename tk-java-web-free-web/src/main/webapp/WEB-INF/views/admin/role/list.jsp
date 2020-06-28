@@ -122,7 +122,12 @@
  		  	$('.modal-body #is-role-id').val("");
 		})
 		$('body').on("click", ".fa-remove", function(){
-		    alert("OKOK");
+			var roleId = $(this).siblings('#roleId').val();
+			showAlertBeforeDelete(function () {
+	            event.preventDefault();
+	            alert("DONE!");
+	           	
+	        }, roleId);
 		});
 	    $('.dataTables_filter input').prop("placeholder", "Search");
 
