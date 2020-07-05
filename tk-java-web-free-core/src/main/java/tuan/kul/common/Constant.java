@@ -18,4 +18,7 @@ public class Constant {
     
     //Role
     public static final String ROLE_ALL = "ROLE_ALL";
+    
+    //User
+    public static final String USER_ALL = "USER_ALL";
 }

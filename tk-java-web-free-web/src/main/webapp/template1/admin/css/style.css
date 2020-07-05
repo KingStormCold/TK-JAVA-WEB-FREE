@@ -326,6 +326,14 @@ margin-top: 27px;
 .modal-footer-user {
 	height: 50px;
 }
+
+.gif-loading {
+	position: absolute;
+	margin-top: -600px;
+	left: 50%;
+	transform: translateX(-50%);
+	display: none;
+}
 /* ----------------[END] modal------------- */
 /* ------------------form-------------------- */
 .form-label {
@@ -368,6 +376,7 @@ margin-top: 27px;
   border: 1px solid #e9ecef;
   max-width: 300px !important;
   border-radius: 7px;
+  
 }
 .span-role {
   display: inline-block;
@@ -388,6 +397,7 @@ margin-top: 27px;
   display: inline-block;
   overflow-y: scroll;
   height: 250px;
+  width: 277px;
 }
 
 .error{
@@ -397,6 +407,12 @@ margin-top: 27px;
 }
 /* --------------------table--------------------- */
 #pagination-role {
+  position: absolute;
+  margin-top: 27px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+#pagination-user {
   position: absolute;
   margin-top: 27px;
   left: 50%;
@@ -412,5 +428,11 @@ margin-top: 27px;
 }
 .disabled-button{
 	cursor: not-allowed !important;
+}
+
+@media only screen and (max-width: 600px) {
+  h4 {
+  	color: red;
+  }
 }
 

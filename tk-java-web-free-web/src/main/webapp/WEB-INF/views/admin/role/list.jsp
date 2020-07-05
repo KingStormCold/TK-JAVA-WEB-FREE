@@ -52,7 +52,7 @@
           <div class="card">
               <div class="card-body">
                   <div class="data-tables">
-                      <table id="example" class="hover role-table">
+                      <table id="role-table" class="hover role-table">
                           <thead class="text-capitalize">
                               <tr>
                                   <th class="table-th table-th-no">No.</th>
@@ -71,14 +71,14 @@
   <script src = "<c:url value='../../template1/admin/js/pagination.js'/>"></script>
   <script type="text/javascript">
   	$(document).ready(function(){
-	    var table = $('#example').DataTable( {
+	    var table = $('#role-table').DataTable( {
 	        "lengthChange": false,
 	        "pageLength": 20,
 	        "autoWidth" : false,
 	        "info": false,
 	        "paging": false,
-	        scrollY: '60vh',
-	        scrollCollapse: true,
+	        "scrollY": '60vh',
+	        "scrollCollapse": true
 	    });
 	    
 	    $.ajax({
@@ -123,10 +123,36 @@
 		})
 		$('body').on("click", ".fa-remove", function(){
 			var roleId = $(this).siblings('#roleId').val();
+			var roleName = $(this).parents('tr').find('#roleName').val();
 			showAlertBeforeDelete(function () {
 	            event.preventDefault();
-	            alert("DONE!");
-	           	
+	            $.ajax({
+	    	        type: 'POST',
+	    	        url: '${roles}',
+	    	        dataType: 'json',
+	    	        contentType:'application/json',
+	    	        data: JSON.stringify({
+	    	        	role_id: roleId,
+	    	        	role_name: roleName,
+	    	        	condition: "delete"
+	    	        }),
+	    	        success: function (data) {
+	    	        	console.log(data);
+	    	        	if (data.result == "200") {
+	    	        		$('.gif-loading').css("display", "block");
+	    	        		setTimeout(function(){
+		    	        		$.notify(data.message, "success");
+		    	        	}, 200);
+		    	        	setTimeout(function(){
+		    	        		window.location.href = "${pageRole}";
+		    	        	}, 2000);
+	    	        	} else {
+	    	        		setTimeout(function(){
+		    	        		$.notify(data.message, "error");
+		    	        	}, 200);
+	    	        	}
+	    	        }
+	    	    });
 	        }, roleId);
 		});
 	    $('.dataTables_filter input').prop("placeholder", "Search");
@@ -152,7 +178,6 @@
 				if (isRoleId == null || isRoleId == "" || isRoleId == "undefined") {
 					condition = "insert";
 				}
-				alert(condition);
 	            $.ajax({
 	    	        type: 'POST',
 	    	        url: '${roles}',

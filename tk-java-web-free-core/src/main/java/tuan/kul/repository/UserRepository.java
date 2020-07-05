@@ -1,5 +1,6 @@
 package tuan.kul.repository;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import tuan.kul.entity.UserEntity;

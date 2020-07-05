@@ -24,7 +24,8 @@
 	<div class="row">
 		<%@ include file="/common/admin/admin-menu.jsp"%>
 		<dec:body/>
-	</div>                                                                                                                                                                                                                                                 
+	</div>
+	<img src = "<c:url value = '/template1/admin/img/reload.gif'/>" class = "gif-loading"></img>                                                                                                                                                                                                               
 <script src = "<c:url value='/template1/admin/js/javascript.js'/>"></script>
 <script src="https://use.fontawesome.com/b59cf34d3a.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>

@@ -33,10 +33,20 @@ public class RoleApi {
 	@GetMapping(value = "/admin/role/find-all")
 	public ObjectInfoResponse<ListRoleInfo> findAll(@RequestParam("page_num") String pageNum, @RequestParam("page_size") String pageSize) {
 		if (!SecurityUtils.incognito()) {
-			if (StringUtils.isEmpty(pageNum) || StringUtils.isEmpty(pageSize)) {
-				return new ObjectInfoResponse<ListRoleInfo>(HttpStatusCode._400.getCode(), ErrorCodeEnum.ERROR_INPUT_EMPTY.getText());
+			try {
+				if (!SecurityUtils.getAuthorities().contains(Constant.ROLE_ALL)) {
+					return new ObjectInfoResponse<ListRoleInfo>(HttpStatusCode._401.getCode(), HttpStatusCode._401.getText());
+				}
+				if (StringUtils.isEmpty(pageNum) || StringUtils.isEmpty(pageSize)) {
+					return new ObjectInfoResponse<ListRoleInfo>(HttpStatusCode._400.getCode(), ErrorCodeEnum.ERROR_INPUT_EMPTY.getText());
+				}
+				return roleService.findAll(pageNum, pageSize);
+			} catch (Exception e) {
+				log.info("Exception--- find all role");
+				log.info(e.toString());
+				return new ObjectInfoResponse<ListRoleInfo>(HttpStatusCode._500.getCode(), HttpStatusCode._500.getText());
 			}
-			return roleService.findAll(pageNum, pageSize);
+			
 		}
 		return new ObjectInfoResponse<ListRoleInfo>(HttpStatusCode._403.getCode(), HttpStatusCode._403.getText());
 	}
