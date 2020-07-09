@@ -3,6 +3,7 @@
 <%@include file="/common/taglib.jsp"%>
 <c:url var="findAll" value="/admin/user/find-all" />
 <c:url var="findAllRole" value="/admin/role/find-all" />
+<c:url var="findOne" value="/admin/user/find-one" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -118,17 +119,28 @@
   <script src = "<c:url value='../../template1/admin/js/pagination.js'/>"></script>
   <script src = "<c:url value='../../template1/admin/js/js-admin-user.js'/>"></script>
   <script type="text/javascript">
+  	var list = {};
   	$(document).ready(function (){
   		 var table = $('#user-table').DataTable({
   			"lengthChange": false,
-	        "pageLength": 20,
+	        "pageLength": 21,
 	        "autoWidth" : false,
 	        "info": false,
 	        "paging": false,
 	        "scrollY": '60vh',
 	        "scrollCollapse": true
  	    });
-  		 
+
+  		$.ajax({
+			type: 'GET',
+	        url: '${findAllRole}'+'?page_num=1&page_size=10000',
+	        dataType: 'json',
+	        success: function (data) {
+				console.log(data);
+				list = data.objectInfo.listRoleInfo;
+	        }
+  		});
+		
 		
 //	   			var someNumbers = [1, 2, 3, 4, 5, 2, 3, 4, 5, 2, 3, 4, 5];
 //	   			$.each(someNumbers, function (index, item) {
@@ -139,7 +151,7 @@
 		
 		$.ajax({
 	        type: 'GET',
-	        url: '${findAll}'+'?page_num=1&page_size=20',
+	        url: '${findAll}?page_num=1&page_size=20',
 	        dataType: 'json',
 	        success: function (data) {
 				var info = data.objectInfo;
@@ -164,24 +176,40 @@
 	        }
 	    });
 	});
-  	
+  	 
   	$(".btn-add-user").click(function(){
+  		$('.modal-user .role-have-right').find('label').remove();
+		$('.modal-user .list-role').find('label').remove();
+		$('.modal-user .list-role').find('br').remove();
+		$.each(list, function (index, item) {
+			$('.modal-user .list-role').append('<label><input type="checkbox" value="" class = "checkbox-role">'+item.roleId+' </label><br/>');
+		});	
+	});
+
+  	$('body').on("click", ".editNew", function(){
+  	  	console.log("list", list);
+  		$('.modal-user .role-have-right').find('label').remove();
+		$('.modal-user .role-have-right').find('br').remove();
+	  	var haveRoles = [];
+	  	var listRoles = [];
   		$.ajax({
-			type: 'GET',
-	        url: '${findAllRole}'+'?page_num=1&page_size=10000',
+	        type: 'GET',
+	        url: '${findOne}'+'?user_name=admin',
 	        dataType: 'json',
 	        success: function (data) {
-				console.log(data);
-				$('.modal-user .role-have-right').find('label').remove();
-				$('.modal-user .list-role').find('label').remove();
-				$('.modal-user .list-role').find('br').remove();
-				$.each(info.listRoleInfo, function (index, item) {
-					$('.modal-user .list-role').append('<label><input type="checkbox" value="" class = "checkbox-role">'+item.roleId+' </label><br/>');
-				});
+				var info = data.objectInfo;
+				console.log(info);
+				console.log("haveRoles", haveRoles);
+				$.each(info.listRole, function (index, item) {
+					$('.modal-user .list-role').append('<label><input type="checkbox" value="" class = "checkbox-role">'+item+' </label><br/>');
+				});	
+		  		$.each(info.haveRoles, function (index, item) {
+		  			$('.modal-user .role-have-right').append('<label class = "remove-role"><input type="checkbox" value="" class = "checkbox-role" checked>'+item+'</label><br/>');
+				});	
 	        }
-  		});
-		
+	    });
 	});
+	
 	$('body').on("click", ".remove-role", function(){
 		if($(this).find('input[type=checkbox]').is(':checked')) {
 			$(this).css("text-decoration", "none");

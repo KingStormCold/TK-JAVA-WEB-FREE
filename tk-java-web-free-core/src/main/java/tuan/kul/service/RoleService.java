@@ -1,6 +1,8 @@
 package tuan.kul.service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
@@ -84,5 +86,15 @@ public class RoleService {
 			log.info(e.toString());
 			return new ResultResponse(HttpStatusCode._500.getCode(), HttpStatusCode._500.getText());
 		}
+	}
+	
+	public Set<RoleInfo> findAllRole() {
+		List<RoleEntity> roleEntities = roleRepository.findAll();
+		Set<RoleInfo> result = new HashSet<>();
+		for(RoleEntity roleEntity : roleEntities) {
+			RoleInfo roleInfo = new RoleInfo(roleEntity.getRoleId(), roleEntity.getDesciption());
+			result.add(roleInfo);
+		}
+		return result;
 	}
 }

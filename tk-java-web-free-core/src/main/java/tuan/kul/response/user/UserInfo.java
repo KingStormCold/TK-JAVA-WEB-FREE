@@ -1,8 +1,9 @@
 package tuan.kul.response.user;
 
+import java.util.Date;
 import java.util.Set;
 
-import tuan.kul.dto.RoleDto;
+import tuan.kul.dto.UserDto;
 import tuan.kul.entity.UserEntity;
 import tuan.kul.response.CommonResponse;
 
@@ -20,7 +21,9 @@ public class UserInfo extends CommonResponse{
 
     private boolean online;
     
-    private Set<RoleDto> roleDtos;
+    private Set<String> haveRoles;
+    
+    private Set<String> listRole;
 
 	public String getUserName() {
 		return userName;
@@ -70,30 +73,40 @@ public class UserInfo extends CommonResponse{
 		this.online = online;
 	}
 
-	public Set<RoleDto> getRoleDtos() {
-		return roleDtos;
+	public Set<String> getHaveRoles() {
+		return haveRoles;
 	}
 
-	public void setRoleDtos(Set<RoleDto> roleDtos) {
-		this.roleDtos = roleDtos;
+	public void setHaveRoles(Set<String> haveRoles) {
+		this.haveRoles = haveRoles;
 	}
 
-	public UserInfo(String userName, String passWord, String fullName, String phone, String email, boolean online,
-			Set<RoleDto> roleDtos) {
+	public Set<String> getListRole() {
+		return listRole;
+	}
+
+	public void setListRole(Set<String> listRole) {
+		this.listRole = listRole;
+	}
+
+	public UserInfo() {
 		super();
+	}
+
+	public UserInfo(String createdBy, Date createdDate, String updatedBy, Date updatedDate, String userName,
+			String passWord, String fullName, String phone, String email, boolean online, Set<String> haveRoles,
+			Set<String> listRole) {
+		super(createdBy, createdDate, updatedBy, updatedDate);
 		this.userName = userName;
 		this.passWord = passWord;
 		this.fullName = fullName;
 		this.phone = phone;
 		this.email = email;
 		this.online = online;
-		this.roleDtos = roleDtos;
+		this.haveRoles = haveRoles;
+		this.listRole = listRole;
 	}
 
-	public UserInfo() {
-		super();
-	}
-	
 	public static UserInfo of(UserEntity userEntity) {
 		UserInfo result = new UserInfo();
 		result.setUserName(userEntity.getUserName());
@@ -106,6 +119,21 @@ public class UserInfo extends CommonResponse{
 		result.setCreatedDate(userEntity.getCreatedDate());
 		result.setUpdatedBy(userEntity.getModifiedBy());
 		result.setUpdatedDate(userEntity.getModifiedDate());
+		return result;
+	}
+	
+	public static UserInfo of(UserDto userDto) {
+		UserInfo result = new UserInfo();
+		result.setUserName(userDto.getUserName());
+		result.setEmail(userDto.getEmail());
+		result.setFullName(userDto.getFullName());
+		result.setPassWord(userDto.getPassWord());
+		result.setPhone(userDto.getPhone());
+		result.setOnline(userDto.isOnline());
+		result.setCreatedBy(userDto.getCreatedBy());
+		result.setCreatedDate(userDto.getCreatedDate());
+		result.setUpdatedBy(userDto.getModifiedBy());
+		result.setUpdatedDate(userDto.getModifiedDate());
 		return result;
 	}
 }

@@ -1,6 +1,8 @@
 package tuan.kul.service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
@@ -10,12 +12,18 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
+import tuan.kul.converter.UserConverter;
+import tuan.kul.dto.RoleDto;
+import tuan.kul.dto.UserDto;
 import tuan.kul.entity.UserEntity;
+import tuan.kul.enums.ErrorCodeEnum;
 import tuan.kul.enums.HttpStatusCode;
 import tuan.kul.repository.UserRepository;
 import tuan.kul.response.ObjectInfoResponse;
 import tuan.kul.response.Pagination;
+import tuan.kul.response.role.RoleInfo;
 import tuan.kul.response.user.ListUserInfo;
 import tuan.kul.response.user.UserInfo;
 
@@ -25,6 +33,12 @@ public class UserService {
 	
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private UserConverter userConverter;
+	
+	@Autowired
+	private RoleService roleService;
 
 	public ObjectInfoResponse<ListUserInfo> findAllUser(String pageNum, String pageSize) {
 		Integer page = Integer.valueOf(pageNum);
@@ -38,5 +52,26 @@ public class UserService {
 		ListUserInfo listUserInfo = new ListUserInfo(result, pagination, result.isEmpty());
 		return new ObjectInfoResponse<>(HttpStatusCode._200.getCode(), HttpStatusCode._200.getText(),
 				listUserInfo);
+	}
+	
+	public ObjectInfoResponse<UserInfo> findOne(String userName) {
+		UserDto userDto = userConverter.convertToDto(userRepository.findOne(userName));
+		if (StringUtils.isEmpty(userDto)) {
+			return new ObjectInfoResponse<>(HttpStatusCode._500.getCode(), ErrorCodeEnum.ERROR_IS_EXIST.getText());
+		}
+		Set<RoleInfo> listRole = roleService.findAllRole();
+		Set<String> haveRoles = new HashSet<>();
+		Set<String> nothaveRoles = new HashSet<>();
+		for (RoleDto roleDto : userDto.getRolesOauth()) {
+			haveRoles.add(roleDto.getRoleId());
+		}
+		for (RoleInfo roleInfo : listRole) {
+			nothaveRoles.add(roleInfo.getRoleId());
+		}
+		nothaveRoles.removeAll(haveRoles);
+		UserInfo result = UserInfo.of(userDto);
+		result.setHaveRoles(haveRoles);
+		result.setListRole(nothaveRoles);
+		return new ObjectInfoResponse<>(HttpStatusCode._200.getCode(), ErrorCodeEnum.SUCCESS.getText(), result);
 	}
 }

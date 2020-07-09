@@ -10,12 +10,12 @@ public class CommonResponse {
 
 	private String createdBy;
 	
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HHmmss", timezone = DateUtils.MY_TIME_ZONE)
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss", timezone = DateUtils.MY_TIME_ZONE)
 	private Date createdDate;
 	
 	private String updatedBy;
 	
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy", timezone = DateUtils.MY_TIME_ZONE)
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss", timezone = DateUtils.MY_TIME_ZONE)
 	private Date updatedDate;
 
 	public String getCreatedBy() {

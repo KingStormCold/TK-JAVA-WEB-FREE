@@ -34,7 +34,7 @@ public class RoleApi {
 	public ObjectInfoResponse<ListRoleInfo> findAll(@RequestParam("page_num") String pageNum, @RequestParam("page_size") String pageSize) {
 		if (!SecurityUtils.incognito()) {
 			try {
-				if (!SecurityUtils.getAuthorities().contains(Constant.ROLE_ALL)) {
+				if (!SecurityUtils.getAuthorities().contains(Constant.ROLE_ALL) || !SecurityUtils.getAuthorities().contains(Constant.ADMIN)) {
 					return new ObjectInfoResponse<ListRoleInfo>(HttpStatusCode._401.getCode(), HttpStatusCode._401.getText());
 				}
 				if (StringUtils.isEmpty(pageNum) || StringUtils.isEmpty(pageSize)) {
@@ -46,7 +46,6 @@ public class RoleApi {
 				log.info(e.toString());
 				return new ObjectInfoResponse<ListRoleInfo>(HttpStatusCode._500.getCode(), HttpStatusCode._500.getText());
 			}
-			
 		}
 		return new ObjectInfoResponse<ListRoleInfo>(HttpStatusCode._403.getCode(), HttpStatusCode._403.getText());
 	}
@@ -55,7 +54,7 @@ public class RoleApi {
 	public ResultResponse roles(@RequestBody RoleRequest request) {
 		if (!SecurityUtils.incognito()) {
 			try {
-				if (!SecurityUtils.getAuthorities().contains(Constant.ROLE_ALL)) {
+				if (!SecurityUtils.getAuthorities().contains(Constant.ROLE_ALL) || !SecurityUtils.getAuthorities().contains(Constant.ADMIN)) {
 					return new ResultResponse(HttpStatusCode._401.getCode(), HttpStatusCode._401.getText());
 				}
 				String userName = SecurityContextHolder.getContext().getAuthentication().getName();
