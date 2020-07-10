@@ -59,14 +59,10 @@ public class UserService {
 		if (StringUtils.isEmpty(userDto)) {
 			return new ObjectInfoResponse<>(HttpStatusCode._500.getCode(), ErrorCodeEnum.ERROR_IS_EXIST.getText());
 		}
-		Set<RoleInfo> listRole = roleService.findAllRole();
-		Set<String> haveRoles = new HashSet<>();
-		Set<String> nothaveRoles = new HashSet<>();
+		Set<RoleInfo> nothaveRoles = roleService.findAllRole();
+		Set<RoleInfo> haveRoles = new HashSet<>();
 		for (RoleDto roleDto : userDto.getRolesOauth()) {
-			haveRoles.add(roleDto.getRoleId());
-		}
-		for (RoleInfo roleInfo : listRole) {
-			nothaveRoles.add(roleInfo.getRoleId());
+			haveRoles.add(new RoleInfo(roleDto.getRoleId(), roleDto.getDesciption()));
 		}
 		nothaveRoles.removeAll(haveRoles);
 		UserInfo result = UserInfo.of(userDto);

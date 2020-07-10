@@ -1,6 +1,9 @@
 $(document).ready(function(){
     
 });
+function getVal(selector) {
+  return $(selector).val();
+}
 $('#avatar-img').click(function(){
     $('.personal-info-header').slideToggle(200);
 });

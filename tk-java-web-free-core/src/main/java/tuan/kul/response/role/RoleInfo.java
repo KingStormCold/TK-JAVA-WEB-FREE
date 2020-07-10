@@ -1,5 +1,7 @@
 package tuan.kul.response.role;
 
+import java.util.Objects;
+
 public class RoleInfo {
 
 	private String roleId;
@@ -31,5 +33,16 @@ public class RoleInfo {
 	public RoleInfo() {
 		super();
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		RoleInfo roleInfo = (RoleInfo) obj;
+		return roleId.equals(roleInfo.getRoleId()) && description.equals(roleInfo.getDescription());
+	}
 	
+	@Override
+	public int hashCode() {
+		return Objects.hash(roleId, description);
+	}
+
 }

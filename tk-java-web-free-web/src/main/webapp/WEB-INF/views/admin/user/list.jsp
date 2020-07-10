@@ -4,6 +4,7 @@
 <c:url var="findAll" value="/admin/user/find-all" />
 <c:url var="findAllRole" value="/admin/role/find-all" />
 <c:url var="findOne" value="/admin/user/find-one" />
+<c:url var="login" value="/login" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -33,27 +34,27 @@
                            
                                <div class ="form-group">
                                    <label for="usr" class="form-label">User name</label>
-                                   <input type="text" class="form-control form-input" name="user_name" placeholder="Ex: tuankul">
+                                   <input type="text" class="form-control form-input" name="user_name" id="user_name" placeholder="Ex: tuankul">
                                </div>
                                <div class ="form-group">
                                    <label for="usr" class="form-label">Password</label>
-                                   <input type="text" class="form-control form-input" name = "password" placeholder="Ex: 123456">
+                                   <input type="text" class="form-control form-input" name = "password" id="password" placeholder="Ex: 123456">
                                </div>
                                <div class ="form-group">
                                    <label for="usr" class="form-label">Full name</label>
-                                   <input type="text" class="form-control form-input" name="full_name" placeholder="Ex: Thái Thanh Tuấn">
+                                   <input type="text" class="form-control form-input" name="full_name" id ="full_name" placeholder="Ex: Thái Thanh Tuấn">
                                </div>
                                <div class ="form-group">
                                    <label for="usr" class="form-label">Email</label>
-                                   <input type="email" class="form-control form-input" name="email" placeholder="Ex: test@gmail.com">
+                                   <input type="email" class="form-control form-input" name="email" id ="email" placeholder="Ex: test@gmail.com">
                                </div>
                                <div class ="form-group">
                                    <label for="usr" class="form-label">Phone</label>
-                                   <input type="number" class="form-control form-input" name = "phone" placeholder="012332323232">
+                                   <input type="number" class="form-control form-input" name = "phone" id="phone" placeholder="012332323232">
                                </div>
                                <div class ="form-group">
                                    <label for="usr" class="form-label">Address</label>
-                                   <input type="text" class="form-control form-input" name = "address" placeholder="349 Nguyễn Đình Chiểu Quận 1">
+                                   <input type="text" class="form-control form-input" name = "address" id="address" placeholder="349 Nguyễn Đình Chiểu Quận 1">
                                </div>
                                <div class ="form-group">
                                    <label for="usr" class="form-label">Avatar</label>
@@ -67,17 +68,14 @@
                                    <label for="usr" class="form-label">Role</label>
                                    <div style=" display: -webkit-inline-box;" class = "col-sm-4 have-role">
                                        <div class = "role-header">
-                                           <p class = "span-role">Have rights</p>
+                                           <p class = "span-role">You have right</p>
                                        </div>
                                        <div class = "role-have-right">
-                                           <c:forEach var ="i" begin="1" end = "10">
-                                               <label><input type="checkbox" value="" class = "checkbox-role"><c:out value="${i}"></c:out>12312321321312</label>
-                                           </c:forEach>
                                        </div>
                                    </div>
                                    <div style=" display: -webkit-inline-box;" class = "col-sm-4 not-role"> 
                                        <div class = "role-header">
-                                           <p class = "span-role">List Role</p>
+                                           <p class = "span-role">You have not right</p>
                                        </div>
                                        <div class = "list-role">
                                        </div>
@@ -138,16 +136,11 @@
 	        success: function (data) {
 				console.log(data);
 				list = data.objectInfo.listRoleInfo;
+				
 	        }
-  		});
-		
-		
-//	   			var someNumbers = [1, 2, 3, 4, 5, 2, 3, 4, 5, 2, 3, 4, 5];
-//	   			$.each(someNumbers, function (index, item) {
-//	   				$('.role-have-right').append('<label class = "remove-role"><input type="checkbox" value="" class = "checkbox-role" checked>'+index+'12312311111</label>');
-	  				
-	// //   				$('.list-role').append('<label><input type="checkbox" value="" class = "checkbox-role">'+index+'222222222222</label>');
-//	   			})
+  		}).fail(function() {
+  			window.location.href = "${login}";
+		});
 		
 		$.ajax({
 	        type: 'GET',
@@ -174,7 +167,9 @@
 	    	    	}
 	        	});
 	        }
-	    });
+	    }).fail(function() {
+  			window.location.href = "${login}";
+		});;
 	});
   	 
   	$(".btn-add-user").click(function(){
@@ -182,32 +177,50 @@
 		$('.modal-user .list-role').find('label').remove();
 		$('.modal-user .list-role').find('br').remove();
 		$.each(list, function (index, item) {
-			$('.modal-user .list-role').append('<label><input type="checkbox" value="" class = "checkbox-role">'+item.roleId+' </label><br/>');
-		});	
+			$('.modal-user .list-role').append('<label for = "'+item.roleId+'" title = "'+item.description+'"><input type="checkbox" id = "'+item.roleId+'" value="'+item.roleId+'" class = "checkbox-role">'+item.roleId+' </label><br/>');
+		});
+		$('.modal-user #user_name').val("");
+  		$('.modal-user #user_name').prop("readonly", false);
+  		$('.modal-user #password').val("");
+  		$('.modal-user #password').prop("readonly", false);
+  		$('.modal-user #full_name').val("");
+  		$('.modal-user #email').val("");
+  		$('.modal-user #phone').val("");
+  		$('.modal-user #address').val("");
 	});
 
   	$('body').on("click", ".editNew", function(){
-  	  	console.log("list", list);
   		$('.modal-user .role-have-right').find('label').remove();
 		$('.modal-user .role-have-right').find('br').remove();
-	  	var haveRoles = [];
-	  	var listRoles = [];
+		$('.modal-user .list-role').find('label').remove();
+		$('.modal-user .list-role').find('br').remove();
+		var userName = $(this).parents('tr').find('#userName').val();
   		$.ajax({
 	        type: 'GET',
-	        url: '${findOne}'+'?user_name=admin',
+	        url: '${findOne}'+'?user_name='+userName,
 	        dataType: 'json',
 	        success: function (data) {
 				var info = data.objectInfo;
-				console.log(info);
-				console.log("haveRoles", haveRoles);
-				$.each(info.listRole, function (index, item) {
-					$('.modal-user .list-role').append('<label><input type="checkbox" value="" class = "checkbox-role">'+item+' </label><br/>');
+			  	var haveRoles = info.haveRoles;
+			  	var listRoles = info.listRole;
+				$.each(listRoles, function (index, item) {
+					$('.modal-user .list-role').append('<label for = "'+item.roleId+'" title = "'+item.description+'"><input type="checkbox" id = "'+item.roleId+'" value="'+item.roleId+'" class = "checkbox-role">'+item.roleId+' </label><br/>');
 				});	
-		  		$.each(info.haveRoles, function (index, item) {
-		  			$('.modal-user .role-have-right').append('<label class = "remove-role"><input type="checkbox" value="" class = "checkbox-role" checked>'+item+'</label><br/>');
-				});	
+		  		$.each(haveRoles, function (index, item) {
+		  			$('.modal-user .role-have-right').append('<label for = "'+item.roleId+'" title = "'+item.description+'" class = "remove-role"><input type="checkbox" id = "'+item.roleId+'" value="'+item.roleId+'" class = "checkbox-role" checked>'+item.roleId+'</label><br/>');
+				});
+		  		$('.modal-user #user_name').val(info.userName);
+		  		$('.modal-user #user_name').prop("readonly", true);
+		  		$('.modal-user #password').val("*********");
+		  		$('.modal-user #password').prop("readonly", true);
+		  		$('.modal-user #full_name').val(info.fullName);
+		  		$('.modal-user #email').val(info.email);
+		  		$('.modal-user #phone').val(info.phone);
+		  		$('.modal-user #address').val(info.address);
 	        }
-	    });
+	    }).fail(function() {
+  			window.location.href = "${login}";
+		});;
 	});
 	
 	$('body').on("click", ".remove-role", function(){
@@ -229,7 +242,7 @@
 	  	      item.userName,
 	  	      item.updatedBy,
 		  	  item.updatedDate,
-	          '<a class="fa fa-edit editNew" data-toggle="modal" data-target="#myModal"></a><a class="fa fa-remove" href="#"></a><input type="hidden" id ="roleId" value=""/><input type="hidden" id ="roleName" value=""/>'
+	          '<a class="fa fa-edit editNew" data-toggle="modal" data-target="#myModal"></a><a class="fa fa-remove" href="#"></a><input type="hidden" id ="userName" value="'+item.userName+'"/>'
 	  	    ];
 	  	    table.row.add(rowData).draw(false);
 	  	  });

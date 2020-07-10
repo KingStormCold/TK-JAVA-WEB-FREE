@@ -226,10 +226,6 @@
   	  	.prop("disabled", false);
   	}
   	
-  	function getVal(selector) {
-	  return $(selector).val();
-	}
-  	
   	function drawTable(table, listData, noIndex) {
   	  $.each(listData, function (index, item) {
   	    let rowData = [

@@ -20,6 +20,10 @@ public class UserDto extends BaseDto {
     private String email;
 
     private boolean online;
+    
+    private String image;
+    
+    private String address;
 
 	private Set<RoleDto> rolesOauth;
 
@@ -80,7 +84,7 @@ public class UserDto extends BaseDto {
 	}
 
 	public UserDto(String userName, String passWord, String fullName, String phone, String email, boolean online,
-			Set<RoleDto> rolesOauth) {
+			String image, String address, Set<RoleDto> rolesOauth) {
 		super();
 		this.userName = userName;
 		this.passWord = passWord;
@@ -88,6 +92,8 @@ public class UserDto extends BaseDto {
 		this.phone = phone;
 		this.email = email;
 		this.online = online;
+		this.image = image;
+		this.address = address;
 		this.rolesOauth = rolesOauth;
 	}
 
@@ -95,4 +101,19 @@ public class UserDto extends BaseDto {
 		super();
 	}
 
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
 }

@@ -34,6 +34,12 @@ public class UserEntity extends BaseEntity {
 
     @Column(name = "online")
     private boolean online;
+    
+    @Column(name = "image", columnDefinition = "TEXT")
+    private String image;
+    
+    @Column(name = "address", columnDefinition = "TEXT")
+    private String address;
 
     @ManyToMany(mappedBy = "userOauth")
 	@Fetch(value=FetchMode.SELECT)
@@ -93,6 +99,22 @@ public class UserEntity extends BaseEntity {
 
 	public void setRolesOauth(Set<RoleEntity> rolesOauth) {
 		this.rolesOauth = rolesOauth;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 }

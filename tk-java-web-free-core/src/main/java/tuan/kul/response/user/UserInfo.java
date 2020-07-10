@@ -6,6 +6,7 @@ import java.util.Set;
 import tuan.kul.dto.UserDto;
 import tuan.kul.entity.UserEntity;
 import tuan.kul.response.CommonResponse;
+import tuan.kul.response.role.RoleInfo;
 
 public class UserInfo extends CommonResponse{
 
@@ -18,12 +19,14 @@ public class UserInfo extends CommonResponse{
     private String phone;
     
     private String email;
+    
+    private String address;
 
     private boolean online;
     
-    private Set<String> haveRoles;
+    private Set<RoleInfo> haveRoles;
     
-    private Set<String> listRole;
+    private Set<RoleInfo> listRole;
 
 	public String getUserName() {
 		return userName;
@@ -73,20 +76,28 @@ public class UserInfo extends CommonResponse{
 		this.online = online;
 	}
 
-	public Set<String> getHaveRoles() {
+	public Set<RoleInfo> getHaveRoles() {
 		return haveRoles;
 	}
 
-	public void setHaveRoles(Set<String> haveRoles) {
+	public void setHaveRoles(Set<RoleInfo> haveRoles) {
 		this.haveRoles = haveRoles;
 	}
 
-	public Set<String> getListRole() {
+	public Set<RoleInfo> getListRole() {
 		return listRole;
 	}
 
-	public void setListRole(Set<String> listRole) {
+	public void setListRole(Set<RoleInfo> listRole) {
 		this.listRole = listRole;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	public UserInfo() {
@@ -94,14 +105,15 @@ public class UserInfo extends CommonResponse{
 	}
 
 	public UserInfo(String createdBy, Date createdDate, String updatedBy, Date updatedDate, String userName,
-			String passWord, String fullName, String phone, String email, boolean online, Set<String> haveRoles,
-			Set<String> listRole) {
+			String passWord, String fullName, String phone, String email, String address, boolean online,
+			Set<RoleInfo> haveRoles, Set<RoleInfo> listRole) {
 		super(createdBy, createdDate, updatedBy, updatedDate);
 		this.userName = userName;
 		this.passWord = passWord;
 		this.fullName = fullName;
 		this.phone = phone;
 		this.email = email;
+		this.address = address;
 		this.online = online;
 		this.haveRoles = haveRoles;
 		this.listRole = listRole;
@@ -115,6 +127,7 @@ public class UserInfo extends CommonResponse{
 		result.setPassWord(userEntity.getPassWord());
 		result.setPhone(userEntity.getPhone());
 		result.setOnline(userEntity.isOnline());
+		result.setAddress(userEntity.getAddress());
 		result.setCreatedBy(userEntity.getCreatedBy());
 		result.setCreatedDate(userEntity.getCreatedDate());
 		result.setUpdatedBy(userEntity.getModifiedBy());
@@ -130,6 +143,7 @@ public class UserInfo extends CommonResponse{
 		result.setPassWord(userDto.getPassWord());
 		result.setPhone(userDto.getPhone());
 		result.setOnline(userDto.isOnline());
+		result.setAddress(userDto.getAddress());
 		result.setCreatedBy(userDto.getCreatedBy());
 		result.setCreatedDate(userDto.getCreatedDate());
 		result.setUpdatedBy(userDto.getModifiedBy());
