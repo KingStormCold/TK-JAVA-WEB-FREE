@@ -1,5 +1,7 @@
 package tuan.kul.request.role;
 
+import java.util.List;
+
 import org.apache.commons.lang.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -18,10 +20,42 @@ public class RoleRequest {
     @JsonProperty("role_name")
     @SerializedName("role_name")
     private String roleName;
+    
+    @JsonProperty("password")
+    @SerializedName("password")
+    private String password;
+
+    @JsonProperty("full_name")
+    @SerializedName("full_name")
+    private String fullName;
+    
+    @JsonProperty("email")
+    @SerializedName("email")
+    private String email;
+    
+    @JsonProperty("phone")
+    @SerializedName("phone")
+    private String phone;
+    
+    @JsonProperty("address")
+    @SerializedName("address")
+    private String address;
+    
+    @JsonProperty("image")
+    @SerializedName("image")
+    private String image;
 
     @JsonProperty("condition")
     @SerializedName("condition")
     private String condition;
+    
+    @JsonProperty("add_role")
+    @SerializedName("add_role")
+    private List<String> add_role;
+    
+    @JsonProperty("remove_role")
+    @SerializedName("remove_role")
+    private List<String> removeRole;
 
 	public String getRoleId() {
 		return roleId;

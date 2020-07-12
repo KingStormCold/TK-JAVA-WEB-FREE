@@ -3,15 +3,21 @@ package tuan.kul.controller.admin.api;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import tuan.kul.common.Constant;
+import tuan.kul.common.JsonUtils;
 import tuan.kul.enums.ErrorCodeEnum;
 import tuan.kul.enums.HttpStatusCode;
+import tuan.kul.request.user.UserRequest;
 import tuan.kul.response.ObjectInfoResponse;
+import tuan.kul.response.ResultResponse;
+import tuan.kul.response.role.ListRoleInfo;
 import tuan.kul.response.user.ListUserInfo;
 import tuan.kul.response.user.UserInfo;
 import tuan.kul.security.SecurityUtils;
@@ -29,7 +35,7 @@ public class UsersApi {
 	public ObjectInfoResponse<ListUserInfo> findAllUser(@RequestParam("page_num") String pageNum, @RequestParam("page_size") String pageSize) {
 		if (!SecurityUtils.incognito()) {
 			try {
-				if (!SecurityUtils.getAuthorities().contains(Constant.USER_ALL) || !SecurityUtils.getAuthorities().contains(Constant.ADMIN)) {
+				if (!SecurityUtils.getAuthorities().contains(Constant.USER_ALL) && !SecurityUtils.getAuthorities().contains(Constant.ADMIN)) {
 					return new ObjectInfoResponse<ListUserInfo>(HttpStatusCode._401.getCode(), HttpStatusCode._401.getText());
 				}
 				if (StringUtils.isEmpty(pageNum) || StringUtils.isEmpty(pageSize)) {
@@ -49,7 +55,7 @@ public class UsersApi {
 	public ObjectInfoResponse<UserInfo> findOne(@RequestParam("user_name") String userName) {
 		if (!SecurityUtils.incognito()) {
 			try {
-				if (!SecurityUtils.getAuthorities().contains(Constant.USER_ALL) || !SecurityUtils.getAuthorities().contains(Constant.ADMIN)) {
+				if (!SecurityUtils.getAuthorities().contains(Constant.USER_ALL) && !SecurityUtils.getAuthorities().contains(Constant.ADMIN)) {
 					return new ObjectInfoResponse<UserInfo>(HttpStatusCode._401.getCode(), HttpStatusCode._401.getText());
 				}
 				if (StringUtils.isEmpty(userName)) {
@@ -63,5 +69,28 @@ public class UsersApi {
 			}
 		}
 		return new ObjectInfoResponse<UserInfo>(HttpStatusCode._403.getCode(), HttpStatusCode._403.getText());
+	}
+	
+	@PostMapping(value = "/admin/user", consumes = "application/json")
+	public ResultResponse users(@RequestBody UserRequest request) {
+		if (!SecurityUtils.incognito()) {
+			try {
+				if (!SecurityUtils.getAuthorities().contains(Constant.ROLE_ALL) && !SecurityUtils.getAuthorities().contains(Constant.ADMIN)) {
+					return new ResultResponse(HttpStatusCode._401.getCode(), HttpStatusCode._401.getText());
+				}
+				String userName = SecurityContextHolder.getContext().getAuthentication().getName();
+				String json = JsonUtils.convertObjectToString(request);
+		        log.info(userName + " search ==== " + json);
+				if (request.validate() == null) {
+//					return roleService.roles(request);
+				}
+				return request.validate();
+			} catch (Exception e) {
+				log.info("Exception--- " + request.getCondition() + "----");
+				log.info(e.toString());
+				return new ResultResponse(HttpStatusCode._500.getCode(), HttpStatusCode._500.getText());
+			}
+		}
+		return new ObjectInfoResponse<ListRoleInfo>(HttpStatusCode._403.getCode(), HttpStatusCode._403.getText());
 	}
 }
