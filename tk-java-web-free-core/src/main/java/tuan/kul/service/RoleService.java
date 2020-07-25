@@ -83,7 +83,7 @@ public class RoleService {
 			}
 		} catch (Exception e) {
 			log.info("Exception---" + request.getCondition() + "----");
-			log.info(e.toString());
+			log.info(e.toString(), e);
 			return new ResultResponse(HttpStatusCode._500.getCode(), HttpStatusCode._500.getText());
 		}
 	}

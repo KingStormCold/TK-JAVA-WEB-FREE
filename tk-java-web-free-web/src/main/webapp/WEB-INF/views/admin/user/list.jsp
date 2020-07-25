@@ -5,6 +5,10 @@
 <c:url var="findAllRole" value="/admin/role/find-all" />
 <c:url var="findOne" value="/admin/user/find-one" />
 <c:url var="login" value="/login" />
+<c:url var="users" value="/admin/user" />
+<c:url var="pageUser" value="/admin/user/list" />
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -22,7 +26,7 @@
        <div class="modal" id="myModal">
            <div class="modal-dialog">
                <div class="modal-content modal-content-user">
-                   <form action="/user-role/user" method="GET" enctype="multipart/form-data">
+                   <form action='<c:url value= ""/>' method="GET" enctype="multipart/form-data" id = "form-user">
                        <!-- Modal Header -->
                        <div class="modal-header">
                            <h4 class="modal-title">Insert User</h4>
@@ -32,61 +36,62 @@
                        <!-- Modal body -->
                        <div class="modal-body modal-user">
                            
-                               <div class ="form-group">
-                                   <label for="usr" class="form-label">User name</label>
-                                   <input type="text" class="form-control form-input" name="user_name" id="user_name" placeholder="Ex: tuankul">
-                               </div>
-                               <div class ="form-group">
-                                   <label for="usr" class="form-label">Password</label>
-                                   <input type="text" class="form-control form-input" name = "password" id="password" placeholder="Ex: 123456">
-                               </div>
-                               <div class ="form-group">
-                                   <label for="usr" class="form-label">Full name</label>
-                                   <input type="text" class="form-control form-input" name="full_name" id ="full_name" placeholder="Ex: Thái Thanh Tuấn">
-                               </div>
-                               <div class ="form-group">
-                                   <label for="usr" class="form-label">Email</label>
-                                   <input type="email" class="form-control form-input" name="email" id ="email" placeholder="Ex: test@gmail.com">
-                               </div>
-                               <div class ="form-group">
-                                   <label for="usr" class="form-label">Phone</label>
-                                   <input type="number" class="form-control form-input" name = "phone" id="phone" placeholder="012332323232">
-                               </div>
-                               <div class ="form-group">
-                                   <label for="usr" class="form-label">Address</label>
-                                   <input type="text" class="form-control form-input" name = "address" id="address" placeholder="349 Nguyễn Đình Chiểu Quận 1">
-                               </div>
-                               <div class ="form-group">
-                                   <label for="usr" class="form-label">Avatar</label>
-                                   <input type="file" style="padding-top: 3px;" class="form-control form-input" id = "form-avatar">
-                               </div>
-                               <div class ="">
-                                   <label class ="form-label-hidden"></label>
-                                   <img src="" alt="avatar" class = "form-avatar-profile" id = "avater-review">
-                               </div>
-                               <div class ="form-group">
-                                   <label for="usr" class="form-label">Role</label>
-                                   <div style=" display: -webkit-inline-box;" class = "col-sm-4 have-role">
-                                       <div class = "role-header">
-                                           <p class = "span-role">You have right</p>
-                                       </div>
-                                       <div class = "role-have-right">
-                                       </div>
-                                   </div>
-                                   <div style=" display: -webkit-inline-box;" class = "col-sm-4 not-role"> 
-                                       <div class = "role-header">
-                                           <p class = "span-role">You have not right</p>
-                                       </div>
-                                       <div class = "list-role">
-                                       </div>
-                                   </div>
-                               </div>
+	                       <div class ="form-group">
+	                           <label for="usr" class="form-label">User name</label>
+	                           <input type="text" class="form-control form-input" name="user_name" id="user_name" placeholder="Ex: tuankul">
+	                       </div>
+	                       <div class ="form-group">
+	                           <label for="usr" class="form-label">Password</label>
+	                           <input type="text" class="form-control form-input" name = "password" id="password" placeholder="Ex: 123456">
+	                       </div>
+	                       <div class ="form-group">
+	                           <label for="usr" class="form-label">Full name</label>
+	                           <input type="text" class="form-control form-input" name="full_name" id ="full_name" placeholder="Ex: Thái Thanh Tuấn">
+	                       </div>
+	                       <div class ="form-group">
+	                           <label for="usr" class="form-label">Email</label>
+	                           <input type="email" class="form-control form-input" name="email" id ="email" placeholder="Ex: test@gmail.com">
+	                       </div>
+	                       <div class ="form-group">
+	                           <label for="usr" class="form-label">Phone</label>
+	                           <input type="number" class="form-control form-input" name = "phone" id="phone" placeholder="012332323232">
+	                       </div>
+	                       <div class ="form-group">
+	                           <label for="usr" class="form-label">Address</label>
+	                           <input type="text" class="form-control form-input" name = "address" id="address" placeholder="349 Nguyễn Đình Chiểu Quận 1">
+	                       </div>
+	                       <div class ="form-group">
+	                           <label for="usr" class="form-label">Avatar</label>
+	                           <input type="file" style="padding-top: 3px;" class="form-control form-input" id = "form-avatar" name = "form_avatar">
+	                       </div>
+	                       <div class ="">
+	                           <label class ="form-label-hidden"></label>
+	                           <img src="" alt="avatar" class = "form-avatar-profile" id = "avater-review">
+	                       </div>
+	                       <div class ="form-group">
+	                           <label for="usr" class="form-label">Role</label>
+	                           <div style=" display: -webkit-inline-box;" class = "col-sm-4 have-role">
+	                               <div class = "role-header">
+	                                   <p class = "span-role">You have right</p>
+	                               </div>
+	                               <div class = "role-have-right">
+	                               </div>
+	                           </div>
+	                           <div style=" display: -webkit-inline-box;" class = "col-sm-4 not-role"> 
+	                               <div class = "role-header">
+	                                   <p class = "span-role">You have not right</p>
+	                               </div>
+	                               <div class = "list-role">
+	                               </div>
+	                           </div>
+	                       </div>
+                           <input type="hidden" id = "is-user-id">
                        </div>
 
                        <!-- Modal footer -->
                         <div class="modal-footer modal-footer-user">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-success" >Create</button>
+                            <button type="submit" class="btn btn-success" id ="btn-create-user">Create</button>
                         </div>
                     </form>
                 </div>
@@ -95,7 +100,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="data-tables">
-                    <table id="user-table" class="hover">
+                    <table id="user-table" class="hover user-table">
                         <thead class="text-capitalize">
                             <tr>
                                 <th class="table-th table-th-no">No.</th>
@@ -128,6 +133,8 @@
 	        "scrollY": '60vh',
 	        "scrollCollapse": true
  	    });
+  		 
+  	    $('.dataTables_filter input').prop("placeholder", "Search");
 
   		$.ajax({
 			type: 'GET',
@@ -136,7 +143,6 @@
 	        success: function (data) {
 				console.log(data);
 				list = data.objectInfo.listRoleInfo;
-				
 	        }
   		}).fail(function() {
   			window.location.href = "${login}";
@@ -144,7 +150,7 @@
 		
 		$.ajax({
 	        type: 'GET',
-	        url: '${findAll}?page_num=1&page_size=20',
+	        url: '${findAll}?page_num=1&page_size=21',
 	        dataType: 'json',
 	        success: function (data) {
 				var info = data.objectInfo;
@@ -160,7 +166,7 @@
 	    	    	        url: '${findAll}'+'?page_num='+page+'&page_size=20',
 	    	    	        dataType: 'json',
 	    	    	        success: function (data1) {
-	    	    	        	var info1 = data1.objectInfo;	        	
+	    	    	        	var info1 = data1.objectInfo;
 	    	    	        	drawTable(table, info1.userInfos, noIndex);
 	    	    	        }
 	    	        	});
@@ -170,6 +176,145 @@
 	    }).fail(function() {
   			window.location.href = "${login}";
 		});;
+		
+		var form = $("#form-user").validate({
+			rules: {
+				user_name: {
+					required: true,
+					maxlength: 50
+				},
+				password: {
+					required: true,
+					maxlength: 30
+				},
+				full_name: {
+					required: true,
+					maxlength: 255
+				},
+				email: {
+					required: true,
+					maxlength: 255,
+					email: true
+				},
+				phone: {
+					required: true,
+					maxlength: 11,
+					minlength: 10,
+					number: true
+				},
+				address: {
+					required: true,
+					maxlength: 1000
+				},
+				form_avatar: {
+					required: true,
+					maxlength: 1000
+				}
+			},
+			messages: {
+				user_name: {
+					required: "Please enter user name.",
+					maxlength: "Max length of user name must be 50."
+				},
+				password: {
+					required: "Please enter password.",
+					maxlength: "Max length of password must be 30."
+				},
+				full_name: {
+					required: "Please enter full name.",
+					maxlength: "Max length of full name must be 255."
+				},
+				email: {
+					required: "Please enter email.",
+					maxlength: "Max length of email must be 255.",
+					email: "Email invalid."
+				},
+				phone: {
+					required: "Please enter phone.",
+					maxlength: "Max length of phone must be 11.",
+					minlength: "Min length of phone must be 10.",
+					number: "Please type number only."
+				},
+				address: {
+					required: "Please enter address.",
+					maxlength: "Max length of adrress must be 1000.",
+				},
+				form_avatar: {
+					required: "Please enter form avatar.",
+					maxlength: "Max length of form avatar must be 1000.",
+				}
+			}, 
+			submitHandler: function(form) {
+				openCreate('#btn-create-user');
+				$('#btn-create-user').text("Creating...");
+				var userNameHidden = getVal('.modal-body #is-user-id');
+				var userName = getVal('.modal-user #user_name');
+				var password = getVal('.modal-user #password');
+				var fullName = getVal('.modal-user #full_name');
+				var email = getVal('.modal-user #email');
+				var phone = getVal('.modal-user #phone');
+				var address = getVal('.modal-user #address');
+				var condition = "update";
+				if (userNameHidden == null || userNameHidden == "" || userNameHidden == "undefined") {
+					condition = "insert";
+				}			
+		        var addRoles = new Array();
+		        var n = $(".not-role:checked").length;
+		        if (n > 0){
+		            $(".not-role:checked").each(function(){
+		            	addRoles.push($(this).val());
+		            });
+		        }
+		        
+		        var removeRoles = new Array();
+		        var n = $(".have-roles").prop('checked', false).length;
+		        if (n > 0){
+		        	$(".have-roles").prop('checked', false).each(function(){
+		            	removeRoles.push($(this).val());
+		            });
+		        }
+	            $.ajax({
+	    	        type: 'POST',
+	    	        url: '${users}',
+	    	        dataType: 'json',
+	    	        contentType:'application/json',
+	    	        data: JSON.stringify({
+	    	        	user_name: userName,
+	    	        	password: password,
+	    	        	full_name: fullName,
+	    	        	email: email,
+	    	        	phone: phone,
+	    	        	address: address,
+	    	        	image: condition,
+	    	        	condition: condition,
+	    	        	add_role: addRoles,
+	    	        	remove_role: removeRoles
+	    	        }),
+	    	        success: function (data) {
+	    	        	console.log(data);
+	    	        	if (data.result == "200") {
+	    	        		setTimeout(function(){
+		    	        		$.notify(data.message, "success");
+		    	        	}, 200);
+		    	        	setTimeout(function(){
+		    	        		$('#btn-create-role').text("Create")
+		    	        	}, 3000);
+		    	        	setTimeout(function(){
+		    	        		window.location.href = "${pageUser}";
+		    	        	}, 4000);
+	    	        	} else {
+	    	        		setTimeout(function(){
+		    	        		$.notify(data.message, "error");
+		    	        	}, 200);
+		    	        	setTimeout(function(){
+		    	        		closeCreate('#btn-create-role');
+		    	        		$('#btn-create-role').text("Create")
+		    	        	}, 2000);
+	    	        	}
+	    	        }
+	    	    });
+			}
+		});
 	});
   	 
   	$(".btn-add-user").click(function(){
@@ -177,7 +322,7 @@
 		$('.modal-user .list-role').find('label').remove();
 		$('.modal-user .list-role').find('br').remove();
 		$.each(list, function (index, item) {
-			$('.modal-user .list-role').append('<label for = "'+item.roleId+'" title = "'+item.description+'"><input type="checkbox" id = "'+item.roleId+'" value="'+item.roleId+'" class = "checkbox-role">'+item.roleId+' </label><br/>');
+			$('.modal-user .list-role').append('<label for = "'+item.roleId+'" title = "'+item.description+'"><input type="checkbox" id = "'+item.roleId+'" value="'+item.roleId+'" class = "checkbox-role not-role">'+item.roleId+' </label><br/>');
 		});
 		$('.modal-user #user_name').val("");
   		$('.modal-user #user_name').prop("readonly", false);
@@ -187,6 +332,10 @@
   		$('.modal-user #email').val("");
   		$('.modal-user #phone').val("");
   		$('.modal-user #address').val("");
+  		$('.modal-user #form-avatar').val('');
+  		$('.modal-user #avater-review').attr('src', "");
+  		$('.modal-body #is-user-id').val("");
+  		removeFormUser();
 	});
 
   	$('body').on("click", ".editNew", function(){
@@ -195,6 +344,7 @@
 		$('.modal-user .list-role').find('label').remove();
 		$('.modal-user .list-role').find('br').remove();
 		var userName = $(this).parents('tr').find('#userName').val();
+  		removeFormUser();
   		$.ajax({
 	        type: 'GET',
 	        url: '${findOne}'+'?user_name='+userName,
@@ -204,19 +354,20 @@
 			  	var haveRoles = info.haveRoles;
 			  	var listRoles = info.listRole;
 				$.each(listRoles, function (index, item) {
-					$('.modal-user .list-role').append('<label for = "'+item.roleId+'" title = "'+item.description+'"><input type="checkbox" id = "'+item.roleId+'" value="'+item.roleId+'" class = "checkbox-role">'+item.roleId+' </label><br/>');
+					$('.modal-user .list-role').append('<label for = "'+item.roleId+'" title = "'+item.description+'"><input type="checkbox" id = "'+item.roleId+'" value="'+item.roleId+'" class = "checkbox-role not-role">'+item.roleId+' </label><br/>');
 				});	
 		  		$.each(haveRoles, function (index, item) {
-		  			$('.modal-user .role-have-right').append('<label for = "'+item.roleId+'" title = "'+item.description+'" class = "remove-role"><input type="checkbox" id = "'+item.roleId+'" value="'+item.roleId+'" class = "checkbox-role" checked>'+item.roleId+'</label><br/>');
+		  			$('.modal-user .role-have-right').append('<label for = "'+item.roleId+'" title = "'+item.description+'" class = "remove-role"><input type="checkbox" id = "'+item.roleId+'" value="'+item.roleId+'" class = "checkbox-role have-roles" checked>'+item.roleId+'</label><br/>');
 				});
 		  		$('.modal-user #user_name').val(info.userName);
 		  		$('.modal-user #user_name').prop("readonly", true);
-		  		$('.modal-user #password').val("*********");
+		  		$('.modal-user #password').prop("placeholder", "*********");
 		  		$('.modal-user #password').prop("readonly", true);
 		  		$('.modal-user #full_name').val(info.fullName);
 		  		$('.modal-user #email').val(info.email);
 		  		$('.modal-user #phone').val(info.phone);
 		  		$('.modal-user #address').val(info.address);
+		  		$('.modal-body #is-user-id').val(info.userName);
 	        }
 	    }).fail(function() {
   			window.location.href = "${login}";
@@ -232,6 +383,21 @@
 			$(this).css("color", "red");
 		}
 	});
+	
+	function removeFormUser(){
+		removeSelector('.modal-user #user_name-error');
+  		removeSelector('.modal-user #password-error');
+  		removeSelector('.modal-user #full_name-error');
+  		removeSelector('.modal-user #email-error');
+  		removeSelector('.modal-user #phone-error');
+  		removeSelector('.modal-user #address-error');
+  		removeSelector('.modal-user #form-avatar-error');
+  		removeSelector('.modal-user #address-error');
+	}
+	
+	function removeSelector(selector){
+		return $(selector).remove();
+	}
 	
 	function drawTable(table, listData, noIndex) {
 	  	  $.each(listData, function (index, item) {

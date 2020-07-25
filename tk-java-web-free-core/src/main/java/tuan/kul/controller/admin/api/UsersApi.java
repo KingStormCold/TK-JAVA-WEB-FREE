@@ -1,9 +1,9 @@
 package tuan.kul.controller.admin.api;
 
-import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,7 +17,6 @@ import tuan.kul.enums.HttpStatusCode;
 import tuan.kul.request.user.UserRequest;
 import tuan.kul.response.ObjectInfoResponse;
 import tuan.kul.response.ResultResponse;
-import tuan.kul.response.role.ListRoleInfo;
 import tuan.kul.response.user.ListUserInfo;
 import tuan.kul.response.user.UserInfo;
 import tuan.kul.security.SecurityUtils;
@@ -80,9 +79,10 @@ public class UsersApi {
 				}
 				String userName = SecurityContextHolder.getContext().getAuthentication().getName();
 				String json = JsonUtils.convertObjectToString(request);
-		        log.info(userName + " search ==== " + json);
-				if (request.validate() == null) {
-//					return roleService.roles(request);
+				request.setUserRequest(userName);
+		        log.info(userName + " insert/update/delete ==== " + json);
+				if (StringUtils.isEmpty(request.validate())) {
+					return userService.users(request);
 				}
 				return request.validate();
 			} catch (Exception e) {
@@ -91,6 +91,6 @@ public class UsersApi {
 				return new ResultResponse(HttpStatusCode._500.getCode(), HttpStatusCode._500.getText());
 			}
 		}
-		return new ObjectInfoResponse<ListRoleInfo>(HttpStatusCode._403.getCode(), HttpStatusCode._403.getText());
+		return new ResultResponse(HttpStatusCode._403.getCode(), HttpStatusCode._403.getText());
 	}
 }

@@ -34,7 +34,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username) {
-        UserEntity userEntity = userRepository.findOne(username);
+        UserEntity userEntity = userRepository.findByUserNameAndOnline(username, true);
         UserDto userDTO = userConverter.convertToDto(userEntity);
 
         if (userDTO == null) {

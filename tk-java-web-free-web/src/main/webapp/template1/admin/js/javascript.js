@@ -41,3 +41,13 @@ function removeIconPlusAndAdIconMinus(icon, ul){
     $(icon).removeClass("fa-plus");
     $(icon).addClass("fa-minus");
 };
+function openCreate(selector) {
+  $(selector)
+    .addClass("disabled-button")
+    .prop("disabled", true);
+};
+function closeCreate(selector) {
+  $(selector)
+    .removeClass("disabled-button")
+  	.prop("disabled", false);
+};

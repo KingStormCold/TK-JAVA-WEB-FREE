@@ -215,17 +215,6 @@
 		});
 	});
   	
-  	function openCreate(selector) {
-  	  $(selector)
-  	    .addClass("disabled-button")
-  	    .prop("disabled", true);
-  	}
-  	function closeCreate(selector) {
-  	  $(selector)
-  	    .removeClass("disabled-button")
-  	  	.prop("disabled", false);
-  	}
-  	
   	function drawTable(table, listData, noIndex) {
   	  $.each(listData, function (index, item) {
   	    let rowData = [

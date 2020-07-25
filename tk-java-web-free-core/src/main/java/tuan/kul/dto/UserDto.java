@@ -1,6 +1,10 @@
 package tuan.kul.dto;
 
+import java.util.Date;
 import java.util.Set;
+
+import tuan.kul.common.PasswordUtils;
+import tuan.kul.request.user.UserRequest;
 
 /**
  * 
@@ -82,6 +86,22 @@ public class UserDto extends BaseDto {
 	public void setRolesOauth(Set<RoleDto> rolesOauth) {
 		this.rolesOauth = rolesOauth;
 	}
+	
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
 
 	public UserDto(String userName, String passWord, String fullName, String phone, String email, boolean online,
 			String image, String address, Set<RoleDto> rolesOauth) {
@@ -100,20 +120,28 @@ public class UserDto extends BaseDto {
 	public UserDto() {
 		super();
 	}
-
-	public String getImage() {
-		return image;
+	
+	public static UserDto insert(UserRequest request) {
+		UserDto result = new UserDto();
+		result.setUserName(request.getUserName());
+		result.setPassWord(PasswordUtils.encryptPassword(request.getPassword()));
+		result.setFullName(request.getFullName());
+		result.setPhone(request.getPhone());
+		result.setEmail(request.getEmail());
+		result.setImage(request.getImage());
+		result.setAddress(request.getAddress());
+		result.setCreatedDate(new Date(System.currentTimeMillis()));
+		result.setCreatedBy(request.getUserRequest());
+		result.setModifiedBy(request.getUserRequest());
+		result.setModifiedDate(new Date(System.currentTimeMillis()));
+		return result;
 	}
-
-	public void setImage(String image) {
-		this.image = image;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
+	
+	public static void update(UserRequest request, UserDto userDto) {
+		userDto.setFullName(request.getFullName());
+		userDto.setPhone(request.getPhone());
+		userDto.setEmail(request.getEmail());
+		userDto.setImage(request.getImage());
+		userDto.setAddress(request.getAddress());
 	}
 }

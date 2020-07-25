@@ -12,7 +12,9 @@ public enum ErrorCodeEnum {
     ERROR_NOT_EXIST_NEWS("ENEW-31", "ENEW-31 Not found this news."),
     ERROR_FILE("FILE-41", "Image File error."),
     ERROR_FILE_EMPTY("FILE-42", "Please choose image file."),
-    ERROR_IS_EXIST("SE-14", "SE-14 Is Exist.")
+    ERROR_IS_EXIST("SE-14", "SE-14 Is Exist."),
+    ERROR_CONDITION("SE-15", "SE-15 The condition is invalid."),
+    ERROR_PASSWORD("SE-16", "SE-16 You must not change password.")
     ;
 
     private String code;
