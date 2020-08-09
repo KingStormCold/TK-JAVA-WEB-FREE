@@ -128,7 +128,6 @@ public class UserDto extends BaseDto {
 		result.setFullName(request.getFullName());
 		result.setPhone(request.getPhone());
 		result.setEmail(request.getEmail());
-		result.setImage(request.getImage());
 		result.setAddress(request.getAddress());
 		result.setCreatedDate(new Date(System.currentTimeMillis()));
 		result.setCreatedBy(request.getUserRequest());
@@ -141,7 +140,8 @@ public class UserDto extends BaseDto {
 		userDto.setFullName(request.getFullName());
 		userDto.setPhone(request.getPhone());
 		userDto.setEmail(request.getEmail());
-		userDto.setImage(request.getImage());
 		userDto.setAddress(request.getAddress());
+		userDto.setModifiedBy(request.getUserRequest());
+		userDto.setModifiedDate(new Date(System.currentTimeMillis()));
 	}
 }

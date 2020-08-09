@@ -5,41 +5,50 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Date;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.apache.commons.codec.binary.Base64;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import tuan.kul.common.DateUtils;
 
 @Service
 public class FileService {
     
-    @Autowired
-    private DateUtils dateUtils;
-    
-    public String saveFile(MultipartFile multipartFile) throws IOException {
-        FileOutputStream outputStream = null;
+    public String uploadFile(String file, String name, String folder) throws IOException {
         try {
-            byte[] base64 = multipartFile.getBytes();
-            String directoryName = "C://image/";
-            String fileName = multipartFile.getOriginalFilename();
-            File directory = new File(directoryName);
-            if (!directory.exists()){//if not exist folder, system will create folder by directory
-                directory.mkdir();
+        	String baseUrl = ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();
+            String root = "D:\\TuanKul\\PROJECT_DONE\\TK-JAVA-WEB-FREE\\tk-java-web-free-web\\src\\main\\webapp" + File.separator + "fileupload";
+            File locationRoot = new File(root);
+            if (!locationRoot.exists()){//if not exist folder, system will create folder by directory
+            	locationRoot.mkdir();
             }
-            String directoryNameSub = directoryName + "news/";
-            File directorySub = new File(directoryNameSub);
-            if (!directorySub.exists()) {
-                directorySub.mkdir();
+            
+            String sub = root + File.separator + folder;
+            File locationSub = new File(sub);
+            if (!locationSub.exists()){//if not exist folder, system will create folder by directory
+            	locationSub.mkdir();
             }
-            File file = new File(directoryNameSub + dateUtils.convertDateToString(DateUtils.FORMAT_YYMMDDHHMMSS, new Date()) + "_" + fileName);
-            outputStream = new FileOutputStream(file);
+            
+            String date = DateUtils.convertDateToString(DateUtils.FORMAT_YYMMDD, new Date(System.currentTimeMillis()));
+            String sub1 = sub + File.separator + date;
+            File locationSub1 = new File(sub1);
+            if (!locationSub1.exists()){//if not exist folder, system will create folder by directory
+            	locationSub1.mkdir();
+            }
+            
+        	String location = sub1 + File.separator + name;
+            File directory = new File(location);
+            if (directory.exists()){//if not exist folder, system will create folder by directory
+            	directory.delete();
+            }
+            FileOutputStream outputStream = new FileOutputStream(location);
+            byte[] base64 = Base64.decodeBase64(file.getBytes());
             outputStream.write(base64);
             outputStream.close();
-            return file.toString();
+            return "fileupload" + File.separator + folder + File.separator + date + File.separator + name;
         } catch (IOException e) {
             System.out.println("save file by news exception ---" + e.toString());
+            return null;
         }
-        return null;
     }
 }

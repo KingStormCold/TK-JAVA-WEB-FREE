@@ -26,7 +26,7 @@
        <div class="modal" id="myModal">
            <div class="modal-dialog">
                <div class="modal-content modal-content-user">
-                   <form action='<c:url value= ""/>' method="GET" enctype="multipart/form-data" id = "form-user">
+                   <form action='<c:url value= ""/>' method="POST" enctype="multipart/form-data" id = "form-user">
                        <!-- Modal Header -->
                        <div class="modal-header">
                            <h4 class="modal-title">Insert User</h4>
@@ -63,27 +63,29 @@
 	                       <div class ="form-group">
 	                           <label for="usr" class="form-label">Avatar</label>
 	                           <input type="file" style="padding-top: 3px;" class="form-control form-input" id = "form-avatar" name = "form_avatar">
+	                           <label id="form-avatar-error" class="error" style="display: none;" for="form-avatar">Please enter form avatar.</label>
 	                       </div>
 	                       <div class ="">
 	                           <label class ="form-label-hidden"></label>
-	                           <img src="" alt="avatar" class = "form-avatar-profile" id = "avater-review">
+	                           <img src="" alt="avatar" class = "form-avatar-profile" id = "avater-review" >
 	                       </div>
 	                       <div class ="form-group">
-	                           <label for="usr" class="form-label">Role</label>
-	                           <div style=" display: -webkit-inline-box;" class = "col-sm-4 have-role">
+	                           	<label for="usr" class="form-label">Role</label>
+	                           	<div style=" display: -webkit-inline-box;" class = "col-sm-4 have-role">
 	                               <div class = "role-header">
 	                                   <p class = "span-role">You have right</p>
 	                               </div>
 	                               <div class = "role-have-right">
 	                               </div>
-	                           </div>
-	                           <div style=" display: -webkit-inline-box;" class = "col-sm-4 not-role"> 
+	                           	</div>
+	                           	<label class="form-role-error" style="display: none;"></label>
+	                           	<div style=" display: -webkit-inline-box;" class = "col-sm-4 not-role"> 
 	                               <div class = "role-header">
 	                                   <p class = "span-role">You have not right</p>
 	                               </div>
 	                               <div class = "list-role">
 	                               </div>
-	                           </div>
+	                           	</div>
 	                       </div>
                            <input type="hidden" id = "is-user-id">
                        </div>
@@ -123,6 +125,7 @@
   <script src = "<c:url value='../../template1/admin/js/js-admin-user.js'/>"></script>
   <script type="text/javascript">
   	var list = {};
+  	var ip;
   	$(document).ready(function (){
   		 var table = $('#user-table').DataTable({
   			"lengthChange": false,
@@ -133,6 +136,14 @@
 	        "scrollY": '60vh',
 	        "scrollCollapse": true
  	    });
+  		
+  		$.getJSON("http://jsonip.com?callback=?", function (data) {
+			console.log("ip :" + data.ip);
+		});
+  		
+  		$.getJSON("https://api.ipify.org/?format=json", function(e) {
+  		    ip = e.ip;
+  		});
   		 
   	    $('.dataTables_filter input').prop("placeholder", "Search");
 
@@ -206,7 +217,7 @@
 					required: true,
 					maxlength: 1000
 				},
-				form_avatar: {
+				role_form: {
 					required: true,
 					maxlength: 1000
 				}
@@ -245,6 +256,7 @@
 				}
 			}, 
 			submitHandler: function(form) {
+				event.preventDefault();
 				openCreate('#btn-create-user');
 				$('#btn-create-user').text("Creating...");
 				var userNameHidden = getVal('.modal-body #is-user-id');
@@ -254,67 +266,99 @@
 				var email = getVal('.modal-user #email');
 				var phone = getVal('.modal-user #phone');
 				var address = getVal('.modal-user #address');
-				var condition = "update";
-				if (userNameHidden == null || userNameHidden == "" || userNameHidden == "undefined") {
-					condition = "insert";
-				}			
-		        var addRoles = new Array();
-		        var n = $(".not-role:checked").length;
-		        if (n > 0){
-		            $(".not-role:checked").each(function(){
+				var addRoles = new Array();
+		        $(".not-role").each(function() {
+		            if ($(this).prop('checked') == true){ 
 		            	addRoles.push($(this).val());
-		            });
-		        }
-		        
+		            }
+		        });
+		        		        
 		        var removeRoles = new Array();
-		        var n = $(".have-roles").prop('checked', false).length;
-		        if (n > 0){
-		        	$(".have-roles").prop('checked', false).each(function(){
+		        $(".have-roles").each(function(){
+		            if ($(this).prop('checked') == false){ 
 		            	removeRoles.push($(this).val());
-		            });
-		        }
-	            $.ajax({
-	    	        type: 'POST',
-	    	        url: '${users}',
-	    	        dataType: 'json',
-	    	        contentType:'application/json',
-	    	        data: JSON.stringify({
-	    	        	user_name: userName,
-	    	        	password: password,
-	    	        	full_name: fullName,
-	    	        	email: email,
-	    	        	phone: phone,
-	    	        	address: address,
-	    	        	image: condition,
-	    	        	condition: condition,
-	    	        	add_role: addRoles,
-	    	        	remove_role: removeRoles
-	    	        }),
-	    	        success: function (data) {
-	    	        	console.log(data);
-	    	        	if (data.result == "200") {
-	    	        		setTimeout(function(){
-		    	        		$.notify(data.message, "success");
-		    	        	}, 200);
-		    	        	setTimeout(function(){
-		    	        		$('#btn-create-role').text("Create")
-		    	        	}, 3000);
-		    	        	setTimeout(function(){
-		    	        		window.location.href = "${pageUser}";
-		    	        	}, 4000);
-	    	        	} else {
-	    	        		setTimeout(function(){
-		    	        		$.notify(data.message, "error");
-		    	        	}, 200);
-		    	        	setTimeout(function(){
-		    	        		closeCreate('#btn-create-role');
-		    	        		$('#btn-create-role').text("Create")
-		    	        	}, 2000);
-	    	        	}
-	    	        }
-	    	    });
+		            }
+		        });
+		        var dataArray = {};
+		        dataArray["user_name"] = userName;
+		        dataArray["full_name"] = fullName;
+		        dataArray["email"] = email;
+		        dataArray["phone"] = phone;
+		        dataArray["address"] = address;
+		        dataArray["add_role"] = addRoles;
+		        dataArray["remove_role"] = removeRoles;
+		        var files = $('.modal-user #form-avatar')[0].files[0];
+		        var reader = new FileReader();
+				if (userNameHidden == null || userNameHidden == "" || userNameHidden == "undefined") {
+					if (files == undefined) {
+				  		addValueWhenValidationForm('.modal-user #form-avatar-error', 'inline-block', 'Please enter form avatar.');
+						$('#btn-create-user').text("Create");
+						closeCreate('#btn-create-user');
+						return false;
+					} else if ($.isEmptyObject(addRoles)) {
+						addValueWhenValidationForm('.form-role-error', 'inline-block', 'Please choose role.');
+						$('#btn-create-user').text("Create");
+						closeCreate('#btn-create-user');
+						return false;
+					} 
+		            reader.onload = function (e) {
+		            	dataArray["condition"] = "insert";
+		                dataArray["file"] = e.target.result;
+		                dataArray["image"] = files.name;
+		                dataArray["password"] = password;
+		                callAPI(dataArray);
+		            }
+		            reader.readAsDataURL(files);
+				} else {
+					dataArray["password"] = "";
+					dataArray["condition"] = "update";
+					if (files == undefined) {
+						dataArray["file"] = "";
+		                dataArray["image"] = "";
+		                callAPI(dataArray);
+					} else {
+						reader.onload = function (e) {
+							dataArray["file"] = e.target.result;
+			                dataArray["image"] = files.name;
+			                callAPI(dataArray);
+			            }
+			            reader.readAsDataURL(files);
+					}
+				}
 			}
 		});
+		
+		function callAPI(dataArray) {
+			$.ajax({
+    	        type: 'POST',
+    	        url: '${users}',
+                dataType: 'json',
+                contentType:'application/json',
+    	        data: JSON.stringify(dataArray),
+    	        success: function (data) {
+    	        	console.log(data);
+    	        	if (data.result == "200") {
+    	        		setTimeout(function(){
+	    	        		$.notify(data.message, "success");
+	    	        	}, 200);
+	    	        	setTimeout(function(){
+	    	        		$('#btn-create-user').text("Create")
+	    	        	}, 3000);
+	    	        	setTimeout(function(){
+	    	        		window.location.href = "${pageUser}";
+	    	        	}, 4000);
+    	        	} else {
+    	        		setTimeout(function(){
+	    	        		$.notify(data.message, "error");
+	    	        	}, 200);
+	    	        	setTimeout(function(){
+	    	        		closeCreate('#btn-create-user');
+	    	        		$('#btn-create-user').text("Create")
+	    	        	}, 2000);
+    	        	}
+    	        }
+    	    });
+		}
 	});
   	 
   	$(".btn-add-user").click(function(){
@@ -335,6 +379,7 @@
   		$('.modal-user #form-avatar').val('');
   		$('.modal-user #avater-review').attr('src', "");
   		$('.modal-body #is-user-id').val("");
+  		addValueWhenValidationForm('.modal-user #form-avatar-error', 'none', '');
   		removeFormUser();
 	});
 
@@ -361,13 +406,14 @@
 				});
 		  		$('.modal-user #user_name').val(info.userName);
 		  		$('.modal-user #user_name').prop("readonly", true);
-		  		$('.modal-user #password').prop("placeholder", "*********");
+		  		$('.modal-user #password').val("*********");
 		  		$('.modal-user #password').prop("readonly", true);
 		  		$('.modal-user #full_name').val(info.fullName);
 		  		$('.modal-user #email').val(info.email);
 		  		$('.modal-user #phone').val(info.phone);
 		  		$('.modal-user #address').val(info.address);
 		  		$('.modal-body #is-user-id').val(info.userName);
+		  		$('.modal-body #avater-review').prop("src","../../" + info.image);
 	        }
 	    }).fail(function() {
   			window.location.href = "${login}";
@@ -384,6 +430,11 @@
 		}
 	});
 	
+	function addValueWhenValidationForm(selector, display, message){
+		$(selector).css("display",display);
+		$(selector).text(message);
+	}
+	
 	function removeFormUser(){
 		removeSelector('.modal-user #user_name-error');
   		removeSelector('.modal-user #password-error');
@@ -391,7 +442,7 @@
   		removeSelector('.modal-user #email-error');
   		removeSelector('.modal-user #phone-error');
   		removeSelector('.modal-user #address-error');
-  		removeSelector('.modal-user #form-avatar-error');
+//   		removeSelector('.modal-user #form-avatar-error');
   		removeSelector('.modal-user #address-error');
 	}
 	

@@ -9,15 +9,15 @@ import tuan.kul.entity.UserEntity;
 
 public interface UserRepository extends JpaRepository<UserEntity, String>{
 	
-	@Modifying(clearAutomatically = true)
-	@Query(value = "INSERT INTO user_role VALUES (:roleId, :userName)", nativeQuery = true)
+	@Modifying
+	@Query(value = "INSERT INTO tk_java_web_free.user_role VALUES (:roleId, :userName)", nativeQuery = true)
 	public void insertUserRole(@Param("roleId")String roleId, @Param("userName")String userName);
 
-	@Query(value = "SELECT COUNT(role_id) FROM user_role WHERE role_id = :roleId AND user_name = :userName", nativeQuery = true)
+	@Query(value = "SELECT COUNT (role_id) FROM tk_java_web_free.user_role WHERE role_id = :roleId AND user_name = :userName", nativeQuery = true)
 	public int countUserRole(@Param("roleId")String roleId, @Param("userName")String userName);
 	
-	@Modifying(clearAutomatically = true)
-	@Query(value = "DELETE FROM user_role WHERE role_id = :roleId AND user_name = :userName", nativeQuery = true)
+	@Modifying
+	@Query(value = "DELETE FROM tk_java_web_free.user_role WHERE role_id = :roleId AND user_name = :userName", nativeQuery = true)
 	public void deleteUserRole(@Param("roleId")String roleId, @Param("userName")String userName);
 	
 	public UserEntity findByUserNameAndOnline(String userName, boolean online);

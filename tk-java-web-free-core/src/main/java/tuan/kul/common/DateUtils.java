@@ -13,12 +13,13 @@ import org.springframework.stereotype.Component;
 public class DateUtils {
     public final static String FORMAT_YYYY_MM_DD_HHMMSS = "yyyy-MM-dd HH:mm:ss";
     public final static String FORMAT_YYMMDDHHMMSS = "ddMMyyHHmmss";
+    public final static String FORMAT_YYMMDD = "ddMMyy";
     public static final Pattern PATTERN_DATE = Pattern
 			.compile("(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/((19|20)\\d\\d)+$");
     public static final TimeZone UTC_TIME_ZONE = TimeZone.getTimeZone("UTC");
     public static final String MY_TIME_ZONE = "Asia/Bangkok";
 
-    public String convertDateToString(String format, Date date) {
+    public static String convertDateToString(String format, Date date) {
         if (date == null) {
             return "";
         }
@@ -31,6 +32,10 @@ public class DateUtils {
             return result;
         case FORMAT_YYMMDDHHMMSS:
             simpleDateFormat = new SimpleDateFormat(FORMAT_YYMMDDHHMMSS);
+            result = simpleDateFormat.format(date);
+            return result;
+        case FORMAT_YYMMDD:
+            simpleDateFormat = new SimpleDateFormat(FORMAT_YYMMDD);
             result = simpleDateFormat.format(date);
             return result;
         default:

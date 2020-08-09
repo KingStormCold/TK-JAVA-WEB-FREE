@@ -15,6 +15,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import lombok.extern.slf4j.Slf4j;
 import tuan.kul.common.Constant;
 import tuan.kul.converter.UserConverter;
 import tuan.kul.dto.RoleDto;
@@ -33,6 +34,7 @@ import tuan.kul.response.user.UserInfo;
 
 @Service
 @Transactional
+@Slf4j
 public class UserService {
 	
 	private static final Logger log = Logger.getLogger(UserService.class);
@@ -45,6 +47,9 @@ public class UserService {
 	
 	@Autowired
 	private RoleService roleService;
+	
+	@Autowired
+    private FileService fileService;
 
 	public ObjectInfoResponse<ListUserInfo> findAllUser(String pageNum, String pageSize) {
 		try {
@@ -93,12 +98,19 @@ public class UserService {
 	public ResultResponse users(UserRequest request) {
 		try {
 			UserDto userDto = userConverter.convertToDto(userRepository.findOne(request.getUserName()));
+			int index;
+			String fileImage;
+			String image;
 			switch (request.getCondition()) {
 			case Constant.INSERT:
 				if (!StringUtils.isEmpty(userDto)) {
 					return new ResultResponse(HttpStatusCode._500.getCode(), ErrorCodeEnum.ERROR_IS_EXIST.getText());
 				}
+				index = request.getFile().indexOf(",");
+	        	fileImage = request.getFile().substring(index + 1);
+				image = fileService.uploadFile(fileImage, request.getImage(), "users");
 				userDto = UserDto.insert(request);
+				userDto.setImage(image);
 				saveUser(userDto);
 				for (String roleId : request.getAddRole()) {
 					if (countUserRole(roleId, userDto.getUserName()) != 0) {
@@ -122,6 +134,12 @@ public class UserService {
 						continue;
 					}
 					deleteUserRole(roleId, userDto.getUserName());
+				}
+				if (!StringUtils.isEmpty(request.getImage())) {
+					index = request.getFile().indexOf(",");
+		        	fileImage = request.getFile().substring(index + 1);
+					image = fileService.uploadFile(fileImage, request.getImage(), "users");
+					userDto.setImage(image);
 				}
 				UserDto.update(request, userDto);
 				saveUser(userDto);

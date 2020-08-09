@@ -4,6 +4,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
@@ -41,7 +42,7 @@ public class UserEntity extends BaseEntity {
     @Column(name = "address", columnDefinition = "TEXT")
     private String address;
 
-    @ManyToMany(mappedBy = "userOauth")
+    @ManyToMany(mappedBy = "userOauth", fetch = FetchType.LAZY)
 	@Fetch(value=FetchMode.SELECT)
 	private Set<RoleEntity> rolesOauth;
 

@@ -14,7 +14,8 @@ public enum ErrorCodeEnum {
     ERROR_FILE_EMPTY("FILE-42", "Please choose image file."),
     ERROR_IS_EXIST("SE-14", "SE-14 Is Exist."),
     ERROR_CONDITION("SE-15", "SE-15 The condition is invalid."),
-    ERROR_PASSWORD("SE-16", "SE-16 You must not change password.")
+    ERROR_PASSWORD("SE-16", "SE-16 You must not change password."),
+    ERROR_ADD_ROLE("SE-17", "SE-17 Please choose role."),
     ;
 
     private String code;

@@ -433,6 +433,19 @@ margin-top: 27px;
 .disabled-button{
 	cursor: not-allowed !important;
 }
+.display-none {
+	display: none;
+}
+
+.display-block {
+	display: inline-block;
+}
+.form-role-error {
+	position: absolute;
+    margin-top: -25px;
+    margin-left: 85px;
+    color: red;
+}
 
 @media only screen and (max-width: 600px) {
   h4 {

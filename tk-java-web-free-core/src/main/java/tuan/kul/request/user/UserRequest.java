@@ -42,6 +42,10 @@ public class UserRequest {
 	@JsonProperty("image")
 	@SerializedName("image")
 	private String image;
+	
+	@JsonProperty("file")
+	@SerializedName("file")
+	private String file;
 
 	@JsonProperty("condition")
 	@SerializedName("condition")
@@ -145,15 +149,27 @@ public class UserRequest {
 		this.userRequest = userRequest;
 	}
 
+	public String getFile() {
+		return file;
+	}
+
+	public void setFile(String file) {
+		this.file = file;
+	}
+
 	public ResultResponse validate() {
 		String conditions[] = {Constant.INSERT, Constant.UPDATE, Constant.DELETE};
 		if (StringUtils.isEmpty(this.userName) || StringUtils.isEmpty(this.condition) || StringUtils.isEmpty(this.fullName)
-				|| StringUtils.isEmpty(this.email) || StringUtils.isEmpty(this.phone) || StringUtils.isEmpty(this.image)) {
+				|| StringUtils.isEmpty(this.email) || StringUtils.isEmpty(this.phone)) {
 			return new ResultResponse(HttpStatusCode._400.getCode(), ErrorCodeEnum.ERROR_INPUT_EMPTY.getText());
 		} else if (!ArrayUtils.contains(conditions, this.condition)) {
 			return new ResultResponse(HttpStatusCode._400.getCode(), ErrorCodeEnum.ERROR_CONDITION.getText());
 		} else if (Constant.UPDATE.equals(this.condition) && !StringUtils.isEmpty(this.password)) {
 			return new ResultResponse(HttpStatusCode._400.getCode(), ErrorCodeEnum.ERROR_PASSWORD.getText());
+		} else if (Constant.INSERT.equals(this.condition) && this.addRole.isEmpty()) {
+			return new ResultResponse(HttpStatusCode._400.getCode(), ErrorCodeEnum.ERROR_ADD_ROLE.getText());
+		} else if (Constant.INSERT.equals(this.condition) && StringUtils.isEmpty(this.image)) {
+			return new ResultResponse(HttpStatusCode._400.getCode(), ErrorCodeEnum.ERROR_FILE_EMPTY.getText());
 		}
 		return null;
 	}

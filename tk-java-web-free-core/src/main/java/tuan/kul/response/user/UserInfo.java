@@ -21,6 +21,8 @@ public class UserInfo extends CommonResponse{
     private String email;
     
     private String address;
+    
+    private String image;
 
     private boolean online;
     
@@ -100,6 +102,14 @@ public class UserInfo extends CommonResponse{
 		this.address = address;
 	}
 
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
 	public UserInfo() {
 		super();
 	}
@@ -148,6 +158,7 @@ public class UserInfo extends CommonResponse{
 		result.setCreatedDate(userDto.getCreatedDate());
 		result.setUpdatedBy(userDto.getModifiedBy());
 		result.setUpdatedDate(userDto.getModifiedDate());
+		result.setImage(userDto.getImage());
 		return result;
 	}
 }

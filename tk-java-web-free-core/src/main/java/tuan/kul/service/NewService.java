@@ -122,16 +122,16 @@ public class NewService {
         }
         NewDto newDto;
         if (StringUtils.isEmpty(request.getNewId())) {
-            String imageName = fileService.saveFile(request.getNewFile());
-            if (StringUtils.isEmpty(imageName)) {
-                return new ResultResponse(HttpStatusCode._500.getCode(), ErrorCodeEnum.ERROR_FILE.getText());
-            }
+//            String imageName = fileService.uploadFile(request.getNewFile());
+//            if (StringUtils.isEmpty(imageName)) {
+//                return new ResultResponse(HttpStatusCode._500.getCode(), ErrorCodeEnum.ERROR_FILE.getText());
+//            }
             newDto = new NewDto();
             newDto.setId(UUID.randomUUID().toString());
             newDto.setCode(categoryDto.getCode());
             newDto.setTitle(request.getNewTitle());
             newDto.setDescription(request.getNewDescription());
-            newDto.setImage(imageName);
+//            newDto.setImage(imageName);
             newDto.setContent(request.getNewContent());
             newDto.setTop(StringUtils.isEmpty(request.getNewTop()));
             newDto.setView(0);
