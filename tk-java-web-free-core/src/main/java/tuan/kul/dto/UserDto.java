@@ -133,6 +133,7 @@ public class UserDto extends BaseDto {
 		result.setCreatedBy(request.getUserRequest());
 		result.setModifiedBy(request.getUserRequest());
 		result.setModifiedDate(new Date(System.currentTimeMillis()));
+		result.setOnline(true);
 		return result;
 	}
 	

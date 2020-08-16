@@ -1,5 +1,7 @@
 package tuan.kul.repository;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -21,4 +23,7 @@ public interface UserRepository extends JpaRepository<UserEntity, String>{
 	public void deleteUserRole(@Param("roleId")String roleId, @Param("userName")String userName);
 	
 	public UserEntity findByUserNameAndOnline(String userName, boolean online);
+	
+	public Page<UserEntity> findAllByOnline(Pageable pageable ,boolean online);
+	
 }

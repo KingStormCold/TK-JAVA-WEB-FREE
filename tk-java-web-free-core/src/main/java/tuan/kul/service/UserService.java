@@ -56,7 +56,7 @@ public class UserService {
 			Integer page = Integer.valueOf(pageNum);
 			Integer size = Integer.valueOf(pageSize);
 			Pageable pageable = new PageRequest(page - 1, size);
-			Page<UserEntity> pageUser = userRepository.findAll(pageable);
+			Page<UserEntity> pageUser = userRepository.findAllByOnline(pageable, true);
 			List<UserInfo> result = pageUser.getContent().stream()
 					.map(userEntity -> UserInfo.of(userEntity))
 					.collect(Collectors.toList());
@@ -147,6 +147,9 @@ public class UserService {
 			case Constant.DELETE:
 				if (StringUtils.isEmpty(userDto)) {
 					return new ResultResponse(HttpStatusCode._500.getCode(), ErrorCodeEnum.ERROR_NOT_FOUND.getText());
+				}
+				if ("admin".equals(userDto.getUserName())) {
+					return new ResultResponse(HttpStatusCode._401.getCode(), ErrorCodeEnum.ERROR_REMOVE_ADMIN.getText());
 				}
 				for (RoleDto roleId : userDto.getRolesOauth()) {
 					if (countUserRole(roleId.getRoleId(), userDto.getUserName()) != 0) {

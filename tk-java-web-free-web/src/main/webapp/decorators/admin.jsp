@@ -11,9 +11,9 @@
     <title>Admin page</title>
     <meta name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=1, width=device-width, user-scalable=1.0">
     <link rel="stylesheet" href = "<c:url value='/template1/admin/css/style.css'/>" rel="stylesheet" type="text/css" media="all">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
+    <script type='text/javascript' src='<c:url value="/template1/admin/js/jquery.min.js"/>'></script><!-- 3.5.1 -->
+    <link rel="stylesheet" href = "<c:url value='/template1/admin/css/bootstrap.min.css'/>" rel="stylesheet" type="text/css" media="all"><!-- 4.4.1 -->
+    <link rel="stylesheet" href = "<c:url value='/template1/admin/css/jquery.dataTables.css'/>" rel="stylesheet" type="text/css" media="all">
     <script type='text/javascript' src='<c:url value="/template1/admin/sweetalert2/sweetalert2.min.js"/>'></script>
 	<link rel="stylesheet" href="<c:url value="/template1/admin/sweetalert2/sweetalert2.min.css"/>">
 </head>
@@ -28,9 +28,9 @@
 	<img src = "<c:url value = '/template1/admin/img/reload.gif'/>" class = "gif-loading"></img>                                                                                                                                                                                                               
 <script src = "<c:url value='/template1/admin/js/javascript.js'/>"></script>
 <script src="https://use.fontawesome.com/b59cf34d3a.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+<script type='text/javascript' src='<c:url value="/template1/admin/js/popper.min.js"/>'></script><!-- 1.16.0 -->
+<script type='text/javascript' src='<c:url value="/template1/admin/js/bootstrap.min.js"/>'></script>
+<script type='text/javascript' src='<c:url value="/template1/admin/js/jquery.dataTables.js"/>'></script><!--  1.10.21-->
 <script src = "<c:url value='/template1/admin/js/pagination.js'/>"></script>
 <script src = "<c:url value='/template1/admin/js/validate.js'/>"></script>
 <script src = "<c:url value='/template1/admin/js/notify.js'/>"></script>
@@ -39,7 +39,7 @@
    function showAlertBeforeDelete(callback, id) {
        swal({
            title: "Comfirm delete",
-           text: "Are you sure to delete " + id + "?",
+           text: "Are you sure to delete '" + id + "' ?",
            type: "warning",
            showCancelButton: true,
            confirmButtonText: "Sure",

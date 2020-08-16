@@ -16,6 +16,7 @@ public enum ErrorCodeEnum {
     ERROR_CONDITION("SE-15", "SE-15 The condition is invalid."),
     ERROR_PASSWORD("SE-16", "SE-16 You must not change password."),
     ERROR_ADD_ROLE("SE-17", "SE-17 Please choose role."),
+    ERROR_REMOVE_ADMIN("SE-18", "SE-18 You can't remove this role."),
     ;
 
     private String code;

@@ -162,6 +162,8 @@ public class UserRequest {
 		if (StringUtils.isEmpty(this.userName) || StringUtils.isEmpty(this.condition) || StringUtils.isEmpty(this.fullName)
 				|| StringUtils.isEmpty(this.email) || StringUtils.isEmpty(this.phone)) {
 			return new ResultResponse(HttpStatusCode._400.getCode(), ErrorCodeEnum.ERROR_INPUT_EMPTY.getText());
+		} else if(Constant.DELETE.equals(this.condition) && !StringUtils.isEmpty(this.userName)) {
+			return null;
 		} else if (!ArrayUtils.contains(conditions, this.condition)) {
 			return new ResultResponse(HttpStatusCode._400.getCode(), ErrorCodeEnum.ERROR_CONDITION.getText());
 		} else if (Constant.UPDATE.equals(this.condition) && !StringUtils.isEmpty(this.password)) {

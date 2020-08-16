@@ -32,10 +32,8 @@
                            <h4 class="modal-title">Insert User</h4>
                            <button type="button" class="close" data-dismiss="modal">&times;</button>
                        </div>
-
                        <!-- Modal body -->
                        <div class="modal-body modal-user">
-                           
 	                       <div class ="form-group">
 	                           <label for="usr" class="form-label">User name</label>
 	                           <input type="text" class="form-control form-input" name="user_name" id="user_name" placeholder="Ex: tuankul">
@@ -125,7 +123,6 @@
   <script src = "<c:url value='../../template1/admin/js/js-admin-user.js'/>"></script>
   <script type="text/javascript">
   	var list = {};
-  	var ip;
   	$(document).ready(function (){
   		 var table = $('#user-table').DataTable({
   			"lengthChange": false,
@@ -136,14 +133,6 @@
 	        "scrollY": '60vh',
 	        "scrollCollapse": true
  	    });
-  		
-  		$.getJSON("http://jsonip.com?callback=?", function (data) {
-			console.log("ip :" + data.ip);
-		});
-  		
-  		$.getJSON("https://api.ipify.org/?format=json", function(e) {
-  		    ip = e.ip;
-  		});
   		 
   	    $('.dataTables_filter input').prop("placeholder", "Search");
 
@@ -419,6 +408,42 @@
   			window.location.href = "${login}";
 		});;
 	});
+
+  	$('body').on("click", ".fa-remove", function(){
+		var userName = $(this).parents('tr').find('#userName').val();
+		showAlertBeforeDelete(function () {
+            event.preventDefault();
+            $.ajax({
+    	        type: 'POST',
+    	        url: '${users}',
+    	        dataType: 'json',
+    	        contentType:'application/json',
+    	        data: JSON.stringify({
+    	        	user_name: userName,
+    	        	full_name: "delete",
+    	        	email: "delete",
+    	        	phone: "delete",
+    	        	condition: "delete"
+    	        }),
+    	        success: function (data) {
+    	        	console.log(data);
+    	        	if (data.result == "200") {
+    	        		$('.gif-loading').css("display", "block");
+    	        		setTimeout(function(){
+	    	        		$.notify(data.message, "success");
+	    	        	}, 200);
+	    	        	setTimeout(function(){
+	    	        		window.location.href = "${pageUser}";
+	    	        	}, 2000);
+    	        	} else {
+    	        		setTimeout(function(){
+	    	        		$.notify(data.message, "error");
+	    	        	}, 200);
+    	        	}
+    	        }
+    	    });
+        }, userName);
+  	});
 	
 	$('body').on("click", ".remove-role", function(){
 		if($(this).find('input[type=checkbox]').is(':checked')) {
