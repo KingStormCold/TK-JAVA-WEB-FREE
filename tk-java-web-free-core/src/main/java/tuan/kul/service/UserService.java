@@ -1,5 +1,8 @@
 package tuan.kul.service;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -8,12 +11,22 @@ import java.util.stream.Collectors;
 import javax.transaction.Transactional;
 
 import org.apache.log4j.Logger;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.text.PDFTextStripper;
+import org.apache.pdfbox.text.TextPosition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+
+import com.itextpdf.text.pdf.PdfReader;
+import com.itextpdf.text.pdf.parser.PdfReaderContentParser;
+import com.itextpdf.text.pdf.parser.TextMarginFinder;
+import com.itextpdf.text.pdf.parser.TextRenderInfo;
+import com.itextpdf.text.pdf.parser.Vector;
 
 import lombok.extern.slf4j.Slf4j;
 import tuan.kul.common.Constant;
@@ -184,5 +197,62 @@ public class UserService {
 	
 	public void saveUser(final UserDto dto) {
 		userRepository.save(userConverter.convertToEntity(dto));
+	}
+	
+	public static void main(String[] args) throws IOException {
+		PDDocument document = PDDocument.load( new File("D:\\tesst.pdf"));
+		List<String>list = new ArrayList<String>();
+		PDFTextStripper stripper = new PDFTextStripper()
+		{
+			
+			@Override
+		    protected void startPage(PDPage page) throws IOException
+		    {
+		        startOfLine = true;
+		        super.startPage(page);
+		    }
+
+		    @Override
+		    protected void writeLineSeparator() throws IOException
+		    {
+		        startOfLine = true;
+		        super.writeLineSeparator();
+		    }
+
+		    @Override
+		    protected void writeString(String text, List<TextPosition> textPositions) throws IOException
+		    {
+//		        if (startOfLine)
+//		        {
+//		            TextPosition firstProsition = textPositions.get(0);
+//		            writeString(String.format("[%s]", firstProsition.getXDirAdj()));
+//		            writeString(String.format("[%s]", firstProsition.getYDirAdj()));
+//		            startOfLine = false;
+//		        }
+//		        super.writeString(text, textPositions);
+		        
+		    	//[42.24][282.76996]DANH MỤC KHUYẾN MÃI
+		        if (startOfLine)
+		        {
+		            TextPosition firstProsition = textPositions.get(0);
+		            if (text.equals("DANH MỤC KHUYẾN MÃI ")) {
+		            	writeString(String.format("[%s]", firstProsition.getXDirAdj()));
+		            	writeString(String.format("[%s]", firstProsition.getYDirAdj()));
+		            	list.add(firstProsition.getXDirAdj() + "--" + firstProsition.getYDirAdj());
+		            }
+		            startOfLine = false;
+		        }
+		        if (text.equals("DANH MỤC KHUYẾN MÃI ")) {
+		        	super.writeString(text, textPositions);
+		        	list.add(text + "--" + textPositions);
+		        }
+		    }
+		    boolean startOfLine = true;
+		};
+		
+		String text = stripper.getText(document);
+		for (String string : list) {
+			System.out.println(string);
+		}
 	}
 }
