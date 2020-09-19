@@ -39,9 +39,6 @@ public class CategoryService {
     @Autowired
     private CategoryConverter categoryConverter;
 
-    @Autowired
-    private DateUtils dateUtils;
-
     public CategoryResponse findAll() {
         List<CategoryEntity> categoryEntities = categoryRepository.getAllCategory();
         List<CategoryInfo> categoryInfos = new ArrayList<>();
@@ -50,7 +47,7 @@ public class CategoryService {
             if (StringUtils.isBlank(categoryEntity.getCategoryFatherCode())) {
                 categoryFatherLists.add(new CategoryFatherList(categoryConverter.convertToDto(categoryEntity)));
             }
-            categoryInfos.add(new CategoryInfo(categoryConverter.convertToDto(categoryEntity), dateUtils));
+            categoryInfos.add(new CategoryInfo(categoryConverter.convertToDto(categoryEntity)));
         }
         return new CategoryResponse(HttpStatusCode._200.getCode(), ErrorCodeEnum.SUCCESS.getText(), categoryInfos, categoryFatherLists);
     }
@@ -59,7 +56,7 @@ public class CategoryService {
         List<CategoryEntity> categoryEntities = categoryRepository.getAllCategory();
         List<CategoryInfo> result = new ArrayList<>();
         for(CategoryEntity categoryEntity : categoryEntities) {
-            result.add(new CategoryInfo(categoryConverter.convertToDto(categoryEntity), dateUtils));
+            result.add(new CategoryInfo(categoryConverter.convertToDto(categoryEntity)));
         }
         return result;
     }

@@ -47,9 +47,6 @@ public class NewService {
     private NewRepository newRepository;
 
     @Autowired
-    private DateUtils dateUtils;
-
-    @Autowired
     private NewConverter newConverter;
 
     @Autowired
@@ -89,9 +86,9 @@ public class NewService {
         for (NewEntity newEntity : pageNew) {
             NewDto newDto = newConverter.convertToDto(newEntity);
             result.add(new NewsInfo(newDto.getId(), newDto.getCreatedBy(),
-                    dateUtils.convertDateToString(DateUtils.FORMAT_YYYY_MM_DD_HHMMSS, newDto.getCreatedDate()),
+                    DateUtils.convertDateToString(DateUtils.FORMAT_YYYY_MM_DD_HHMMSS, newDto.getCreatedDate()),
                     newDto.getTitle(),
-                    dateUtils.convertDateToString(DateUtils.FORMAT_YYYY_MM_DD_HHMMSS, newDto.getModifiedDate()),
+                    DateUtils.convertDateToString(DateUtils.FORMAT_YYYY_MM_DD_HHMMSS, newDto.getModifiedDate()),
                     newDto.getModifiedBy()));
         }
         Pagination pagination = new Pagination(pageNum + 1, pageSize, pageNew.getTotalPages(),

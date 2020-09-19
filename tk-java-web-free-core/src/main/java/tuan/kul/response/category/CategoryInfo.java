@@ -91,14 +91,14 @@ public class CategoryInfo {
 
     }
     
-    public CategoryInfo(CategoryDto dto, DateUtils dateUtils) {
+    public CategoryInfo(CategoryDto dto) {
        this.categoryCode = dto.getCode();
        this.categoryName = dto.getCategory();
        this.categoryFatherCode = !StringUtils.isEmpty(dto.getCategoryFatherCode()) ? dto.getCategoryFatherCode() : ""; 
        this.categoryFatherName = !StringUtils.isEmpty(dto.getCategoryFather()) ? dto.getCategoryFather() : "";
        this.createdBy = !StringUtils.isEmpty(dto.getCreatedBy()) ? dto.getCreatedBy() : "";
        this.updatedBy = !StringUtils.isEmpty(dto.getModifiedBy()) ? dto.getModifiedBy() : "";
-       this.createdDate = dateUtils.convertDateToString(DateUtils.FORMAT_YYYY_MM_DD_HHMMSS, dto.getCreatedDate());
-       this.updatedDate = dateUtils.convertDateToString(DateUtils.FORMAT_YYYY_MM_DD_HHMMSS, dto.getModifiedDate());
+       this.createdDate = DateUtils.convertDateToString(DateUtils.FORMAT_YYYY_MM_DD_HHMMSS, dto.getCreatedDate());
+       this.updatedDate = DateUtils.convertDateToString(DateUtils.FORMAT_YYYY_MM_DD_HHMMSS, dto.getModifiedDate());
     }
 }

@@ -9,7 +9,6 @@ import java.util.regex.Pattern;
 
 import org.springframework.stereotype.Component;
 
-@Component
 public class DateUtils {
     public final static String FORMAT_YYYY_MM_DD_HHMMSS = "yyyy-MM-dd HH:mm:ss";
     public final static String FORMAT_YYMMDDHHMMSS = "ddMMyyHHmmss";
