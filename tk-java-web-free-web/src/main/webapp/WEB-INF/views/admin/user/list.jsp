@@ -109,6 +109,7 @@
                                 <th class="table-th">User Name</th>
                                 <th class="table-th">Update Date</th>
                                 <th class="table-th">Update By</th>
+                                <th class="table-th">Active</th>
                                 <th class="table-th table-th-action">Action</th>
                             </tr>
                         </thead>
@@ -154,7 +155,10 @@
 	        dataType: 'json',
 	        success: function (data) {
 				var info = data.objectInfo;
-	        	drawTable(table, info.userInfos, 0);
+				if (info.userInfos.length !== 0) {
+					drawTable(table, info.userInfos, 0);
+				}
+	        	
 	        	$('#pagination-user').twbsPagination({
 	    	        totalPages: data.objectInfo.pagination.total_page,
 	    	        visiblePages: 5,
@@ -167,7 +171,9 @@
 	    	    	        dataType: 'json',
 	    	    	        success: function (data1) {
 	    	    	        	var info1 = data1.objectInfo;
-	    	    	        	drawTable(table, info1.userInfos, noIndex);
+	    	    	        	if (info1.userInfos.length !== 0) {
+	    	    	        		drawTable(table, info1.userInfos, noIndex);
+	    	    	        	}
 	    	    	        }
 	    	        	});
 	    	    	}
@@ -484,6 +490,7 @@
 	  	      item.userName,
 	  	      item.updatedBy,
 		  	  item.updatedDate,
+		  	  item.online,
 	          '<a class="fa fa-edit editNew" data-toggle="modal" data-target="#myModal"></a><a class="fa fa-remove" href="#"></a><input type="hidden" id ="userName" value="'+item.userName+'"/>'
 	  	    ];
 	  	    table.row.add(rowData).draw(false);

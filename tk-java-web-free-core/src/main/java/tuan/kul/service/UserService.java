@@ -59,7 +59,7 @@ public class UserService {
 			Integer page = Integer.valueOf(pageNum);
 			Integer size = Integer.valueOf(pageSize);
 			Pageable pageable = new PageRequest(page - 1, size);
-			Page<UserEntity> pageUser = userRepository.findAllByOnline(pageable, true);
+			Page<UserEntity> pageUser = userRepository.findAll(pageable);
 			List<UserInfo> result = pageUser.getContent().stream()
 					.map(userEntity -> UserInfo.of(userEntity))
 					.collect(Collectors.toList());

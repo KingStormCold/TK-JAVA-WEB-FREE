@@ -24,6 +24,6 @@ public interface UserRepository extends JpaRepository<UserEntity, String>{
 	
 	public UserEntity findByUserNameAndOnline(String userName, boolean online);
 	
-	public Page<UserEntity> findAllByOnline(Pageable pageable ,boolean online);
+	public Page<UserEntity> findAll(Pageable pageable);
 	
 }
