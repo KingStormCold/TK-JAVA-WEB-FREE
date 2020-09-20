@@ -109,7 +109,6 @@
                                 <th class="table-th">User Name</th>
                                 <th class="table-th">Update Date</th>
                                 <th class="table-th">Update By</th>
-                                <th class="table-th">Active</th>
                                 <th class="table-th table-th-action">Action</th>
                             </tr>
                         </thead>
@@ -127,7 +126,7 @@
   	$(document).ready(function (){
   		 var table = $('#user-table').DataTable({
   			"lengthChange": false,
-	        "pageLength": 21,
+	        "pageLength": 20,
 	        "autoWidth" : false,
 	        "info": false,
 	        "paging": false,
@@ -151,7 +150,7 @@
 		
 		$.ajax({
 	        type: 'GET',
-	        url: '${findAll}?page_num=1&page_size=21',
+	        url: '${findAll}?page_num=1&page_size=20',
 	        dataType: 'json',
 	        success: function (data) {
 				var info = data.objectInfo;
@@ -415,7 +414,7 @@
 		});;
 	});
 
-  	$('body').on("click", ".fa-lock", function(){
+  	$('body').on("click", ".fa-unlock-alt", function(){
 		var userName = $(this).parents('tr').find('#userName').val();
 		showAlertBeforeDelete(function () {
             event.preventDefault();
@@ -451,7 +450,7 @@
         }, userName);
   	});
 
-  	$('body').on("click", ".fa-unlock-alt", function(){
+  	$('body').on("click", ".fa-lock", function(){
 		var userName = $(this).parents('tr').find('#userName').val();
 		showAlertBeforeUnlock(function () {
             event.preventDefault();
@@ -522,10 +521,10 @@
 		  	var edit = '';
 		  	var textLineThrough = '';
 		  	if (item.online === false) {
-		  		edit = '<a class="fa fa-unlock-alt" href="#" title="Unlock"></a>'
+		  		edit = '<a class="fa fa-lock" href="#" title="Unlock"></a>'
 			  	textLineThrough = 'text-line-through';
 			} else {
-				edit = '<a class="fa fa-edit editNew" data-toggle="modal" data-target="#myModal" title="Edit"></a><a class="fa fa-lock" href="#" title="Lock"></a> '
+				edit = '<a class="fa fa-edit editNew" data-toggle="modal" data-target="#myModal" title="Edit"></a><a class="fa fa-unlock-alt" href="#" title="Lock"></a> '
 			}
 	  	    let rowData = [
 	  	      	noIndex + index + 1,
@@ -534,7 +533,6 @@
 	  	  		'<p class ="'+textLineThrough+'">'+item.userName+'</p>',
 	  			'<p class ="'+textLineThrough+'">'+item.updatedBy+'</p>',
 	  			'<p class ="'+textLineThrough+'">'+item.updatedDate+'</p>',
-	  			'<p class ="'+textLineThrough+'">'+item.online+'</p>',
 	       		edit+'<input type="hidden" id ="userName" value="'+item.userName+'"/>'
 	  	    ];
 	  	    table.row.add(rowData).draw(false);

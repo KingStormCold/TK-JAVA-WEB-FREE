@@ -60,7 +60,7 @@ public class UserService {
 		try {
 			Integer page = Integer.valueOf(pageNum);
 			Integer size = Integer.valueOf(pageSize);
-			Sort sort = new Sort(Direction.DESC, "online");
+			Sort sort = new Sort(Direction.DESC, "createdDate");
 			Pageable pageable = new PageRequest(page - 1, size, sort);
 			Page<UserEntity> pageUser = userRepository.findAll(pageable);
 			List<UserInfo> result = pageUser.getContent().stream()

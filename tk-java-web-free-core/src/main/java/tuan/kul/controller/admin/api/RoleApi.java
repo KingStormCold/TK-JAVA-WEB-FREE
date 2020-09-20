@@ -54,7 +54,7 @@ public class RoleApi {
 	public ResultResponse roles(@RequestBody RoleRequest request) {
 		if (!SecurityUtils.incognito()) {
 			try {
-				if (!SecurityUtils.getAuthorities().contains(Constant.ROLE_ALL) && !SecurityUtils.getAuthorities().contains(Constant.ADMIN)) {
+				if (!SecurityUtils.getAuthorities().contains(Constant.ROLE_ALL)) {
 					return new ResultResponse(HttpStatusCode._401.getCode(), HttpStatusCode._401.getText());
 				}
 				String userName = SecurityContextHolder.getContext().getAuthentication().getName();
