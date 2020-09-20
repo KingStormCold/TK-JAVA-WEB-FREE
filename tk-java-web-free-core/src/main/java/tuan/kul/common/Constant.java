@@ -15,6 +15,7 @@ public class Constant {
     public static final String INSERT = "insert";
     public static final String UPDATE = "update";
     public static final String DELETE = "delete";
+    public static final String UNLOCK = "unlock";
     
     public static final String ADMIN = "ADMIN";
     public static final String USER = "USER";

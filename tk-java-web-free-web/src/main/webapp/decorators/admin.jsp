@@ -52,6 +52,23 @@
            }
        });
    }
+
+   function showAlertBeforeUnlock(callback, id) {
+       swal({
+           title: "Comfirm Active",
+           text: "Are you sure to active '" + id + "' ?",
+           type: "warning",
+           showCancelButton: true,
+           confirmButtonText: "Sure",
+           cancelButtonText: "Cancel",
+           confirmButtonClass: "btn btn-success",
+           cancelButtonClass: "btn btn-danger"
+       }).then(function (isConfirm) {
+           if (isConfirm) {
+               callback();
+           }
+       });
+   }
 </script>
 </body>
 </html>

@@ -308,6 +308,13 @@ margin-top: 27px;
   font-size: 29px !important;
   color: red;
 }
+.fa-lock {
+  font-size: 29px !important;
+  color: red;
+}
+.fa-unlock-alt {
+	font-size: 29px !important;
+}
 /* --------------end icon------------------ */
 /* --------------[START] modal------------- */
 .modal-content-user {
@@ -445,6 +452,9 @@ margin-top: 27px;
     margin-top: -25px;
     margin-left: 85px;
     color: red;
+}
+.text-line-through {
+	text-decoration: line-through;
 }
 
 @media only screen and (max-width: 600px) {

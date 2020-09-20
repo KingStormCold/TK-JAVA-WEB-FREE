@@ -15,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -58,7 +60,8 @@ public class UserService {
 		try {
 			Integer page = Integer.valueOf(pageNum);
 			Integer size = Integer.valueOf(pageSize);
-			Pageable pageable = new PageRequest(page - 1, size);
+			Sort sort = new Sort(Direction.DESC, "online");
+			Pageable pageable = new PageRequest(page - 1, size, sort);
 			Page<UserEntity> pageUser = userRepository.findAll(pageable);
 			List<UserInfo> result = pageUser.getContent().stream()
 					.map(userEntity -> UserInfo.of(userEntity))
@@ -155,12 +158,19 @@ public class UserService {
 					return new ResultResponse(HttpStatusCode._401.getCode(), ErrorCodeEnum.ERROR_REMOVE_ADMIN.getText());
 				}
 				for (RoleDto roleId : userDto.getRolesOauth()) {
-					if (countUserRole(roleId.getRoleId(), userDto.getUserName()) != 0) {
+					if (countUserRole(roleId.getRoleId(), userDto.getUserName()) == 0) {
 						continue;
 					}
 					deleteUserRole(roleId.getRoleId(), userDto.getUserName());
 				}
 				userDto.setOnline(false);
+				saveUser(userDto);
+				return new ResultResponse(HttpStatusCode._200.getCode(), ErrorCodeEnum.SUCCESS.getText());
+			case Constant.UNLOCK:
+				if (StringUtils.isEmpty(userDto)) {
+					return new ResultResponse(HttpStatusCode._500.getCode(), ErrorCodeEnum.ERROR_NOT_FOUND.getText());
+				}
+				userDto.setOnline(true);
 				saveUser(userDto);
 				return new ResultResponse(HttpStatusCode._200.getCode(), ErrorCodeEnum.SUCCESS.getText());
 			default:

@@ -158,7 +158,7 @@ public class UserRequest {
 	}
 
 	public ResultResponse validate() {
-		String conditions[] = {Constant.INSERT, Constant.UPDATE, Constant.DELETE};
+		String conditions[] = {Constant.INSERT, Constant.UPDATE, Constant.DELETE, Constant.UNLOCK};
 		if (StringUtils.isEmpty(this.userName) || StringUtils.isEmpty(this.condition) || StringUtils.isEmpty(this.fullName)
 				|| StringUtils.isEmpty(this.email) || StringUtils.isEmpty(this.phone)) {
 			return new ResultResponse(HttpStatusCode._400.getCode(), ErrorCodeEnum.ERROR_INPUT_EMPTY.getText());

@@ -415,7 +415,7 @@
 		});;
 	});
 
-  	$('body').on("click", ".fa-remove", function(){
+  	$('body').on("click", ".fa-lock", function(){
 		var userName = $(this).parents('tr').find('#userName').val();
 		showAlertBeforeDelete(function () {
             event.preventDefault();
@@ -430,6 +430,42 @@
     	        	email: "delete",
     	        	phone: "delete",
     	        	condition: "delete"
+    	        }),
+    	        success: function (data) {
+    	        	console.log(data);
+    	        	if (data.result == "200") {
+    	        		$('.gif-loading').css("display", "block");
+    	        		setTimeout(function(){
+	    	        		$.notify(data.message, "success");
+	    	        	}, 200);
+	    	        	setTimeout(function(){
+	    	        		window.location.href = "${pageUser}";
+	    	        	}, 2000);
+    	        	} else {
+    	        		setTimeout(function(){
+	    	        		$.notify(data.message, "error");
+	    	        	}, 200);
+    	        	}
+    	        }
+    	    });
+        }, userName);
+  	});
+
+  	$('body').on("click", ".fa-unlock-alt", function(){
+		var userName = $(this).parents('tr').find('#userName').val();
+		showAlertBeforeUnlock(function () {
+            event.preventDefault();
+            $.ajax({
+    	        type: 'POST',
+    	        url: '${users}',
+    	        dataType: 'json',
+    	        contentType:'application/json',
+    	        data: JSON.stringify({
+    	        	user_name: userName,
+    	        	full_name: "unlock",
+    	        	email: "unlock",
+    	        	phone: "unlock",
+    	        	condition: "unlock"
     	        }),
     	        success: function (data) {
     	        	console.log(data);
@@ -473,7 +509,7 @@
   		removeSelector('.modal-user #email-error');
   		removeSelector('.modal-user #phone-error');
   		removeSelector('.modal-user #address-error');
-//   		removeSelector('.modal-user #form-avatar-error');
+//   	removeSelector('.modal-user #form-avatar-error');
   		removeSelector('.modal-user #address-error');
 	}
 	
@@ -483,15 +519,23 @@
 	
 	function drawTable(table, listData, noIndex) {
 	  	  $.each(listData, function (index, item) {
+		  	var edit = '';
+		  	var textLineThrough = '';
+		  	if (item.online === false) {
+		  		edit = '<a class="fa fa-unlock-alt" href="#" title="Unlock"></a>'
+			  	textLineThrough = 'text-line-through';
+			} else {
+				edit = '<a class="fa fa-edit editNew" data-toggle="modal" data-target="#myModal" title="Edit"></a><a class="fa fa-lock" href="#" title="Lock"></a> '
+			}
 	  	    let rowData = [
-	  	      noIndex + index + 1,
-	  	      item.createdBy,
-	  	      item.createdDate,
-	  	      item.userName,
-	  	      item.updatedBy,
-		  	  item.updatedDate,
-		  	  item.online,
-	          '<a class="fa fa-edit editNew" data-toggle="modal" data-target="#myModal"></a><a class="fa fa-remove" href="#"></a><input type="hidden" id ="userName" value="'+item.userName+'"/>'
+	  	      	noIndex + index + 1,
+	  	      	'<p class ="'+textLineThrough+'">'+item.createdBy+'</p>',
+	  	    	'<p class ="'+textLineThrough+'">'+item.createdDate+'</p>',
+	  	  		'<p class ="'+textLineThrough+'">'+item.userName+'</p>',
+	  			'<p class ="'+textLineThrough+'">'+item.updatedBy+'</p>',
+	  			'<p class ="'+textLineThrough+'">'+item.updatedDate+'</p>',
+	  			'<p class ="'+textLineThrough+'">'+item.online+'</p>',
+	       		edit+'<input type="hidden" id ="userName" value="'+item.userName+'"/>'
 	  	    ];
 	  	    table.row.add(rowData).draw(false);
 	  	  });
