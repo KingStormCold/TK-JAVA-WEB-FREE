@@ -39,22 +39,4 @@
       </ul>
       <hr>
     </div>
-    <div class = "menu-dashboard">
-      <h3>Dashboard</h3><i class ="fa fa-plus menu-dashboard-icon"></i> 
-      <ul class ="main-menu-manager-list">
-        <li class = "parent-li category-manager">
-          <a href="" aria-expanded="true">
-            <i class ="fa fa-bars small-icon"></i>
-            <span class="active-span">Category Manager</span>
-          </a>
-        </li>
-        <li class = "parent-li">
-          <a href="" aria-expanded="true">
-            <i class ="fa fa-users small-icon"></i>
-            <span class = "active-span">News Manager</span>
-          </a>
-        </li>
-      </ul>
-      <hr>
-    </div>
 </div>

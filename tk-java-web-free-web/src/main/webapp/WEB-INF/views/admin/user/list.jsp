@@ -126,7 +126,7 @@
   	$(document).ready(function (){
   		 var table = $('#user-table').DataTable({
   			"lengthChange": false,
-	        "pageLength": 20,
+	        "pageLength": 10,
 	        "autoWidth" : false,
 	        "info": false,
 	        "paging": false,
@@ -150,7 +150,7 @@
 		
 		$.ajax({
 	        type: 'GET',
-	        url: '${findAll}?page_num=1&page_size=20',
+	        url: '${findAll}?page_num=1&page_size=10',
 	        dataType: 'json',
 	        success: function (data) {
 				var info = data.objectInfo;
@@ -163,10 +163,10 @@
 	    	        visiblePages: 5,
 	    	        onPageClick: function (event, page) {
 	    	        	table.clear().draw();
-	    	        	var noIndex = (page-1) * 20;
+	    	        	var noIndex = (page-1) * 10;
 	    	        	$.ajax({
 	    	    	        type: 'GET',
-	    	    	        url: '${findAll}'+'?page_num='+page+'&page_size=20',
+	    	    	        url: '${findAll}'+'?page_num='+page+'&page_size=10',
 	    	    	        dataType: 'json',
 	    	    	        success: function (data1) {
 	    	    	        	var info1 = data1.objectInfo;
@@ -431,7 +431,6 @@
     	        	condition: "delete"
     	        }),
     	        success: function (data) {
-    	        	console.log(data);
     	        	if (data.result == "200") {
     	        		$('.gif-loading').css("display", "block");
     	        		setTimeout(function(){

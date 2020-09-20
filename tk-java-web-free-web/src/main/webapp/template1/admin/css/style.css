@@ -9,6 +9,9 @@ body {
   display: table;
   clear: both;
 }
+.body-opacity{
+	opacity: 0.4;
+}
 /* ------------------------START HEADER--------------------- */
 .logo-header img {
   width: 100px;
@@ -344,6 +347,7 @@ margin-top: 27px;
 	left: 50%;
 	transform: translateX(-50%);
 	display: none;
+	z-index: 999;
 }
 /* ----------------[END] modal------------- */
 /* ------------------form-------------------- */
