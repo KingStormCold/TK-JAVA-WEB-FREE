@@ -24,18 +24,19 @@ body {
   display: inline;
   font-family: 'Courier New', Courier, monospace;
   font-weight: 100;
+  color: #F9ECE4;
 }
 .logo-header a:hover,
 .logo-header a:active {
   text-decoration: none;
 }
 .logo-header {
-  background-color: rgb(162, 223, 255);
+  background-color: #199FB1;
   height: 60px;
   box-shadow: 0px 10px rgb(185, 229, 253);
 }
 .menu-header, .avatar-header {
-  background-color: rgb(246,251,254);
+  background-color: #199FB1;
   height: 60px;
   margin-bottom: 2px;
 }
@@ -44,17 +45,18 @@ body {
   margin-left: 7px;
   margin-top: 15px;
   margin-top: 20px;
+  color: #F9ECE4;
 }
 
 .icon-small:hover,
 .icon-small:active {
   cursor: pointer;
-  color: rgb(162, 223, 255);
+  color: #106470;
 }
 
 .icon-search {
   position: absolute;
-  margin-left: 1370px;
+  margin-left: 1293px;
   margin-top: 21px;
 }
 
@@ -67,7 +69,7 @@ body {
   height: 32px;
   padding: 0px 20px 0px 20px;
   margin-top: 14px;
-  margin-left: 1000px;
+  margin-left: 920px;
   outline: 0;
 }
 .content-search:hover,
@@ -76,11 +78,12 @@ body {
 }
 
 .avatar-header img {
-  width: 35px;
-  height: 35px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   margin-left: 70px;
-  margin-top: 8px;
+  margin-top: 6px;
+  border: 1px solid #F9ECE4;
 }
 .avatar-header img:hover,
 .avatar-header img:active {
@@ -94,20 +97,21 @@ body {
 }
 .personal-info-header {
   position: absolute;
-  margin-top: -42px;
-  margin-left: -55px;
+  margin-top: 4px;
+  margin-left: -51px;
   display: none;
+  z-index: 10;
 }
 .personal-info-header li {
   font-size: 12px;
-  width: 80px;
+  width: 140px;
   list-style: none;
   text-align: center;
   margin-top: 1px;
-  background-color: rgb(208, 237, 255);
-  border: 1px solid rgb(246,251,254);
+/*   background-color: rgb(208, 237, 255); */
+  border: 1px solid black;
   border-radius: 3px;
-
+  height: 28px;
 }
 .personal-info-header li a {
   text-decoration: none;
@@ -118,7 +122,7 @@ body {
 }
 .personal-info-header li:hover,
 .personal-info-header li:active {
-  background-color: rgb(162, 223, 255);
+  background-color: #199FB1;
   cursor: pointer;
 }
 .run-header {
@@ -126,7 +130,7 @@ body {
   position: absolute;
   animation: run-header 8s infinite;
   margin-top: -22px;
-  color: rgb(162, 223, 255);
+  color: #F9ECE4;
 }
 @keyframes run-header {
     from {left: 50px;}
@@ -134,10 +138,13 @@ body {
 }
 /* ------------------------END----------------------------- */
 .main-menu {
-  background-color: rgb(162, 223, 255);
+  background-color: #199FB1;
   height: 93.3vh;
   position: relative;
   padding-right: 0px !important;
+}
+.main-content {
+/*   background-color: #A5D1E1; */
 }
 .main-auth-list {
   margin-top: 10px;
@@ -151,7 +158,7 @@ body {
 }
 .main-auth-list li a{
   margin-top: 10px;
-  color: rgb(246,251,254);
+  color: #F9ECE4;
 }
 .main-auth-list li a:hover{
   background-color: rgb(132, 212, 255);
@@ -172,7 +179,7 @@ body {
 }
 .main-menu-manager-list li a{
   margin-top: 10px;
-  color: rgb(246,251,254);
+  color: #F9ECE4;
 }
 .main-menu-manager-list li a:hover{
   background-color: rgb(132, 212, 255);
@@ -261,14 +268,16 @@ margin-top: 27px;
 	margin-top: 27px;
 }
 .add-role .btn-add-role {
-  margin-left: 1530px;
-  color: white;
-  background-color: rgb(113, 205, 255);
+/*   margin-left: 1530px; */
+  color: #F9ECE4;
+  background-color: #199FB1;
   border: 1px solid rgb(113, 205, 255) !important;
 }
 .add-role .btn-add-role:hover {
-  background-color: rgb(172, 226, 255);
+  background-color: #199FB1;
   transition: color 0.5;
+  color: black;
+  font-size: 20px;
 }
 .table-th {
   background-color: #5c5f61;

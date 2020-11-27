@@ -29,7 +29,7 @@
                    <form action='<c:url value= ""/>' method="POST" enctype="multipart/form-data" id = "form-user">
                        <!-- Modal Header -->
                        <div class="modal-header">
-                           <h4 class="modal-title">Insert User</h4>
+                           <h4 class="modal-title"></h4>
                            <button type="button" class="close" data-dismiss="modal">&times;</button>
                        </div>
                        <!-- Modal body -->
@@ -359,6 +359,7 @@
   		$('.modal-user .role-have-right').find('label').remove();
 		$('.modal-user .list-role').find('label').remove();
 		$('.modal-user .list-role').find('br').remove();
+		$('.modal-header .modal-title').text("Insert user");
 		$.each(list, function (index, item) {
 			$('.modal-user .list-role').append('<label for = "'+item.roleId+'" title = "'+item.description+'"><input type="checkbox" id = "'+item.roleId+'" value="'+item.roleId+'" class = "checkbox-role not-role">'+item.roleId+' </label><br/>');
 		});
@@ -383,6 +384,7 @@
 		$('.modal-user .list-role').find('label').remove();
 		$('.modal-user .list-role').find('br').remove();
 		var userName = $(this).parents('tr').find('#userName').val();
+		$('.modal-header .modal-title').text("Edit for " + userName);
   		removeFormUser();
   		$.ajax({
 	        type: 'GET',

@@ -14,8 +14,8 @@ import tuan.kul.common.DateUtils;
 public class FileService {
     public String uploadFile(String file, String name, String folder) throws IOException {
         try {
-            String root = "D:\\FreeJava\\TK-JAVA-WEB-FREE\\tk-java-web-free-web\\src\\main\\webapp" + File.separator + "fileupload";
-            //String root = "D:\\TuanKul\\PROJECT_DONE\\TK-JAVA-WEB-FREE\\tk-java-web-free-web\\src\\main\\webapp" + File.separator + "fileupload";
+//            String root = "D:\\FreeJava\\TK-JAVA-WEB-FREE\\tk-java-web-free-web\\src\\main\\webapp" + File.separator + "fileupload";
+            String root = "D:\\TuanKul\\PROJECT_DONE\\TK-JAVA-WEB-FREE\\tk-java-web-free-web\\src\\main\\webapp" + File.separator + "fileupload";
             File locationRoot = new File(root);
             if (!locationRoot.exists()){//if not exist folder, system will create folder by directory
             	locationRoot.mkdir();
