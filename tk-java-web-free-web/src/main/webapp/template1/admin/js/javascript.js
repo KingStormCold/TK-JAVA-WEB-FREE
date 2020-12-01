@@ -9,7 +9,19 @@ $('#avatar-img').click(function(){
 });
 
 $('.icon-menu').click(function(){
-    alert("CLick Click");
+	if ($('.logo-header').hasClass("hidden-menu")) {
+		$('.logo-header').removeClass("hidden-menu");
+//		$('.logo-header').addClass("col-sm-2");
+//		$('.menu-header').removeClass("col-sm-11");
+//		$('.menu-header').addClass("col-sm-9");
+		$('.main-menu').removeClass("hidden-menu");
+	} else {
+		$('.logo-header').addClass("hidden-menu");
+		$('.main-menu').addClass("hidden-menu");
+//		$('.logo-header').removeClass("col-sm-2");
+//		$('.menu-header').removeClass("col-sm-9");
+//		$('.menu-header').addClass("col-sm-11");
+	}
 });
 
 $('.main-auth-icon').click(function(){
