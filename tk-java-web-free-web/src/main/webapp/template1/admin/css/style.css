@@ -3,6 +3,7 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   overflow-x: hidden;
   height: 100%;
+  background-image: url("../img/backgroundmain.jpg");
 }
 .clearfix::after {
   content: "";
@@ -31,14 +32,10 @@ body {
   text-decoration: none;
 }
 .logo-header {
-  background-color: #199FB1;
-  height: 60px;
-  box-shadow: 0px 10px rgb(185, 229, 253);
+	margin-top: 2rem;
 }
 .menu-header, .avatar-header {
-  background-color: #199FB1;
-  height: 60px;
-  margin-bottom: 2px;
+  float: right;
 }
 
 .icon-menu, .icon-search {
@@ -109,7 +106,6 @@ body {
   list-style: none;
   text-align: center;
   margin-top: 1px;
-  background-color: #199FB1;
   border: 1px solid black;
   border-radius: 3px;
   height: 28px;
@@ -119,18 +115,14 @@ body {
   font-style: italic;
   font-weight: 700;
   transition: border-bottom 1s;/* thá»�i gian hiá»ƒn thá»‹ cá»§a border-bottom ;*/
-  color: #F9ECE4;
 }
 .personal-info-header li:hover,
 .personal-info-header li:active {
-  background-color: #F9ECE4;
   cursor: pointer;
-  color: #F9ECE4;
 }
 .personal-info-header li a:hover,
 .personal-info-header li a:active {
   cursor: pointer;
-  color: #199FB1;
 }
 .run-header {
   font-weight: bold;
@@ -148,10 +140,7 @@ body {
 }
 /* ------------------------END----------------------------- */
 .main-menu {
-  background-color: #199FB1;
-  height: 93.3vh;
-  position: relative;
-  padding-right: 0px !important;
+
 }
 .main-content {
 /*   background-color: #A5D1E1; */
@@ -168,7 +157,7 @@ body {
 }
 .main-auth-list li a{
   margin-top: 10px;
-  color: #F9ECE4;
+  color: white;
 }
 .main-auth-list li a:hover{
   background-color: #F9ECE4;
@@ -189,7 +178,7 @@ body {
 }
 .main-menu-manager-list li a{
   margin-top: 10px;
-  color: #F9ECE4;
+  color: black;
 }
 .main-menu-manager-list li a:hover{
   background-color: #F9ECE4;
@@ -209,16 +198,14 @@ body {
   width: 200px;
 }
 h3 {
-  margin-top: 30px !important;
   padding-left: 30px;
-  background-color: #F9ECE4;
-  color: #199FB1;
+  color: white !important;
 }
 .main-auth-icon {
   position: absolute;
   margin-top: -30px;
   margin-left: 255px;
-  color: #199FB1;
+  color: white;
 }
 .main-auth-icon:hover {
   cursor: pointer;
@@ -230,7 +217,7 @@ h3 {
   position: absolute;
   margin-top: -30px;
   margin-left: 255px;
-  color: #199FB1;
+  color: white;
 }
 .menu-manager-icon:hover {
   cursor: pointer;
@@ -252,6 +239,7 @@ hr {
   height: 30px;
   width: 320px;
   border: 1px solid #199FB1;
+  color: black !important;
 }
 .dataTables_filter input::before {
   content: "Search";
@@ -283,13 +271,11 @@ margin-top: 27px;
 .add-role .btn-add-role {
 /*   margin-left: 1530px; */
   color: #F9ECE4;
-  background-color: #199FB1;
+  background-color: green;
   border: 1px solid rgb(113, 205, 255) !important;
 }
 .add-role .btn-add-role:hover {
-  background-color: #F9ECE4;
   transition: color 0.5;
-  color: #199FB1;
 /*   font-size: 20px; */
 border: 1px solid #F9ECE4 !important;
 }

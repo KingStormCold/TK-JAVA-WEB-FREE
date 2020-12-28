@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<div class="col-sm-10 main-content">
+<div class="main-content">
       <div>
           <div class="add-role">
               <a title="Add Role" class="btn btn-primary btn-add-role" data-toggle="modal" data-target="#myModal" data-keyboard="false" data-backdrop="static">+</a>

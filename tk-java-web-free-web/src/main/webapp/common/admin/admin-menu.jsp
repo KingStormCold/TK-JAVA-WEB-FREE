@@ -2,7 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@include file="/common/taglib.jsp"%>
 <!DOCTYPE html>
-<div class = "col-sm-2 main-menu">
+
+<div class = "main-menu">
     <div class = "main-auth">
       <h3>Authorization</h3><i class ="fa fa-plus main-auth-icon"></i> 
       <ul class ="main-auth-list">
