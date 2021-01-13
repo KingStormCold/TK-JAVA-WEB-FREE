@@ -11,9 +11,9 @@
 </head>
 <body>
 
-<div class="main-content">
+<div class="col-sm-12 main-content">
       <div>
-          <div class="add-role">
+          <div class="add-role col-sm-2">
               <a title="Add Role" class="btn btn-primary btn-add-role" data-toggle="modal" data-target="#myModal" data-keyboard="false" data-backdrop="static">+</a>
           </div>
           <!-- The Modal -->
@@ -155,7 +155,7 @@
 	    	    });
 	        }, roleId);
 		});
-	    $('.dataTables_filter input').prop("placeholder", "Search");
+	    $('.dataTables_filter input').prop("placeholder", "Search...");
 
 	    var form = $("#form-role").validate({
 			rules: {
@@ -221,7 +221,7 @@
   	      noIndex + index + 1,
   	      item.roleId,
   	      item.description,
-          '<a class="fa fa-edit editNew" data-toggle="modal" data-target="#myModal"></a><a class="fa fa-remove" href="#"></a><input type="hidden" id ="roleId" value="'+item.roleId+'"/><input type="hidden" id ="roleName" value="'+item.description+'"/>'
+          '<a class="fa fa-edit editNew" data-toggle="modal" data-target="#myModal" title = "Edit"></a><a class="fa fa-remove" href="#" title = "Delete"></a><input type="hidden" id ="roleId" value="'+item.roleId+'"/><input type="hidden" id ="roleName" value="'+item.description+'"/>'
   	    ];
   	    table.row.add(rowData).draw(false);
   	  });

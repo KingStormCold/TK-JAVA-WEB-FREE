@@ -17,9 +17,9 @@
 </head>
 <body>
 	
-<div class="col-sm-10 main-content">
+<div class="col-sm-12 main-content">
    <div>
-       <div class="add-user">
+       <div class="add-user col-sm-2">
            <a title="Add user" class="btn btn-primary btn-add-user" data-toggle="modal" data-target="#myModal" data-keyboard="false" data-backdrop="static">+</a>
        </div>
        <!-- The Modal -->
@@ -68,8 +68,8 @@
 	                           <img src="" alt="avatar" class = "form-avatar-profile" id = "avater-review" >
 	                       </div>
 	                       <div class ="form-group">
-	                           	<label for="usr" class="form-label">Role</label>
-	                           	<div style=" display: -webkit-inline-box;" class = "col-sm-4 have-role">
+	                           	<label for="usr" class="form-label col-sm-4">Role</label>
+	                           	<div style=" display: -webkit-inline-box; width: 39.9%;" class = "col-sm-4 have-role mr-left-zero-dot-four">
 	                               <div class = "role-header">
 	                                   <p class = "span-role">You have right</p>
 	                               </div>
@@ -77,7 +77,7 @@
 	                               </div>
 	                           	</div>
 	                           	<label class="form-role-error" style="display: none;"></label>
-	                           	<div style=" display: -webkit-inline-box;" class = "col-sm-4 not-role"> 
+	                           	<div style=" display: -webkit-inline-box; width: 39.9%;" class = "col-sm-4 not-role mr-left-zero-dot-four"> 
 	                               <div class = "role-header">
 	                                   <p class = "span-role">You have not right</p>
 	                               </div>
@@ -104,11 +104,11 @@
                         <thead class="text-capitalize">
                             <tr>
                                 <th class="table-th table-th-no">No.</th>
-                                <th class="table-th">Created By</th>
-                                <th class="table-th">Created Date</th>
-                                <th class="table-th">User Name</th>
-                                <th class="table-th">Update Date</th>
-                                <th class="table-th">Update By</th>
+                                <th class="table-th w-15-percent">Created By</th>
+                                <th class="table-th w-15-percent">Created Date</th>
+                                <th class="table-th w-15-percent">User Name</th>
+                                <th class="table-th w-15-percent">Update Date</th>
+                                <th class="table-th w-15-percent">Update By</th>
                                 <th class="table-th table-th-action">Action</th>
                             </tr>
                         </thead>
@@ -127,8 +127,8 @@
   		 var table = $('#user-table').DataTable({
   			"lengthChange": false,
 	        "pageLength": 10,
-	        "autoWidth" : false,
 	        "info": false,
+	        "autoWidth" : false,
 	        "paging": false,
 	        "scrollY": '60vh',
 	        "scrollCollapse": true
@@ -361,7 +361,7 @@
 		$('.modal-user .list-role').find('br').remove();
 		$('.modal-header .modal-title').text("Insert user");
 		$.each(list, function (index, item) {
-			$('.modal-user .list-role').append('<label for = "'+item.roleId+'" title = "'+item.description+'"><input type="checkbox" id = "'+item.roleId+'" value="'+item.roleId+'" class = "checkbox-role not-role">'+item.roleId+' </label><br/>');
+			$('.modal-user .list-role').append('<label for = "'+item.roleId+'" title = "'+item.description+'"><input type="checkbox" id = "'+item.roleId+'" value="'+item.roleId+'" class = "checkbox-role not-role"><p class = "role-text">'+item.roleId+'</p></label><br/>');
 		});
 		$('.modal-user #user_name').val("");
   		$('.modal-user #user_name').prop("readonly", false);
@@ -395,10 +395,10 @@
 			  	var haveRoles = info.haveRoles;
 			  	var listRoles = info.listRole;
 				$.each(listRoles, function (index, item) {
-					$('.modal-user .list-role').append('<label for = "'+item.roleId+'" title = "'+item.description+'"><input type="checkbox" id = "'+item.roleId+'" value="'+item.roleId+'" class = "checkbox-role not-role">'+item.roleId+' </label><br/>');
+					$('.modal-user .list-role').append('<label for = "'+item.roleId+'" title = "'+item.description+'"><input type="checkbox" id = "'+item.roleId+'" value="'+item.roleId+'" class = "checkbox-role not-role"><p class = "role-text">'+item.roleId+'</p></label><br/>');
 				});	
 		  		$.each(haveRoles, function (index, item) {
-		  			$('.modal-user .role-have-right').append('<label for = "'+item.roleId+'" title = "'+item.description+'" class = "remove-role"><input type="checkbox" id = "'+item.roleId+'" value="'+item.roleId+'" class = "checkbox-role have-roles" checked>'+item.roleId+'</label><br/>');
+		  			$('.modal-user .role-have-right').append('<label for = "'+item.roleId+'" title = "'+item.description+'" class = "remove-role"><input type="checkbox" id = "'+item.roleId+'" value="'+item.roleId+'" class = "checkbox-role have-roles" checked><p class = "role-text">'+item.roleId+'</p></label><br/>');
 				});
 		  		$('.modal-user #user_name').val(info.userName);
 		  		$('.modal-user #user_name').prop("readonly", true);

@@ -3,7 +3,8 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   overflow-x: hidden;
   height: 100%;
-  background-image: url("../img/backgroundmain.jpg");
+  background-image: linear-gradient(to right top, rgb(29 33 33 / 80%),rgb(15 81 114 / 50%)), url("../img/backgroundmain.png");
+  background-repeat: no-repeat;
 }
 .clearfix::after {
   content: "";
@@ -140,7 +141,12 @@ body {
 }
 /* ------------------------END----------------------------- */
 .main-menu {
-
+	height: 98.8vh;
+/*     border-right: 2px solid white; */
+    background-image: linear-gradient(to right top, rgb(29 33 33 / 80%),rgb(15 81 114 / 50%)), url("../img/backgroundmenu.png");
+    background-repeat: no-repeat;
+    border-radius: 20px;
+    box-shadow: 10px 8px #3b4c59;
 }
 .main-content {
 /*   background-color: #A5D1E1; */
@@ -148,7 +154,7 @@ body {
 .main-auth-list {
   margin-top: 10px;
   font-size: 20px;
-  margin-left: -110px;
+  margin-left: -8rem;
  
 }
 .main-auth-list li{
@@ -159,17 +165,17 @@ body {
   margin-top: 10px;
   color: white;
 }
-.main-auth-list li a:hover{
-  background-color: #F9ECE4;
+.main-auth-list li a:hover {
+  background-color: #b9b973;
   border-radius: 10px;
-  padding : 10px 40px 10px 20px;/*tren phai duoi trai*/
-  color: #199FB1;
+  padding : 10px 10px 10px 20px;/*tren phai duoi trai*/
+  color: white;
   text-decoration: none;
 }
 .main-menu-manager-list {
   margin-top: 10px;
   font-size: 20px;
-  margin-left: -110px;
+  margin-left: -8rem;
  
 }
 .main-menu-manager-list li{
@@ -178,13 +184,13 @@ body {
 }
 .main-menu-manager-list li a{
   margin-top: 10px;
-  color: black;
+  color: white;
 }
 .main-menu-manager-list li a:hover{
-  background-color: #F9ECE4;
+  background-color: #b9b973;
   border-radius: 10px;
-  padding : 10px 40px 10px 20px;/*tren phai duoi trai*/
-  color: #199FB1;
+  padding : 10px 10px 10px 20px;/*tren phai duoi trai*/
+  color: white;
   text-decoration: none;
 }
 .parent-li {
@@ -197,33 +203,33 @@ body {
 .active-span {
   width: 200px;
 }
-h3 {
-  padding-left: 30px;
-  color: white !important;
+h2 {
+  margin-left: 1.5rem;
+  color: #b9b973 !important;
 }
 .main-auth-icon {
   position: absolute;
   margin-top: -30px;
-  margin-left: 255px;
-  color: white;
+  margin-left: 20rem;
+  color: #b9b973;
 }
 .main-auth-icon:hover {
   cursor: pointer;
   font-size: 20px;
   margin-top: -33px;
-  color: rgb(132, 212, 255);
+  color: white;
 }
 .menu-manager-icon {
   position: absolute;
   margin-top: -30px;
-  margin-left: 255px;
-  color: white;
+  margin-left: 20rem;
+  color: #b9b973;
 }
 .menu-manager-icon:hover {
   cursor: pointer;
   font-size: 20px;
   margin-top: -33px;
-  color: rgb(132, 212, 255);
+  color: white;
 }
 hr {
   background-color:  rgba(255, 255, 255, 0.9);
@@ -252,12 +258,12 @@ hr {
   margin-right: 13px;
 }
 .add-user {
-margin-top: 27px;
+/*   margin-top: 27px; */
 }
 .add-user .btn-add-user {
-  color: #F9ECE4;
-  background-color: #199FB1;
-  border: 1px solid rgb(113, 205, 255) !important;
+  color: white;
+  background-color: gray;
+  border: 1px solid white !important;
 }
 .add-user .btn-add-user:hover {
   background-color: #F9ECE4;
@@ -266,24 +272,25 @@ margin-top: 27px;
   border: 1px solid #F9ECE4 !important;
 }
 .add-role {
-	margin-top: 27px;
+/* 	margin-top: 27px; */
 }
 .add-role .btn-add-role {
 /*   margin-left: 1530px; */
-  color: #F9ECE4;
-  background-color: green;
-  border: 1px solid rgb(113, 205, 255) !important;
+  color: white;
+  background-color: gray;
+  border: 1px solid white !important;
 }
 .add-role .btn-add-role:hover {
-  transition: color 0.5;
-/*   font-size: 20px; */
-border: 1px solid #F9ECE4 !important;
+  background-color: #a6a6a6;
+  color: black;
 }
+
+/* ---------------------table-------------- */
 .table-th {
-  background-color: #5c5f61;
   text-align: center;
   border: 1px solid rgb(246,251,254) !important;
-  color: white;
+  color: #b9b973;
+  font-size: 20px;
 }
 .table-td {
   border-bottom: 1px solid rgb(226,236,243) !important;
@@ -298,7 +305,7 @@ border: 1px solid #F9ECE4 !important;
   text-align: center;
 }
 .table-th-no {
-	width: 50px;
+	width: 5% !important;
 }
 .role-table-th-name {
 	width: 480px !important;
@@ -307,8 +314,28 @@ border: 1px solid #F9ECE4 !important;
 	width: 730px !important;
 }
 .table-th-action {
-	width: 100px;
+	width: 10% !important;
 }
+table.dataTable tbody tr {
+	background-color: transparent!important;
+	color: white;
+	font-style: italic;
+}
+table.dataTable tbody tr:hover {
+	background-color: #b9b973!important;
+	color: white;
+}
+.dataTables_filter input {
+	background-color: transparent;
+    color: white !important;
+    border: 1px solid white;
+}
+.dataTables_wrapper .dataTables_filter input {
+   width: 30em;
+   height: 2.5em;
+   border-radius: 5px
+}
+
 /* ---------------icon--------------------- */
 .fa-edit {
   font-size: 25px !important;
@@ -349,6 +376,9 @@ border: 1px solid #F9ECE4 !important;
 .modal-footer-user {
 	height: 50px;
 }
+.modal-header .close {
+	margin-top: -25px !important;
+}
 
 .gif-loading {
 	position: absolute;
@@ -383,9 +413,9 @@ border: 1px solid #F9ECE4 !important;
 }
 .form-avatar-profile {
   width: 200px;
-  height: 150px;
-  margin-top: -20px;
-  margin-bottom: 5px;
+  height: 19rem;
+  margin-top: -1.2rem;
+  margin-bottom: 0.5rem;
 }
 .checkbox-role {
   width:19px;
@@ -400,15 +430,14 @@ border: 1px solid #F9ECE4 !important;
   border: 1px solid #e9ecef;
   max-width: 300px !important;
   border-radius: 7px;
-  
 }
 .span-role {
   display: inline-block;
-  width: 298px;
+  width: 29.9rem;
   margin-left: -15px;
   background-color: #e9ecef;
   text-align: center;
-  height: 37px;
+  height: 80%;
   padding-top: 6px;
   border-radius: 6px 6px 0px 0px;
 }
@@ -417,11 +446,11 @@ border: 1px solid #F9ECE4 !important;
   display: inline-block;
 }
 .role-have-right, .list-role {
-  margin-top: 10px;
-  display: inline-block;
-  overflow-y: scroll;
-  height: 250px;
-  width: 277px;
+    margin-top: -0.7rem;
+    display: inline-block;
+    overflow-y: scroll;
+    height: 18rem;
+    width: 28.3rem;
 }
 
 .error{
@@ -484,4 +513,25 @@ border: 1px solid #F9ECE4 !important;
     position: absolute !important;
     transition: ease width 1.5s;
 }
+.card-body {
+	margin-left: 15px;
+}
+.height-100 {
+	height: 100vh;
+}
+::placeholder {
+	color: white;
+}
+.w-15-percent {
+	width: 15% !important;
+}
+.mr-left-zero-dot-four {
+	margin-left: 0.4rem;
+}
 
+/* ------------user-------------- */
+
+.role-text {
+  margin-left: 3rem;
+  margin-top: -2rem;
+}

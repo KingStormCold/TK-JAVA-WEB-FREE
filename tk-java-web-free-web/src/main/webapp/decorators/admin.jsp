@@ -22,14 +22,8 @@
 
 	<div class="container-fluid">
 		<div class="row content">
-			<div class="col-sm-2 sidenav hidden-xs">
-				<div class="logo-header">
-					<a href='<c:url value= "/admin/role/list"/>'> <img	src=" <c:url value='/image/logo1.png'/>" alt="logo"></a>
-				</div>
-				<%@ include file="/common/admin/admin-menu.jsp"%>
-			</div>
-			<br>
-			<div class="col-sm-10">
+			<%@ include file="/common/admin/admin-menu.jsp"%>
+			<div class="col-sm-10 height-100">
 				<%@ include file="/common/admin/admin-header.jsp"%>
 				<div class="row">
 					<dec:body />
