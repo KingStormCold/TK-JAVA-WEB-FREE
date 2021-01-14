@@ -17,8 +17,8 @@
               <a title="Add Role" class="btn btn-primary btn-add-role" data-toggle="modal" data-target="#myModal" data-keyboard="false" data-backdrop="static">+</a>
           </div>
           <!-- The Modal -->
-          <div class="modal" id="myModal">
-              <div class="modal-dialog">
+          <div class="modal fade" id="myModal">
+              <div class="modal-dialog modal-sm">
                   <div class="modal-content modal-content-role">
 	                  <!-- Modal Header -->
 	                  <form action='<c:url value= "/admin/role/list"/>' id = "form-role" method="POST">
@@ -42,8 +42,8 @@
 		
 		                  <!-- Modal footer -->
 		                  <div class="modal-footer modal-footer-role">
-		                      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-		                      <button type="submit" class="btn btn-success" id ="btn-create-role">Create</button>
+		                      <button type="button" class="btn btn-danger" id = "btn-close-role" data-dismiss="modal">Close</button>
+		                      <button type="submit" class="btn btn-success" id ="btn-create-role"><i class="fa fa-circle-o-notch fa-spin display-none"></i><span>Create</span></button>
 		                  </div>
 	                  </form>
                   </div>
@@ -170,7 +170,11 @@
 			},
 			submitHandler: function(form) {
 				openCreate('#btn-create-role');
-				$('#btn-create-role').text("Creating...");
+				openCreate('#btn-close-role');
+				$('#btn-create-role').find('span').text(" Loading");
+				$('#btn-create-role').find('i').removeClass('display-none');
+				$('#btn-create-role').find('i').addClass('display-block');
+				
 				var roleId = getVal('.modal-body #role-id');
 				var roleName = getVal('.modal-body #role-name');
 				var isRoleId = getVal('.modal-body #is-role-id');
@@ -195,7 +199,10 @@
 		    	        		$.notify(data.message, "success");
 		    	        	}, 200);
 		    	        	setTimeout(function(){
-		    	        		$('#btn-create-role').text("Create")
+		    	        		$('.modal-header').find('.close').prop("hidden", true);
+			    	        	$('#btn-create-role').find('i').removeClass('display-block');
+			    	        	$('#btn-create-role').find('i').addClass('display-none');
+			    	        	$('#btn-create-role').find('span').text("Create");
 		    	        	}, 3000);
 		    	        	setTimeout(function(){
 		    	        		window.location.href = "${pageRole}";
@@ -206,7 +213,10 @@
 		    	        	}, 200);
 		    	        	setTimeout(function(){
 		    	        		closeCreate('#btn-create-role');
-		    	        		$('#btn-create-role').text("Create")
+		    	        		closeCreate('#btn-close-role');
+		    	        		$('#btn-create-role').find('i').removeClass('display-block');
+		    	        		$('#btn-create-role').find('i').addClass('display-none');
+		    	        		$('#btn-create-role').find('span').text("Create");
 		    	        	}, 2000);
 	    	        	}
 	    	        }
@@ -221,7 +231,7 @@
   	      noIndex + index + 1,
   	      item.roleId,
   	      item.description,
-          '<a class="fa fa-edit editNew" data-toggle="modal" data-target="#myModal" title = "Edit"></a><a class="fa fa-remove" href="#" title = "Delete"></a><input type="hidden" id ="roleId" value="'+item.roleId+'"/><input type="hidden" id ="roleName" value="'+item.description+'"/>'
+          '<a class="fa fa-edit editNew" data-toggle="modal" data-target="#myModal" data-keyboard="false" data-backdrop="static" title = "Edit"></a><a class="fa fa-remove" href="#" title = "Delete"></a><input type="hidden" id ="roleId" value="'+item.roleId+'"/><input type="hidden" id ="roleName" value="'+item.description+'"/>'
   	    ];
   	    table.row.add(rowData).draw(false);
   	  });

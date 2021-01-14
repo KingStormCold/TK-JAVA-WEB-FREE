@@ -368,7 +368,7 @@ table.dataTable tbody tr:hover {
   width: 490px !important;
 }
 .modal-footer-role {
-	height: 65px;
+	height: 50px;
 }
 .modal-body-role {
 	height: 134px;
@@ -483,11 +483,11 @@ table.dataTable tbody tr:hover {
 	cursor: not-allowed !important;
 }
 .display-none {
-	display: none;
+	display: none !important;
 }
 
 .display-block {
-	display: inline-block;
+	display: inline-block !important;
 }
 .form-role-error {
 	position: absolute;
