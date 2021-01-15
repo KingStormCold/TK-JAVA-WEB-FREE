@@ -195,11 +195,11 @@
 	    	        success: function (data) {
 	    	        	console.log(data);
 	    	        	if (data.result == "200") {
+	    	        		$('.modal-header').find('.close').prop("hidden", true);
 	    	        		setTimeout(function(){
 		    	        		$.notify(data.message, "success");
 		    	        	}, 200);
 		    	        	setTimeout(function(){
-		    	        		$('.modal-header').find('.close').prop("hidden", true);
 			    	        	$('#btn-create-role').find('i').removeClass('display-block');
 			    	        	$('#btn-create-role').find('i').addClass('display-none');
 			    	        	$('#btn-create-role').find('span').text("Create");

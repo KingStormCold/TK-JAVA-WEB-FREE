@@ -90,8 +90,8 @@
 
                        <!-- Modal footer -->
                         <div class="modal-footer modal-footer-user">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-success" id ="btn-create-user">Create</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal" id ="btn-close-user">Close</button>
+                            <button type="submit" class="btn btn-success" id ="btn-create-user"><i class="fa fa-circle-o-notch fa-spin display-none"></i><span>Create</span></button>
                         </div>
                     </form>
                 </div>
@@ -252,7 +252,10 @@
 			submitHandler: function(form) {
 				event.preventDefault();
 				openCreate('#btn-create-user');
-				$('#btn-create-user').text("Creating...");
+				openCreate('#btn-close-user');
+				$('#btn-create-user').find('span').text(" Loading");
+				$('#btn-create-user').find('i').removeClass('display-none');
+				$('#btn-create-user').find('i').addClass('display-block');
 				var userNameHidden = getVal('.modal-body #is-user-id');
 				var userName = getVal('.modal-user #user_name');
 				var password = getVal('.modal-user #password');
@@ -330,13 +333,15 @@
                 contentType:'application/json',
     	        data: JSON.stringify(dataArray),
     	        success: function (data) {
-    	        	console.log(data);
     	        	if (data.result == "200") {
+    	        		$('.modal-header').find('.close').prop("hidden", true);
     	        		setTimeout(function(){
 	    	        		$.notify(data.message, "success");
 	    	        	}, 200);
 	    	        	setTimeout(function(){
-	    	        		$('#btn-create-user').text("Create")
+	    	        		$('#btn-create-user').find('i').removeClass('display-block');
+		    	        	$('#btn-create-user').find('i').addClass('display-none');
+		    	        	$('#btn-create-user').find('span').text("Create");
 	    	        	}, 3000);
 	    	        	setTimeout(function(){
 	    	        		window.location.href = "${pageUser}";
@@ -347,7 +352,10 @@
 	    	        	}, 200);
 	    	        	setTimeout(function(){
 	    	        		closeCreate('#btn-create-user');
-	    	        		$('#btn-create-user').text("Create")
+	    	        		closeCreate('#btn-close-user');
+	    	        		$('#btn-create-user').find('i').removeClass('display-block');
+	    	        		$('#btn-create-user').find('i').addClass('display-none');
+	    	        		$('#btn-create-user').find('span').text("Create");
 	    	        	}, 2000);
     	        	}
     	        }
@@ -525,7 +533,7 @@
 		  		edit = '<a class="fa fa-lock" href="#" title="Unlock"></a>'
 			  	textLineThrough = 'text-line-through';
 			} else {
-				edit = '<a class="fa fa-edit editNew" data-toggle="modal" data-target="#myModal" title="Edit"></a><a class="fa fa-unlock-alt" href="#" title="Lock"></a> '
+				edit = '<a class="fa fa-edit editNew" data-toggle="modal" data-target="#myModal" data-keyboard="false" data-backdrop="static" title="Edit"></a><a class="fa fa-unlock-alt" href="#" title="Lock"></a> '
 			}
 	  	    let rowData = [
 	  	      	noIndex + index + 1,
