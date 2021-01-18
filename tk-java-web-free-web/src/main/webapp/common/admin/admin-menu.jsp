@@ -34,7 +34,7 @@
 			<i class="fa fa-plus menu-manager-icon"></i>
 			<ul class="main-menu-manager-list">
 				<li class="parent-li category-manager">
-					<a href="" aria-expanded="true">
+					<a href='<c:url value= "/admin/category/list"/>' aria-expanded="true">
 						<i class="fa fa-bars small-icon"></i>
 						<span class="active-span">Category Manager</span>
 					</a>

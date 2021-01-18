@@ -22,6 +22,7 @@
        <div class="add-user col-sm-2">
            <a title="Add user" class="btn btn-primary btn-add-user" data-toggle="modal" data-target="#myModal" data-keyboard="false" data-backdrop="static">+</a>
        </div>
+       <div id="loader" class = "display-none"></div>
        <!-- The Modal -->
        <div class="modal" id="myModal">
            <div class="modal-dialog">
@@ -442,7 +443,9 @@
     	        }),
     	        success: function (data) {
     	        	if (data.result == "200") {
-    	        		$('.gif-loading').css("display", "block");
+    	        		$('.card').css("display", "none");
+    	        		$('#loader').removeClass("display-none");
+    	        		$('#loader').addClass("display-block");
     	        		setTimeout(function(){
 	    	        		$.notify(data.message, "success");
 	    	        	}, 200);
@@ -478,7 +481,9 @@
     	        success: function (data) {
     	        	console.log(data);
     	        	if (data.result == "200") {
-    	        		$('.gif-loading').css("display", "block");
+    	        		$('.card').css("display", "none");
+    	        		$('#loader').removeClass("display-none");
+    	        		$('#loader').addClass("display-block");
     	        		setTimeout(function(){
 	    	        		$.notify(data.message, "success");
 	    	        	}, 200);

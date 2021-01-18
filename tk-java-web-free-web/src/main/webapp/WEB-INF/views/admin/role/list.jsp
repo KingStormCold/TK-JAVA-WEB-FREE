@@ -16,6 +16,7 @@
           <div class="add-role col-sm-2">
               <a title="Add Role" class="btn btn-primary btn-add-role" data-toggle="modal" data-target="#myModal" data-keyboard="false" data-backdrop="static">+</a>
           </div>
+          <div id="loader" class = "display-none"></div>
           <!-- The Modal -->
           <div class="modal fade" id="myModal">
               <div class="modal-dialog modal-sm">
@@ -114,12 +115,14 @@
  		  	$('.modal-body #role-name').val(roleName);
  		  	$('.modal-body #is-role-id').val(roleId);
  		  	$('.modal-body #role-id').prop("readonly",true);
+ 		  	$('.modal-header .modal-title').text("Edit for " + roleId);
 		});
 	    $('.btn-add-role').click(function () {
 	    	$('.modal-body #role-id').val("");
 	    	$('.modal-body #role-id').prop("readonly",false);
  		  	$('.modal-body #role-name').val("");
  		  	$('.modal-body #is-role-id').val("");
+ 		  	$('.modal-header .modal-title').text("Insert user");
 		})
 		$('body').on("click", ".fa-remove", function(){
 			var roleId = $(this).siblings('#roleId').val();
@@ -139,7 +142,9 @@
 	    	        success: function (data) {
 	    	        	console.log(data);
 	    	        	if (data.result == "200") {
-	    	        		$('.gif-loading').css("display", "block");
+	    	        		$('.card').css("display", "none");
+	    	        		$('#loader').removeClass("display-none");
+	    	        		$('#loader').addClass("display-block");
 	    	        		setTimeout(function(){
 		    	        		$.notify(data.message, "success");
 		    	        	}, 200);
