@@ -98,7 +98,7 @@ public class NewService {
     }
 
     public ObjectInfoResponse<GetNewsInfo> getNewInfo(final String id) {
-        List<CategoryInfo> categoryDtos = categoryService.getAll();
+        List<CategoryInfo> categoryDtos = categoryService.getAllRootCategory();
         if (StringUtils.isEmpty(id)) {
             return new ObjectInfoResponse<GetNewsInfo>(HttpStatusCode._200.getCode(), ErrorCodeEnum.SUCCESS.getText(),
                     new GetNewsInfo(categoryDtos));

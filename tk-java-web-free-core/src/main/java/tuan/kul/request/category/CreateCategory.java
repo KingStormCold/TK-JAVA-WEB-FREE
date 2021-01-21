@@ -19,9 +19,9 @@ public class CreateCategory {
     @SerializedName("category_name")
     private String categoryName;
     
-    @JsonProperty("category_father_code")
-    @SerializedName("category_father_code")
-    private String categoryFatherCode;
+    @JsonProperty("root_category")
+    @SerializedName("root_category")
+    private String rootCatetegory;
 
     public String getCode() {
         return code;
@@ -34,17 +34,21 @@ public class CreateCategory {
     public String getCategoryName() {
         return categoryName;
     }
+    
+    public String getRootCatetegory() {
+		return rootCatetegory;
+	}
 
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
-    }
+	public void setRootCatetegory(String rootCatetegory) {
+		this.rootCatetegory = rootCatetegory;
+	}
 
-    public String getCategoryFatherCode() {
-        return categoryFatherCode;
-    }
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
 
-    public void setCategoryFatherCode(String categoryFatherCode) {
-        this.categoryFatherCode = categoryFatherCode;
+	public void setCategoryFatherCode(String categoryFatherCode) {
+        this.rootCatetegory = categoryFatherCode;
     }
 
     public ResultResponse validate() {

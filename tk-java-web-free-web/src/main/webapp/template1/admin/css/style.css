@@ -280,6 +280,11 @@ hr {
   background-color: gray;
   border: 1px solid white !important;
 }
+.btn-add-category {
+  color: white !important;
+  background-color: gray!important;
+  border: 1px solid white !important;
+}
 .add-role .btn-add-role:hover {
   background-color: #a6a6a6;
   color: black;
@@ -334,6 +339,12 @@ table.dataTable tbody tr:hover {
    width: 30em;
    height: 2.5em;
    border-radius: 5px
+}
+.category-table-th {
+	width: 25% !important;
+}
+.category-table-th-date {
+	width: 13% !important;
 }
 
 /* ---------------icon--------------------- */

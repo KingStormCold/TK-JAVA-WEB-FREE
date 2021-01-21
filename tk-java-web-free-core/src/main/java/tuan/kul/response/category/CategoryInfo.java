@@ -15,9 +15,9 @@ public class CategoryInfo {
     
     private String categoryName;
     
-    private String categoryFatherCode;
+    private String rootCategoryCode;
     
-    private String categoryFatherName;
+    private String rootCategoryName;
     
     private String updatedDate;
     
@@ -71,31 +71,31 @@ public class CategoryInfo {
         this.updatedBy = updatedBy;
     }
 
-    public String getCategoryFatherCode() {
-        return categoryFatherCode;
-    }
+    public String getRootCategoryCode() {
+		return rootCategoryCode;
+	}
 
-    public void setCategoryFatherCode(String categoryFatherCode) {
-        this.categoryFatherCode = categoryFatherCode;
-    }
+	public void setRootCategoryCode(String rootCategoryCode) {
+		this.rootCategoryCode = rootCategoryCode;
+	}
 
-    public String getCategoryFatherName() {
-        return categoryFatherName;
-    }
+	public String getRootCategoryName() {
+		return rootCategoryName;
+	}
 
-    public void setCategoryFatherName(String categoryFatherName) {
-        this.categoryFatherName = categoryFatherName;
-    }
+	public void setRootCategoryName(String rootCategoryName) {
+		this.rootCategoryName = rootCategoryName;
+	}
 
-    public CategoryInfo() {
+	public CategoryInfo() {
 
     }
     
     public CategoryInfo(CategoryDto dto) {
        this.categoryCode = dto.getCode();
        this.categoryName = dto.getCategory();
-       this.categoryFatherCode = !StringUtils.isEmpty(dto.getCategoryFatherCode()) ? dto.getCategoryFatherCode() : ""; 
-       this.categoryFatherName = !StringUtils.isEmpty(dto.getCategoryFather()) ? dto.getCategoryFather() : "";
+       this.rootCategoryCode = !StringUtils.isEmpty(dto.getCategoryFatherCode()) ? dto.getCategoryFatherCode() : ""; 
+       this.rootCategoryName = !StringUtils.isEmpty(dto.getCategoryFather()) ? dto.getCategoryFather() : "";
        this.createdBy = !StringUtils.isEmpty(dto.getCreatedBy()) ? dto.getCreatedBy() : "";
        this.updatedBy = !StringUtils.isEmpty(dto.getModifiedBy()) ? dto.getModifiedBy() : "";
        this.createdDate = DateUtils.convertDateToString(DateUtils.FORMAT_YYYY_MM_DD_HHMMSS, dto.getCreatedDate());

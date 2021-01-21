@@ -34,7 +34,7 @@ public class RoleApi {
 	public ObjectInfoResponse<ListRoleInfo> findAll(@RequestParam("page_num") String pageNum, @RequestParam("page_size") String pageSize) {
 		if (!SecurityUtils.incognito()) {
 			try {
-				if (!SecurityUtils.getAuthorities().contains(Constant.ROLE_ALL) && !SecurityUtils.getAuthorities().contains(Constant.ADMIN)) {
+				if (!SecurityUtils.getAuthorities().contains(Constant.CATEGORY_ALL) && !SecurityUtils.getAuthorities().contains(Constant.ADMIN)) {
 					return new ObjectInfoResponse<ListRoleInfo>(HttpStatusCode._401.getCode(), HttpStatusCode._401.getText());
 				}
 				if (StringUtils.isEmpty(pageNum) || StringUtils.isEmpty(pageSize)) {

@@ -1,5 +1,7 @@
 package tuan.kul.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import tuan.kul.entity.CategoryEntity;

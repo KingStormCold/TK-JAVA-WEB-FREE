@@ -7,7 +7,7 @@ public enum ErrorCodeEnum {
     ERROR_INVALID("BQ-12", "BQ-12 Input invalid."),
     ERROR_NOT_FOUND("SE-13", "SE-13 Not found in the system."),
     ERROR_EXIST_CATEGORY("ECATE-21", "ECATE-21 Category is exist!"),
-    ERROR_CATEGORY_IS_FATHER("ECATE-22", "ECATE-22 This category is father, please choose again!"),
+    ERROR_CATEGORY_IS_FATHER("ECATE-22", "ECATE-22 This category is root category, please choose again!"),
     ERROR_NOT_EXIST_CATEGORY("ECATE-23", "ECATE-23 Not found this category."),
     ERROR_NOT_EXIST_NEWS("ENEW-31", "ENEW-31 Not found this news."),
     ERROR_FILE("FILE-41", "Image File error."),

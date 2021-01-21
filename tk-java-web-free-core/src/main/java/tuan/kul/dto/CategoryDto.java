@@ -2,6 +2,8 @@ package tuan.kul.dto;
 
 import java.util.List;
 
+import tuan.kul.entity.CategoryEntity;
+
 /**
  * 
  * @author tuan.thai
@@ -56,5 +58,18 @@ public class CategoryDto extends BaseDto {
 
     public CategoryDto() {
 
+    }
+    
+    public static CategoryDto of(CategoryEntity entity) {
+    	CategoryDto result = new CategoryDto();
+    	result.setCode(entity.getCode());
+    	result.setCategory(entity.getCategory());
+    	result.setCategoryFatherCode(entity.getCategoryFatherCode());
+    	result.setCategoryFather(entity.getCategoryFather());
+    	result.setCreatedBy(entity.getCreatedBy());
+    	result.setCreatedDate(entity.getCreatedDate());
+    	result.setModifiedBy(entity.getModifiedBy());
+    	result.setModifiedDate(entity.getModifiedDate());
+    	return result;
     }
 }

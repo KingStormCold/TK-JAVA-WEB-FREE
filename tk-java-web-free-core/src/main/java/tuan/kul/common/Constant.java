@@ -24,4 +24,8 @@ public class Constant {
     
     //User
     public static final String USER_ALL = "USER_ALL";
+    
+    //Category
+    public static final String CATEGORY_ALL = "CATEGORY_ALL";
+    public static final String CATEGORY_FIND_ALL = "CATEGORY_FIND_ALL";
 }
