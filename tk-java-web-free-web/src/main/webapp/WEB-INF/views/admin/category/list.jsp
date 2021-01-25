@@ -2,7 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@include file="/common/taglib.jsp"%>
 <c:url var="categories" value="/api/admin/category" />
-<c:url var="findAll" value="/admin/category/find-all" />
+<c:url var="deleteCategory" value="/api/admin/category/" />
+<c:url var="findAll" value="/api/admin/category/find-all" />
 <c:url var="pageCategory" value="/admin/category/list" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -35,7 +36,7 @@
 		                          <select class = "form-control form-input-role" id ="root-category">
 		                          	<option value="">Choose a category</option>
 		                          	<c:forEach items="${category}" var="item" varStatus="count">
-										<option value="${item.categoryCode}">${item.categoryName}</option>
+		                          		<option value="${item.categoryCode}">${item.categoryName}</option>
 									</c:forEach>
 		                          </select>
 		                      </div>
@@ -118,33 +119,30 @@
 	        }
 	    });
 	    $('body').on("click", ".editCategory", function(){
+	    	$('.modal-body #root-category option').show();
 		    var categoryCode = $(this).siblings('#categoryCode').val();
 		    var categoryName = $(this).parents('tr').find('span#category-name').text();
 			var rootCategoryCode = $(this).parents('tr').find('#rootCategoryCode').val();
 			$('.modal-body #root-category').val(rootCategoryCode);
  		  	$('.modal-body #category-name').val(categoryName);
  		  	$('.modal-body #category-code').val(categoryCode);
+ 		  	$('.modal-body #root-category option[value ='+categoryCode+']').hide();
 		});
 	    $('.btn-add-category').click(function () {
+	    	$('.modal-body #root-category option').show();
 	    	$('.modal-body #root-category').val("");
  		  	$('.modal-body #category-name').val("");
  		  	$('.modal-body #category-code').val("");
 		})
+		$('body > div.notifyjs-corner > div > div.notifyjs-container > div > span').css({"word-break":"break-all !important","white-space":"break-spaces !important"});
 		$('body').on("click", ".fa-remove", function(){
-			var roleId = $(this).siblings('#roleId').val();
-			var roleName = $(this).parents('tr').find('#roleName').val();
+			var categoryCode = $(this).siblings('#categoryCode').val();
+			var categoryName = $(this).parents('tr').find('span#category-name').text();
 			showAlertBeforeDelete(function () {
 	            event.preventDefault();
 	            $.ajax({
-	    	        type: 'POST',
-	    	        url: '${roles}',
-	    	        dataType: 'json',
-	    	        contentType:'application/json',
-	    	        data: JSON.stringify({
-	    	        	role_id: roleId,
-	    	        	role_name: roleName,
-	    	        	condition: "delete"
-	    	        }),
+	    	        type: 'DELETE',
+	    	        url: '${deleteCategory}'+categoryCode,
 	    	        success: function (data) {
 	    	        	console.log(data);
 	    	        	if (data.result == "200") {
@@ -159,12 +157,15 @@
 		    	        	}, 2000);
 	    	        	} else {
 	    	        		setTimeout(function(){
-		    	        		$.notify(data.message, "error");
+		    	        		$.notify(data.message,{
+		    	        			autoHideDelay: 10000,
+		    	        			clickToHide: false,
+		    	        			},"error");
 		    	        	}, 200);
 	    	        	}
 	    	        }
 	    	    });
-	        }, roleId);
+	        }, categoryName);
 		});
 	    $('.dataTables_filter input').prop("placeholder", "Search...");
 

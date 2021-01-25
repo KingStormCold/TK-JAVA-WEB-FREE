@@ -34,7 +34,7 @@ public class CategoryAPI {
     @Autowired
     private CategoryService categoryService;
     
-    @GetMapping(value = "/admin/category/find-all")
+    @GetMapping(value = "/api/admin/category/find-all")
 	public ObjectInfoResponse<ListCategoryInfo> findAll(@RequestParam("page_num") String pageNum, @RequestParam("page_size") String pageSize) {
 		if (!SecurityUtils.incognito()) {
 			try {

@@ -30,7 +30,7 @@ public class RoleApi {
 	@Autowired
 	private RoleService roleService;
 	
-	@GetMapping(value = "/admin/role/find-all")
+	@GetMapping(value = "/api/admin/role/find-all")
 	public ObjectInfoResponse<ListRoleInfo> findAll(@RequestParam("page_num") String pageNum, @RequestParam("page_size") String pageSize) {
 		if (!SecurityUtils.incognito()) {
 			try {
@@ -50,7 +50,7 @@ public class RoleApi {
 		return new ObjectInfoResponse<ListRoleInfo>(HttpStatusCode._403.getCode(), HttpStatusCode._403.getText());
 	}
 	
-	@PostMapping(value = "/admin/role", consumes = "application/json")
+	@PostMapping(value = "/api/admin/role", consumes = "application/json")
 	public ResultResponse roles(@RequestBody RoleRequest request) {
 		if (!SecurityUtils.incognito()) {
 			try {

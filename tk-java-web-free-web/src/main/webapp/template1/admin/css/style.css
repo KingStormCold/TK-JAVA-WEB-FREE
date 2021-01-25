@@ -590,3 +590,9 @@ table.dataTable tbody tr:hover {
   from{ bottom:-100px; opacity:0 } 
   to{ bottom:0; opacity:1 }
 }
+
+/*---------------- notification -----------------*/
+body > div.notifyjs-corner > div > div.notifyjs-container > div > span{
+	word-break:break-word !important;
+	white-space:break-spaces !important;
+}

@@ -131,6 +131,12 @@ public class CategoryService {
         if (deleteCategory == null) {
             return new ResultResponse(HttpStatusCode._500.getCode(), ErrorCodeEnum.ERROR_NOT_FOUND.getText());
         }
+        List<CategoryEntity> rootCategoryList = categoryRepository.findAllByCategoryFatherCode(code);
+        if (!rootCategoryList.isEmpty()) {
+        	String message = rootCategoryList.stream().map(rootCategory -> rootCategory.getCategory()).collect(Collectors.joining(", "));
+			return new ResultResponse(HttpStatusCode._500.getCode(), ErrorCodeEnum.ERROR_REMOVE_CATEGORY.getText()
+					.replace("{list}", message).replace("{categoryName}", deleteCategory.getCategory()));
+        }
         deleteCategory(deleteCategory);
         return new ResultResponse(HttpStatusCode._200.getCode(), ErrorCodeEnum.SUCCESS.getText());
     }

@@ -30,7 +30,7 @@ public class UsersApi {
 	@Autowired
 	private UserService userService;
 
-	@GetMapping(value = "/admin/user/find-all")
+	@GetMapping(value = "/api/admin/user/find-all")
 	public ObjectInfoResponse<ListUserInfo> findAllUser(@RequestParam("page_num") String pageNum, @RequestParam("page_size") String pageSize) {
 		if (!SecurityUtils.incognito()) {
 			try {
@@ -50,7 +50,7 @@ public class UsersApi {
 		return new ObjectInfoResponse<ListUserInfo>(HttpStatusCode._403.getCode(), HttpStatusCode._403.getText());
 	}
 	
-	@GetMapping(value = "/admin/user/find-one")
+	@GetMapping(value = "/api/admin/user/find-one")
 	public ObjectInfoResponse<UserInfo> findOne(@RequestParam("user_name") String userName) {
 		if (!SecurityUtils.incognito()) {
 			try {
@@ -70,7 +70,7 @@ public class UsersApi {
 		return new ObjectInfoResponse<UserInfo>(HttpStatusCode._403.getCode(), HttpStatusCode._403.getText());
 	}
 	
-	@PostMapping(value = "/admin/user", consumes = "application/json")
+	@PostMapping(value = "/api/admin/user", consumes = "application/json")
 	public ResultResponse users(@RequestBody UserRequest request) {
 		if (!SecurityUtils.incognito()) {
 			try {

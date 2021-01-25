@@ -8,4 +8,5 @@ import tuan.kul.entity.CategoryEntity;
 
 public interface CategoryRepository extends JpaRepository<CategoryEntity, String>, CategoryRepositoryCustom{
 
+	List<CategoryEntity> findAllByCategoryFatherCode(String categoryFatherCode);
 }

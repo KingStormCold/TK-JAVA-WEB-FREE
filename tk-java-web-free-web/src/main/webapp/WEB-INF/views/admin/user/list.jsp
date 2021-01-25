@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="/common/taglib.jsp"%>
-<c:url var="findAll" value="/admin/user/find-all" />
-<c:url var="findAllRole" value="/admin/role/find-all" />
-<c:url var="findOne" value="/admin/user/find-one" />
+<c:url var="findAll" value="/api/admin/user/find-all" />
+<c:url var="findAllRole" value="/api/admin/role/find-all" />
+<c:url var="findOne" value="/api/admin/user/find-one" />
 <c:url var="login" value="/login" />
-<c:url var="users" value="/admin/user" />
+<c:url var="users" value="/api/admin/user" />
 <c:url var="pageUser" value="/admin/user/list" />
 
 

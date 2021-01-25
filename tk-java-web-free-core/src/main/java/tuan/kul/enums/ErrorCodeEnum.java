@@ -17,6 +17,7 @@ public enum ErrorCodeEnum {
     ERROR_PASSWORD("SE-16", "SE-16 You must not change password."),
     ERROR_ADD_ROLE("SE-17", "SE-17 Please choose role."),
     ERROR_REMOVE_ADMIN("SE-18", "SE-18 You can't remove this role."),
+    ERROR_REMOVE_CATEGORY("SE-19", "SE-19 You need remove {list} before removing {categoryName}"),
     ;
 
     private String code;

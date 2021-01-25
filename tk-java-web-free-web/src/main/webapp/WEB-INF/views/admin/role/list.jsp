@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="/common/taglib.jsp"%>
-<c:url var="roles" value="/admin/role" />
-<c:url var="findAll" value="/admin/role/find-all" />
+<c:url var="roles" value="/api/admin/role" />
+<c:url var="findAll" value="/api/admin/role/find-all" />
 <c:url var="pageRole" value="/admin/role/list" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
