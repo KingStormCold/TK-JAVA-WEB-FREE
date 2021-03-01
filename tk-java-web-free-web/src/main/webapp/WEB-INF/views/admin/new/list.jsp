@@ -165,7 +165,7 @@
 	    buttonImageOnly: true,
 	    showOn: 'both',
 	    dateFormat: 'dd/mm/yy',
-	}).datepicker("setDate", new Date());
+	});
 	
 	$("#datepickerEnd").datepicker({
 	    showOtherMonths: true,
@@ -175,7 +175,7 @@
 	    buttonImageOnly: true,
 	    showOn: 'both',
 	    dateFormat: 'dd/mm/yy',
-	}).datepicker("setDate", new Date());
+	});
 	
 	$(".ui-datepicker-trigger").css("margin-bottom","1px");
 	$(".ui-datepicker-trigger").css("height","40px");

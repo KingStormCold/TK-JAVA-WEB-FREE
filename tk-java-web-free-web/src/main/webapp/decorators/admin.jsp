@@ -16,6 +16,9 @@
     <link rel="stylesheet" href = "<c:url value='/template1/admin/css/jquery.dataTables.css'/>" rel="stylesheet" type="text/css" media="all">
     <script type='text/javascript' src='<c:url value="/template1/admin/sweetalert2/sweetalert2.min.js"/>'></script>
 	<link rel="stylesheet" href="<c:url value="/template1/admin/sweetalert2/sweetalert2.min.css"/>">
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 
 <body>

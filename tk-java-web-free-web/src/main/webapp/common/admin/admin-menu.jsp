@@ -40,7 +40,7 @@
 					</a>
 				</li>
 				<li class="parent-li">
-					<a href="" aria-expanded="true">
+					<a href='<c:url value= "/admin/news/list"/>' aria-expanded="true">
 						<i class="fa fa-users small-icon"></i>
 						<span class="active-span">News Manager</span>
 					</a>
