@@ -127,12 +127,14 @@
  		  	$('.modal-body #category-name').val(categoryName);
  		  	$('.modal-body #category-code').val(categoryCode);
  		  	$('.modal-body #root-category option[value ='+categoryCode+']').hide();
+ 		  	$('.modal-header .modal-title').text("Edit for " + categoryName);
 		});
 	    $('.btn-add-category').click(function () {
 	    	$('.modal-body #root-category option').show();
 	    	$('.modal-body #root-category').val("");
  		  	$('.modal-body #category-name').val("");
  		  	$('.modal-body #category-code').val("");
+ 		  	$('.modal-header .modal-title').text("Insert category");
 		})
 		$('body > div.notifyjs-corner > div > div.notifyjs-container > div > span').css({"word-break":"break-all !important","white-space":"break-spaces !important"});
 		$('body').on("click", ".fa-remove", function(){

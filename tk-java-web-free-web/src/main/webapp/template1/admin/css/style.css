@@ -4,7 +4,6 @@ body {
   overflow-x: hidden;
   height: 100%;
   background-image: linear-gradient(to right top, rgb(29 33 33 / 80%),rgb(15 81 114 / 50%)), url("../img/backgroundmain.png");
-  background-repeat: no-repeat;
 }
 .clearfix::after {
   content: "";
@@ -144,7 +143,6 @@ body {
 	height: 98.8vh;
 /*     border-right: 2px solid white; */
     background-image: linear-gradient(to right top, rgb(29 33 33 / 80%),rgb(15 81 114 / 50%)), url("../img/backgroundmenu.png");
-    background-repeat: no-repeat;
     border-radius: 20px;
     box-shadow: 10px 8px #3b4c59;
 }
