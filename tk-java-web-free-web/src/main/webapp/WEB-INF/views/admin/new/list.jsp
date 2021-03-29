@@ -8,97 +8,69 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
-	
-	<!-- page title area end -->
-	<div class="main-content-inner">
-		<!-- sales report area start -->
-		<div class="sales-report-area mt-4 mb-5">
-			<div class="row">
-				<div class= "col-12 mt-2">
-					<div class = "card">
-						<div class = "card-body">
-							<div class = "row">
-								<div class = "col-sm-6 input-group mb-3">
-									<div class="input-group-prepend">
-                                        <span class="input-group-text title-width" id="basic-addon1">Start date</span>
-                                    </div>
-                                    <div>
-				                        <input class="form-control input-width datepicker-format" type="text" id="datepickerStart">
-                                    </div>
-								</div>
-								<div class = "col-sm-6 input-group mb-3">
-									<div class="input-group-prepend">
-                                        <span class="input-group-text title-width" id="basic-addon1">Search by</span>
-                                    </div>
-                                    <div>
-				                        <select class="custom-select select-option-height input-width" id="selectSearchBy">
-											<option value="">Please, choose a item!</option>
-											<option value="title">Title Name</option>
-											<option value="createdBy">Created Name</option>
-											<option value="modifiedBy">Update Name</option>
-										</select>
-                                    </div>
-								</div>
-								<div class = "col-sm-6 input-group mb-3">
-									<div class="input-group-prepend">
-                                        <span class="input-group-text title-width" id="basic-addon1">End date</span>
-                                    </div>
-                                    <div>
-				                        <input class="form-control input-width datepicker-format" type="text" id="datepickerEnd">
-                                    </div>
-								</div>
-								<div class = "col-sm-6 input-group mb-3">
-									<div class="input-group-prepend">
-                                        <span class="input-group-text title-width" id="basic-addon1">Search value</span>
-                                    </div>
-                                    <div>
-				                        <input type="text" id="searchValue" class="form-control select-option-height input-width" placeholder="Thời sự" aria-label="Username" aria-describedby="basic-addon1">
-                                    </div>
-								</div>
-								<div class = "col-sm-6 input-group">
-								</div>
-								<div class = "col-sm-6 mb-24-negative">
-									<button type="button" class="btn btn-success btn-md mb-3 title-width"><p class = "button-font-family">Search</p></button>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-12 mt-2">
-					<div class="search-box pull-right">
-						<a><button class="btn btn-success mb-3 addNew"><span>+</span></button></a>
-					</div>
-				</div>
-				<div class="col-12 mt-5">
-					<div class="card">
-						<div class="card-body">
-							<div class="data-tables datatable-dark">
-								<table id="example" class="text-center">
-									<thead class="text-capitalize">
-										<tr>
-											<th>No.</th>
-											<th>Created By</th>
-											<th>Created Date</th>
-											<th>Title</th>
-											<th>Update Date</th>
-											<th>Update By</th>
-											<th>Action</th>
-										</tr>
-									</thead>
-									<tbody>
 
-									</tbody>
-									
-								</table>
-							</div>
-						</div>
-					</div>
+<div class="col-sm-12 main-content">
+    <div>
+    	<div class="col-sm-12">
+	    	<form action="">
+		   		<div class="col-sm-2">
+					<input class="form-control input-width datepicker-format bgcl-transparent" type="text" id="datepickerStart" placeholder="Start date">
 				</div>
-			</div>
+				<div class="col-sm-2">
+					<input class="form-control input-width datepicker-format bgcl-transparent" type="text" id="datepickerEnd" placeholder="End date">
+				</div>	
+				<div class="col-sm-2">
+					<select class="form-control custom-select select-option-height input-width mrt-22 bgcl-transparent" id="selectSearchBy">
+						<option value="" class="option-new">Please, choose a item!</option>
+						<option value="title" class="option-new">Title Name</option>
+						<option value="createdBy" class="option-new">Created Name</option>
+						<option value="modifiedBy" class="option-new">Update Name</option>
+					</select>
+				</div>
+				<div class="col-sm-5">
+					<input type="text" id="searchValue" class="form-control select-option-height input-width mrt-22 bgcl-transparent" placeholder="Chức vô địch giải bóng đá...">
+				</div>
+				<div class="col-sm-1">
+					<button type="button" class="btn btn-success btn-md mb-3 title-width mrt-22 height-35"><p class = "button-font-family">Search</p></button>
+				</div>
+	   		</form>
+    	</div>
+	    <div class="add-new col-sm-2 mrt-20 mrb-20">
+	        <a title="Add New" class="btn btn-primary btn-add-new" data-toggle="modal" data-target="#myModal" data-keyboard="false" data-backdrop="static">+</a>
+	    </div>
+	    <div id="loader" class = "display-none"></div>
+	    <div class="card">
+		    <div class="card-body">
+		        <div class="data-tables">
+		            <table id="new-table" class="hover new-table">
+		                <thead class="text-capitalize">
+		                    <tr>
+		                        <th class="table-th table-th-no">No.</th>
+		                        <th class="table-th role-table-th-name">Name</th>
+		                        <th class="table-th role-table-th-description">Description</th>
+		                        <th class="table-th table-th-action">Action</th>
+		                    </tr>
+		                </thead>
+		            </table>
+		            <ul class = "pagination-sm" id="pagination-role"></ul>
+		        </div>
+		    </div>
 		</div>
+	    
 	</div>
+</div>
 	<script>
 	$(document).ready(function(){
+	    var table = $('#new-table').DataTable( {
+	        "lengthChange": false,
+	        "pageLength": 20,
+	        "autoWidth" : false,
+	        "info": false,
+	        "paging": false,
+	        "scrollY": '60vh',
+	        "scrollCollapse": true
+	    });
+		
 		var dataArray = {};
    		dataArray["start_date"] = '09/01/2020';
    		dataArray["end_date"] = '09/01/2020';
@@ -154,6 +126,7 @@
 	      });
 
 	});
+	
 	
 	$('#datepickerStart').attr('readonly', 'readonly');
 	$('#datepickerEnd').attr('readonly', 'readonly');

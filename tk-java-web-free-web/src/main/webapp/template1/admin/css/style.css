@@ -288,6 +288,18 @@ hr {
   color: black;
 }
 
+.add-new .btn-add-new {
+/*   margin-left: 1530px; */
+  color: white;
+  background-color: gray;
+  border: 1px solid white !important;
+}
+
+.add-new .btn-add-new:hover {
+  background-color: #a6a6a6;
+  color: black;
+}
+
 /* ---------------------table-------------- */
 .table-th {
   text-align: center;
@@ -528,8 +540,8 @@ table.dataTable tbody tr:hover {
 .height-100 {
 	height: 100vh;
 }
-::placeholder {
-	color: white;
+input::placeholder {
+	color: white !important;
 }
 .w-15-percent {
 	width: 15% !important;
@@ -593,4 +605,48 @@ table.dataTable tbody tr:hover {
 body > div.notifyjs-corner > div > div.notifyjs-container > div > span{
 	word-break:break-word !important;
 	white-space:break-spaces !important;
+}
+
+.mr-left-4{
+	margin-left: 4% !important;
+}
+
+.mrt-22{
+	margin-top: 22px !important;
+}
+
+.mrt-20{
+	margin-top: 20px !important;
+}
+.mrb-20{
+	margin-bottom: 20px !important;
+}
+.height-35{
+    height: 35px !important;
+}
+#datepickerStart {
+    width: 238px !important;
+    margin-top: 22px !important;
+    margin-left: -15px !important;
+}
+#datepickerEnd {
+	width: 238px !important;
+	margin-top: 22px !important;
+	margin-left: -15px !important;
+}
+.ui-datepicker-trigger {
+    margin-top: -34px;
+    margin-left: 190px;
+    height: 34px !important;
+}
+.bgcl-transparent{
+	background-color: transparent !important;
+	color: white !important;
+}
+.option-new{
+	background-color: transparent !important;
+	color: black !important;
+}
+#new-table_filter{
+	display: none !important;
 }
